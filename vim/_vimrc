@@ -1,5 +1,6 @@
 execute pathogen#infect()
-
+" Set the second argument to where you keep your Vim files 
+execute pathogen#infect('bundle{}', 'D:\Github\dotfiles\vim\bundle{}')
 
 " Indent automatically depending on filetype
 filetype indent on
@@ -7,6 +8,9 @@ set autoindent
 
 " Turn on line numbering. Turn it off with "set nonu" 
 set number
+
+" Hide buffers instead of close them 
+set hidden
 
 " Set syntax on
 syntax on
@@ -33,6 +37,17 @@ let g:airline_powerline_fonts = 1
 " Set up folds
 set foldmethod=marker
 
+" Change tab to four space
+set tabstop=4
+
+" Custom Options
+set shiftwidth=4
+set visualbell
+set noerrorbells
+set cursorline
+nnoremap ; :
+let mapleader = ","
+
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -42,8 +57,9 @@ set incsearch ignorecase smartcase hlsearch
 set shortmess+=I
 
 " Custom binds
-map <F9> :e $HOME/_vimrc<CR>
-map <F6> :so $HOME/_vimrc<CR>
+" Change the <F9> and <F6> locations to the location of your vimrc
+map <F9> :e D:/Github/dotfiles/vim/_vimrc<CR>
+map <F6> :so D:/Github/dotfiles/vim/_vimrc<CR>
 map <C-n> :NERDTreeToggle<CR>
 map <C-s> :w<CR>
 set langmenu=en_US.UTF-8

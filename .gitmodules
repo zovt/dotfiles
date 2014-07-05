@@ -22,3 +22,6 @@
 [submodule "vim/autoload/vim-pathogen"]
 	path = vim/autoload/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
+[submodule "vim\\bundle\\command-t"]
+	path = vim\\bundle\\command-t
+	url = git://git.wincent.com/command-t
