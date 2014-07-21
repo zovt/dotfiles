@@ -22,6 +22,12 @@
 [submodule "vim/autoload/vim-pathogen"]
 	path = vim/autoload/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
-[submodule "vim\\bundle\\command-t"]
-	path = vim\\bundle\\command-t
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
 	url = git://git.wincent.com/command-t
+[submodule "vim/bundle/vim-YouCompleteMe"]
+	path = vim/bundle/vim-YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vim/bundle/neocomplete-vim"]
+	path = vim/bundle/neocomplete-vim
+	url = https://github.com/Shougo/neocomplete.vim

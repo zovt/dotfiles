@@ -1,6 +1,22 @@
+set nocompatible
+
 execute pathogen#infect()
 " Set the second argument to where you keep your Vim files 
-execute pathogen#infect('bundle{}', 'D:\Github\dotfiles\vim\bundle{}')
+execute pathogen#infect('bundle\{}', 'D:\Github\dotfiles\vim\bundle\{}')
+
+" enable NeoComplete
+let g:neocomplete#enable_at_startup = 1
+" NeoComplete options
+let g:neocomeplete#enable_smart_case = 1
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags 
+if !exists('g:neocomplete#sources#omni#input_patterns')
+	let g:neocomplete#sources#omni#input_patterns = {}
+endif
 
 " Indent automatically depending on filetype
 filetype indent on
@@ -33,12 +49,16 @@ set guifont:Sauce_Code_Powerline:h10:cANSI
 
 " Set up airline fancy fonts 
 let g:airline_powerline_fonts = 1
+" Airline options
+let g:airline#extensions#tabline#enabled = 1
 
 " Set up folds
 set foldmethod=marker
 
 " Change tab to four space
 set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " Custom Options
 set shiftwidth=4
@@ -52,7 +72,7 @@ set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 
-set nocompatible ruler laststatus=2 showcmd showmode
+set ruler laststatus=2 showcmd showmode
 set incsearch ignorecase smartcase hlsearch
 set shortmess+=I
 
@@ -60,8 +80,17 @@ set shortmess+=I
 " Change the <F9> and <F6> locations to the location of your vimrc
 map <F9> :e D:/Github/dotfiles/vim/_vimrc<CR>
 map <F6> :so D:/Github/dotfiles/vim/_vimrc<CR>
+" NERDTreeToggle bound to CTRL-N
 map <C-n> :NERDTreeToggle<CR>
+" CTRL-S to save
 map <C-s> :w<CR>
+" Toggle relative numbering
+map <Leader>n :set nornu<CR>
+map <Leader>N :set rnu<CR>
+" Switch quickly between buffers
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>h :bprev<CR>
+" Language Settings
 set langmenu=en_US.UTF-8
 let $LANG = 'en'
 
