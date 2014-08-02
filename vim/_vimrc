@@ -42,12 +42,22 @@ highlight clear SignColumn
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline#extension#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#show_tab_type = 1
 set laststatus=2
 
 " DelimitMate
-let delimitMate_autoclose = 0
+let delimitMate_autoclose = 1
+let delimitMate_expand_cr = 1
+let delimitMate_matchpairs = "{:},[:],(:),<:>"
+let delimitMate_jump_expansion = 1
+set backspace=2
+
+" Tagbar
+let g:tagbar_autoclose = 1
 
 " My options
 set langmenu=en_US.UTF-8
@@ -92,10 +102,10 @@ set guioptions-=r
 " Custom mappings
 noremap <F9> :e ~/.vimrc<CR>
 noremap <F6> :so ~/.vimrc<CR>
-noremap <C-s> :w <CR>
-noremap <Leader>l :bnext<CR>
-noremap <Leader>h :bprev<CR>
-noremap <Leader>w :%s/\s\+$//<CR>
 
 nnoremap ; :
-
+nnoremap <silent> <Leader>w :%s/\s\+$//<CR>
+nnoremap <silent> <Leader>l :bnext<CR>
+nnoremap <silent> <Leader>h :bprev<CR>
+nnoremap <silent> <C-s> :w <CR>
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
