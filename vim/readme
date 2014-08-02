@@ -1,3 +1,0 @@
-To use my _vimrc, make sure you execute it from your own (or simply replace it)
-
-Also, if this is stored anywhere aside from the default vim locations make sure to pathogen#infect() this location

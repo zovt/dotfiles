@@ -1,99 +1,101 @@
+" Default shit
 set nocompatible
+filetype off
 
-execute pathogen#infect()
-" Set the second argument to where you keep your Vim files 
-execute pathogen#infect('bundle\{}', 'D:\Github\dotfiles\vim\bundle\{}')
+" Include Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 
-" enable NeoComplete
+" Plugins
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'edkolev/promptline.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'Raimondi/delimitMate'
+Plugin 'airblade/vim-gitgutter'
+call vundle#end()
+filetype plugin indent on
+
+" Plugin Specific options
+" Neocomplete options
 let g:neocomplete#enable_at_startup = 1
-" NeoComplete options
-let g:neocomeplete#enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 4
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Tab completion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags 
 if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patterns = {}
+	let g:neocomplete#sources#omni#input_patters = {}
 endif
 
-" Indent automatically depending on filetype
-filetype indent on
-set autoindent
+" GitGutter
+highlight clear SignColumn
 
-" Turn on line numbering. Turn it off with "set nonu" 
-set number
-
-" Hide buffers instead of close them 
-set hidden
-
-" Set syntax on
-syntax on
-
-" Case insensitive search
-set ic
-
-" Higlhight search
-set hls
-
-" Wrap text instead of being on one line
-set lbr
-
-" Change colorscheme from default to delek
-colorscheme wombat 
-
-" Font options
-set encoding=utf-8
-set guifont:Sauce_Code_Powerline:h10:cANSI
-
-" Set up airline fancy fonts 
+" Airline
 let g:airline_powerline_fonts = 1
-" Airline options
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extension#tabline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+set laststatus=2
 
-" Set up folds
+" DelimitMate
+let delimitMate_autoclose = 0
+
+" My options
+set langmenu=en_US.UTF-8
+let $LANG = 'en'
+set autoindent
+set rnu
+set nu
+set hidden
+syntax on
+set ignorecase
+set smartcase
+set hls
+set lbr
+set encoding=utf-8
 set foldmethod=marker
-
-" Change tab to four space
+" Colorscheme
+colorscheme smyck
+" Change tab to four spaces
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-" Custom Options
-set shiftwidth=4
+" Visual bell and cursorline
 set visualbell
-set noerrorbells
 set cursorline
-nnoremap ; :
+" Leader
 let mapleader = ","
+" other stuff
+set showmode
+set backup
+set backupdir=~/.vimbackups
+set dir=~/.vimbackups
 
+" Windows only
+set guifont:Sauce_Code_Powerline:h10:cANSI
+
+" Get rid of gross gui shit
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 
-set ruler laststatus=2 showcmd showmode
-set incsearch ignorecase smartcase hlsearch
-set shortmess+=I
 
-" Custom binds
-" Change the <F9> and <F6> locations to the location of your vimrc
-map <F9> :e D:/Github/dotfiles/vim/_vimrc<CR>
-map <F6> :so D:/Github/dotfiles/vim/_vimrc<CR>
-" NERDTreeToggle bound to CTRL-N
-map <C-n> :NERDTreeToggle<CR>
-" CTRL-S to save
-map <C-s> :w<CR>
-" Toggle relative numbering
-map <Leader>n :set nornu<CR>
-map <Leader>N :set rnu<CR>
-" Switch quickly between buffers
-nnoremap <Leader>l :bnext<CR>
-nnoremap <Leader>h :bprev<CR>
-" Language Settings
-set langmenu=en_US.UTF-8
-let $LANG = 'en'
+" Custom mappings
+noremap <F9> :e ~/.vimrc<CR>
+noremap <F6> :so ~/.vimrc<CR>
+noremap <C-s> :w <CR>
+noremap <Leader>l :bnext<CR>
+noremap <Leader>h :bprev<CR>
+noremap <Leader>w :%s/\s\+$//<CR>
 
-
-
+nnoremap ; :
 
