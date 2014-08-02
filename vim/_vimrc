@@ -59,6 +59,13 @@ set backspace=2
 " Tagbar
 let g:tagbar_autoclose = 1
 
+" Syntastic
+let g:syntastic_enable_signs = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_enable_balloons = 1
+let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
+
+
 " My options
 set langmenu=en_US.UTF-8
 let $LANG = 'en'
