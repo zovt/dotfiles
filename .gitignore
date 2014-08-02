@@ -1,3 +1,2 @@
 vim/bundle/*
-vim/bundle
-
+!vim/bundle/Vundle.git
