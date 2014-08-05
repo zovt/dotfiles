@@ -81,6 +81,9 @@
 ;; Tramp settings
 (setq tramp-default-method "ssh")
 
+;; Git
+(setenv "GIT_ASKPASS" "git-gui--askpass")
+
 ;; Evil
 (global-evil-leader-mode)
 (evil-mode 1) ;; Enable evil
