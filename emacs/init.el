@@ -16,6 +16,7 @@
 (defconst ragesalmon-config-packages
       '(evil
 	evil-leader
+	flycheck
 	sublime-themes
 	org
 	projectile
@@ -58,28 +59,18 @@
 ;; Fullscreen
 (custom-set-variables '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
-;; Put text in center of screen
-;; Taken from #Emacs, Naked
-(defvar bzg-big-fringe-mode nil)
-(define-minor-mode bzg-big-fringe-mode
-  "Minor mode to use big fringe in the current buffer."
-  :init-value nil
-  :global t
-  :variable bzg-big-fringe-mode
-  :group 'editing-basics
-  (if (not bzg-big-fringe-mode)
-      (set-fringe-style nil)
-    (set-fringe-mode
-     (/ (- (frame-pixel-width)
-	   (* 120 (frame-char-width)))
-	2))))
-(bzg-big-fringe-mode 1)
-
 ;; Line numbers
 (global-linum-mode 1)
 
 ;; Tramp settings
-(setq tramp-default-method "ssh")
+(setq tramp-default-method "plink")
+
+;; Delete all but current buffer
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+(global-set-key (kbd "C-c x") 'kill-other-buffers)
 
 ;; Evil
 (global-evil-leader-mode)
