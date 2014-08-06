@@ -55,6 +55,7 @@
 (load-theme 'stekene-dark t)
 
 ;; Highlight current line
+(global-hl-line-mode t)
 
 ;; Fullscreen
 (custom-set-variables '(initial-frame-alist (quote ((fullscreen . maximized)))))
@@ -103,4 +104,3 @@
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (helm-mode 1)
-
