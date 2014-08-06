@@ -16,11 +16,10 @@
 (defconst ragesalmon-config-packages
       '(evil
 	evil-leader
-	flycheck
 	sublime-themes
+	git-gutter
 	org
 	projectile
-	linum-relative
 	magit
 	smex
 	helm
@@ -58,7 +57,7 @@
 (global-hl-line-mode t)
 
 ;; Fullscreen
-(custom-set-variables '(initial-frame-alist (quote ((fullscreen . maximized)))))
+(toggle-frame-fullscreen)
 
 ;; Line numbers
 (global-linum-mode 1)
@@ -78,6 +77,7 @@
 (evil-mode 1) ;; Enable evil
 (define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
+(evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
 (setq evil-auto-indent t) ;; I don't think this actually does anything
 (setq evil-shift-width 4) ;; Set indent width
 
@@ -85,9 +85,9 @@
 (setq org-log-done 'time)
 (setq org-agenda-files (list "~/.emacs.d/org/school.org"
 			     "~/.emacs.d/org/home.org"
+			     "~/.emacs.d/org/Schedule.org"
 			     "~/.emacs.d/org/life.org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
-(add-hook 'org-mode-hook (lambda () (local-set-key (kbd "RET") 'newline)))
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -104,3 +104,6 @@
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (helm-mode 1)
+
+;; Git Gutter
+(global-git-gutter-mode +1)
