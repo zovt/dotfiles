@@ -4,7 +4,7 @@
 
 ;; Enable melpa and Org-mode
 (add-to-list 'package-archives
-     '("gnu" . "http://elpa.gnu.org/packages/") t)
+	     '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
@@ -14,18 +14,19 @@
 
 ;; Install function
 (defconst ragesalmon-config-packages
-      '(evil
-	evil-leader
-	sublime-themes
-	git-gutter
-	org
-	projectile
-	magit
-	smex
-	helm
-	js2-mode
-	company
-	stekene-theme))
+  '(evil
+    evil-leader
+    sublime-themes
+    git-gutter
+    org
+    cmake-mode
+    projectile
+    magit
+    smex
+    helm
+    js2-mode
+    company
+    stekene-theme))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
       (package-install p)))
@@ -81,6 +82,16 @@
 (setq evil-auto-indent t) ;; I don't think this actually does anything
 (setq evil-shift-width 4) ;; Set indent width
 
+;; Evil Leader Binds
+(evil-leader/set-leader ",")
+(evil-leader/set-key "h" 'previous-buffer)
+(evil-leader/set-key "l" 'next-buffer)
+(evil-leader/set-key "u" 'smex)
+(evil-leader/set-key "a" 'org-agenda)
+(evil-leader/set-key "x" 'kill-other-buffers)
+(evil-leader/set-key "b" 'helm-buffers-list)
+(evil-leader/set-key "k" 'kill-buffer)
+
 ;; Org Mode
 (setq org-log-done 'time)
 (setq org-agenda-files (list "~/.emacs.d/org/school.org"
@@ -107,3 +118,30 @@
 
 ;; Git Gutter
 (global-git-gutter-mode +1)
+
+;; Customize modeline
+(setq-default
+ mode-line-format
+	      '(
+	       (:propertize " %m: " face font-lock-doc-face)
+	       (:eval (when (buffer-modified-p)
+			 (propertize "(MOD) "
+				     'face 'font-lock-warning-face)))
+	       (:propertize "%b " face font-lock-function-name-face)
+	       (:propertize "[%02l : %02c] " face font-lock-keyword-face)
+	       (:propertize "[%02p / %02I] " face font-lock-preprocessor-face)
+	       (:eval (propertize (format-time-string "%H:%M:%S") 'face 'font-lock-builtin-face))
+	       " ("
+	       minor-mode-alist
+	       " )"
+	       (:propertize " %-" face font-lock-comment-face)))
+
+;; Change save path
+(setq
+ backup-by-copying t
+ backup-directory-alist '(("." . "~/.saves"))
+ auto-save-file-name-transforms '((".*" "~/.saves/" t))
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
