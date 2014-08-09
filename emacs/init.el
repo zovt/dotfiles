@@ -58,7 +58,9 @@
 (global-hl-line-mode t)
 
 ;; Fullscreen
-(toggle-frame-fullscreen)
+(if (eq system-type 'windows-nt)
+    (toggle-frame-fullscreen)
+)
 
 ;; Line numbers
 (global-linum-mode 1)
@@ -91,6 +93,7 @@
 (evil-leader/set-key "x" 'kill-other-buffers)
 (evil-leader/set-key "b" 'helm-buffers-list)
 (evil-leader/set-key "k" 'kill-buffer)
+(evil-leader/set-key "e" 'other-window)
 
 ;; Org Mode
 (setq org-log-done 'time)
