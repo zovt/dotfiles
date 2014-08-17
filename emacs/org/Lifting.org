@@ -1,0 +1,16 @@
+* Week 1
+** Wed Aug 13 18:00:19 2014
+*** B day [2/4]
+- [X] OHP 85 lbs 5x5
+- [X] Pullups 5 lbs 3x8
+- [ ] Curls 20 lbs 3x8
+- [ ] Deadlifts 230 lbs 1x5
+*** Weekly weight: 169.0 lbs
+
+** Fri Aug 15 17:02:14 2014
+*** A day [0/3]
+- [ ] Bench Press 110 lbs 5x5
+- [ ] Pendlay Rows 120 lbs 5x5
+- [ ] Squats 110 lbs 5x5
+
+  
