@@ -20,16 +20,23 @@
     sublime-themes
     org
     cmake-mode
-    projectile
     magit
     smex
     helm
-    flycheck
+    helm-gtags
     js2-mode
     yasnippet
-    auto-complete
-    auto-complete-clang
-    stekene-theme))
+    stekene-theme
+    moe-theme
+    semantic
+    function-args
+    tern
+    company
+    company-c-headers
+    company-tern
+    smartparens
+    eieio
+    ))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
       (package-install p)))
@@ -57,13 +64,11 @@
 
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'stekene-dark t)
+(require `moe-theme)
 
+(moe-dark)
 ;; Highlight current line
 (global-hl-line-mode t)
-
-;; Show matching parens
-(show-paren-mode t)
 
 ;; Fullscreen
 (if (eq system-type 'windows-nt)
@@ -71,7 +76,7 @@
 )
 
 ;; Set Font
-(set-face-font 'default "InputSans-10")
+(set-face-font 'default "InputMono-10")
 
 ;; Line numbers
 (global-linum-mode 1)
@@ -116,6 +121,7 @@
 	       minor-mode-alist
 	       " )"
 	       (:propertize " %-" face font-lock-comment-face)))
+(set-face-background 'mode-line "#434445")
 
 ;; --------------- Custom Functions -----------------
 ;; Delete all but current buffer
@@ -148,6 +154,7 @@
 (evil-leader/set-key "k" 'kill-buffer)
 (evil-leader/set-key "e" 'other-window)
 (evil-leader/set-key "o" 'switch-to-buffer)
+(evil-leader/set-key "w" 'whitespace-mode)
 
 ;; Org Mode
 (setq org-log-done 'time)
@@ -167,24 +174,98 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-;; Projectile
-(projectile-global-mode)
-(setq projectile-enable-caching t)
-
 ;; Helm
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (setq helm-mode-handle-completion-in-region nil)
 (helm-mode 1)
 
+;; Helm gtags
+(setq helm-gtags-prefix-key "\C-cg")
+
+(require 'helm-gtags)
+
+(setq
+ helm-gtags-ignore-case t
+ helm-gtags-auto-update t
+ helm-gtags-use-input-at-cursor t
+ helm-gtags-pulse-at-cursor t
+ helm-gtags-suggested-key-mapping t
+ )
+
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'java-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+(define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-select)
+(define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+(define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+(define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+(define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+
 ;; Yasnippet
 (yas-global-mode 1)
 
-;; Autocomplete
-(require 'auto-complete-config)
-(require 'auto-complete-clang)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
-(define-key evil-insert-state-map (kbd "C-`") 'ac-complete-clang)
+;; Semantic
+(require 'cc-mode)
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode 1)
+
+;; Function-args
+(require 'function-args)
+(fa-config-default)
+(define-key c-mode-map [(tab)] 'moo-complete)
+(define-key c++-mode-map [(tab)] 'moo-complete)
+
+;; Company
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-backends '(
+			 company-clang
+			 company-semantic
+			 company-gtags
+			 company-c-headers
+			 company-yasnippet
+			 company-cmake
+			 company-files
+			 company-elisp
+			 company-tern
+			 company
+			 ))
+(setq company-idle-delay 0.2)
+
+;; C Indentation mode
+(setq c-defualt-style "linux")
+
+;; Smartparens
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(smartparens-global-mode 1)
+
+(defun ragesalmon-newline-sp (&rest _ignored)
+  "Actually indent shit"
+  (newline-and-indent)
+  (forward-line -1)
+  (indent-according-to-mode)
+  )
+
+(sp-local-pair 'c-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
+(sp-local-pair 'c++-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
+(sp-local-pair 'js2-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
+(sp-local-pair 'css-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
+(setq sp-autoskip-closing-pair (quote always))
+
+;; Js2 Mode
+(autoload 'js2-mode "js2-mode.el" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; Tern
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
