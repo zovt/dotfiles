@@ -95,6 +95,9 @@
       (remove-hook 'find-file-hooks 'vc-find-file-hook)
       (delete 'Git vc-handled-backends)))
 
+;; Tab width
+(setq tab-width 4)
+
 ;; Change save path
 (setq
  backup-by-copying t
@@ -150,10 +153,9 @@
 (evil-leader/set-key "u" 'smex)
 (evil-leader/set-key "a" 'org-agenda)
 (evil-leader/set-key "x" 'kill-other-buffers)
-(evil-leader/set-key "b" 'helm-buffers-list)
+(evil-leader/set-key "o" 'helm-buffers-list)
 (evil-leader/set-key "k" 'kill-buffer)
 (evil-leader/set-key "e" 'other-window)
-(evil-leader/set-key "o" 'switch-to-buffer)
 (evil-leader/set-key "w" 'whitespace-mode)
 
 ;; Org Mode
@@ -169,6 +171,17 @@
 			  (type "|" "CANCELED(c@)")
 			  (type "TODO" "|" "DONE(d!)")))
 
+(setq
+ org-export-backends '(ascii
+		       md
+		       html
+		       odt
+		       org
+		       latex
+		       man
+		       )
+ )
+
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -178,6 +191,32 @@
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (setq helm-mode-handle-completion-in-region nil)
+
+(setq helm-command-prefix-key "C-c h")
+
+(require 'helm-config)
+(setq
+ helm-google-suggest-use-curl-p t
+ helm-quick-update t
+ helm-idle-delay 0.01
+ helm-input-idle-delay 0.01
+ helm-ff-search-library-in-sexp t
+ 
+ helm-split-window-default-side 'other 
+ helm-split-window-in-side-p t 
+ helm-buffers-favorite-modes '(picture-mode artist-mode)
+ helm-candidate-number-limit 200 
+ helm-M-x-requires-pattern 0     
+ helm-boring-file-regexp-list
+ '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "\\.i$") 
+ helm-ff-file-name-history-use-recentf t
+ helm-move-to-line-cycle-in-source t 
+                                        
+ ido-use-virtual-buffers t      
+ helm-buffers-fuzzy-matching t          
+                                        
+ )
+
 (helm-mode 1)
 
 ;; Helm gtags
