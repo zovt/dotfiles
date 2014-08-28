@@ -1,0 +1,96 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+#TabsToolbar {
+    background: #5500FF !important;
+}
+
+#TabsToolbar .tabbrowser-tabs {
+    min-height: 20px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    text-align: center !important;
+    font-family: 'Input Sans' !important;
+    font-size: 12px !important;
+    border: none !important;
+}
+
+.tab-close-button, .tab-close {
+    opacity:0!important;
+}
+
+.tab-close-button:hover, .tab-close:hover {
+    opacity: 1 !important;
+}
+
+.tabbrowser-tab:not([pinned]) .tab-icon-image {
+    display: none !important;
+}
+
+#main-window .tabbrowser-tab > .tab-stack {
+    border-width: 0px 0px 0 0px !important;
+    border-style: none !important;
+    background-clip: padding-box !important;
+    border-radius: 0 !important;
+    margin-top: 1px !important;
+    margin-left: -1px !important;
+}
+
+#TabsToolbar .tabbrowser-tab {
+    -moz-border-top-colors: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-bottom-colors: none !important;
+    border-radius: 0px !important;
+    background: #262626 !important;
+    background-clip: padding-box !important;
+    transition: all .1s !important;
+    margin-left: -1px !important;
+    color: #aaaaaa !important;
+    margin-top: -1px !important;
+    font-family: 'Open Sans' !important;
+    font-size: 13px !important;
+    min-width: 60px !important;
+    max-width: 200px !important;
+    transition: all 0.25s ease !important;
+}
+
+#TabsToolbar .tabbrowser-tab:not([selected]) {
+    width: 100px !important;
+    max-width: 100px !important;
+}
+
+#TabsToolbar .tabbrowser-tab[selected] {
+    width: 200px !important;
+}
+
+#TabsToolbar .tabs-newtab-button {
+    display: none !important;
+}
+
+#TabsToolbar .tabbrowser-tab[last-visible-tab] {
+    margin-right: 0px !important;
+}
+
+#TabsToolbar .tabbrowser-tab[first-visible-tab] {
+    margin-left: 0px !important;
+}
+
+#TabsToolbar .tab-background {
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+#TabsToolbar .tab-background-start,
+#TabsToolbar .tab-background-end {
+    display: none !important;
+}
+
+#TabsToolbar .tab-background-middle {
+    margin: -4px -2px !important;
+    background: transparent !important;
+}
+
+#TabsToolbar .tabbrowser-tab:after,
+#TabsToolbar .tabbrowser-tab:before {
+    display: none !important;
+}
