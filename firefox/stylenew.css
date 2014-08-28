@@ -1,7 +1,9 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
+/* Tabs */
+
 #TabsToolbar {
-    background: #5500FF !important;
+    background: transparent !important;
 }
 
 #TabsToolbar .tabbrowser-tabs {
@@ -11,7 +13,6 @@
     text-align: center !important;
     font-family: 'Input Sans' !important;
     font-size: 12px !important;
-    border: none !important;
 }
 
 .tab-close-button, .tab-close {
@@ -27,12 +28,14 @@
 }
 
 #main-window .tabbrowser-tab > .tab-stack {
-    border-width: 0px 0px 0 0px !important;
+    border-width: 0px 0px 0px 0px !important;
     border-style: none !important;
     background-clip: padding-box !important;
     border-radius: 0 !important;
     margin-top: 1px !important;
     margin-left: -1px !important;
+    max-height: 20px !important;
+    height: 20px !important;
 }
 
 #TabsToolbar .tabbrowser-tab {
@@ -40,18 +43,17 @@
     -moz-border-left-colors: none !important;
     -moz-border-right-colors: none !important;
     -moz-border-bottom-colors: none !important;
-    border-radius: 0px !important;
     background: #262626 !important;
     background-clip: padding-box !important;
-    transition: all .1s !important;
-    margin-left: -1px !important;
     color: #aaaaaa !important;
     margin-top: -1px !important;
-    font-family: 'Open Sans' !important;
+    font-family: 'Input Sans' !important;
     font-size: 13px !important;
     min-width: 60px !important;
     max-width: 200px !important;
     transition: all 0.25s ease !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
 }
 
 #TabsToolbar .tabbrowser-tab:not([selected]) {
@@ -61,6 +63,9 @@
 
 #TabsToolbar .tabbrowser-tab[selected] {
     width: 200px !important;
+    max-height: 20px !important;
+    height: 20px !important;
+    border-bottom: none !important;
 }
 
 #TabsToolbar .tabs-newtab-button {
@@ -72,7 +77,9 @@
 }
 
 #TabsToolbar .tabbrowser-tab[first-visible-tab] {
-    margin-left: 0px !important;
+    margin-left: -15px !important;
+    max-width: 200px !important;
+    min-width: 60px !important;
 }
 
 #TabsToolbar .tab-background {
