@@ -36,3 +36,11 @@
 - [ ] Curls 20 lbs 3x8
 - [ ] Deadlifts 230 lbs 1x5
 - [ ] Ab Wheel rollouts 20 lbs 3x10
+
+* Week 3
+** Wed Aug 27 16:34:25 2014
+*** A day [0/3]
+- [ ] Bench Press 120 lbs 5x5
+- [ ] Pendlay Rows 125 lbs 5x5
+- [ ] Squats 180 lbs 5x5
+*** Weekly Weight: 172.6 lbs
