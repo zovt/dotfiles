@@ -1,3 +1,7 @@
+;;; Init.el --- my emacs settings
+;;; Commentary:
+;;; This will set up all necessary things to make emacs function the way I want it to
+;;; Code:
 ;; ---------------- Packages and package settings ---------------------
 ;; require necessary packages
 (require 'package)
@@ -18,6 +22,7 @@
   '(evil
     evil-leader
     sublime-themes
+    flycheck
     org
     cmake-mode
     magit
@@ -35,7 +40,6 @@
     company-c-headers
     company-tern
     smartparens
-    eieio
     ))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
@@ -82,7 +86,7 @@
 (global-linum-mode 1)
 
 ;; Tramp settings
-(setq tramp-default-method "plink")
+(defvar tramp-default-method "plink")
 
 ;; Start emacsclient when opening a GUI
 (when window-system
@@ -141,8 +145,8 @@
 (define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
 (evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
-(setq evil-auto-indent t) ;; I don't think this actually does anything
-(setq evil-shift-width 4) ;; Set indent width
+(defvar evil-auto-indent t) ;; I don't think this actually does anything
+(defvar evil-shift-width 4) ;; Set indent width
 ;; Disable evil in ERC
 (evil-set-initial-state 'erc-mode 'emacs)
 
@@ -159,19 +163,19 @@
 (evil-leader/set-key "w" 'whitespace-mode)
 
 ;; Org Mode
-(setq org-log-done 'time)
-(setq org-agenda-files (list "~/.emacs.d/org/school.org"
+(defvar org-log-done 'time)
+(defvar org-agenda-files (list "~/.emacs.d/org/school.org"
 			     "~/.emacs.d/org/home.org"
 			     "~/.emacs.d/org/Schedule.org"
 			     "~/.emacs.d/org/life.org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-todo-keywords '((type "BUG(b)" "|" "FIXED(f@)")
+(defvar org-todo-keywords '((type "BUG(b)" "|" "FIXED(f@)")
 			  (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
 			  (type "GOAL(g)" "|" "DONE(d!)")
 			  (type "|" "CANCELED(c@)")
 			  (type "TODO" "|" "DONE(d!)")))
 
-(setq
+(defvar
  org-export-backends '(ascii
 		       md
 		       html
@@ -190,37 +194,32 @@
 ;; Helm
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
-(setq helm-mode-handle-completion-in-region nil)
+(defvar helm-mode-handle-completion-in-region nil)
 
-(setq helm-command-prefix-key "C-c h")
+(defvar helm-command-prefix-key "C-c h")
 
 (require 'helm-config)
-(setq
- helm-google-suggest-use-curl-p t
- helm-quick-update t
- helm-idle-delay 0.01
- helm-input-idle-delay 0.01
- helm-ff-search-library-in-sexp t
+(defvar helm-google-suggest-use-curl-p t)
+(defvar helm-quick-update t)
+(defvar helm-idle-delay 0.01)
+(defvar helm-input-idle-delay 0.01)
+(defvar helm-ff-search-library-in-sexp t)
  
- helm-split-window-default-side 'other 
- helm-split-window-in-side-p t 
- helm-buffers-favorite-modes '(picture-mode artist-mode)
- helm-candidate-number-limit 200 
- helm-M-x-requires-pattern 0     
- helm-boring-file-regexp-list
- '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "\\.i$") 
- helm-ff-file-name-history-use-recentf t
- helm-move-to-line-cycle-in-source t 
-                                        
- ido-use-virtual-buffers t      
- helm-buffers-fuzzy-matching t          
-                                        
- )
+(defvar helm-split-window-default-side 'other )
+(defvar helm-split-window-in-side-p t )
+(defvar helm-buffers-favorite-modes '(picture-mode artist-mode))
+(defvar helm-candidate-number-limit 200 )
+(defvar helm-M-x-requires-pattern 0     )
+(defvar helm-boring-file-regexp-list '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "\\.i$") )
+(defvar helm-ff-file-name-history-use-recentf t)
+(defvar helm-move-to-line-cycle-in-source t )
+(defvar ido-use-virtual-buffers t)
+(defvar helm-buffers-fuzzy-matching t)
 
 (helm-mode 1)
 
 ;; Helm gtags
-(setq helm-gtags-prefix-key "\C-cg")
+(defvar helm-gtags-prefix-key "\C-cg")
 
 (require 'helm-gtags)
 
@@ -266,7 +265,7 @@
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-backends '(
+(defvar company-backends '(
 			 company-clang
 			 company-semantic
 			 company-gtags
@@ -276,12 +275,13 @@
 			 company-files
 			 company-elisp
 			 company-tern
+			 company-css
 			 company
 			 ))
-(setq company-idle-delay 0.2)
+(defvar company-idle-delay 0.2)
 
 ;; C Indentation mode
-(setq c-defualt-style "linux")
+(defvar c-defualt-style "linux")
 
 ;; Smartparens
 (require 'smartparens-config)
@@ -289,7 +289,7 @@
 (smartparens-global-mode 1)
 
 (defun ragesalmon-newline-sp (&rest _ignored)
-  "Actually indent shit"
+  "Indent properly when enter is pressed inside of curly braces."
   (newline-and-indent)
   (forward-line -1)
   (indent-according-to-mode)
@@ -308,3 +308,9 @@
 ;; Tern
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(provide 'init)
+;;; init.el ends here

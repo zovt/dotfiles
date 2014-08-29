@@ -62,6 +62,7 @@
 }
 
 #TabsToolbar .tabbrowser-tab[selected] {
+    min-width: 200px !important;
     width: 200px !important;
     max-height: 20px !important;
     height: 20px !important;
@@ -80,6 +81,11 @@
     margin-left: -15px !important;
     max-width: 200px !important;
     min-width: 60px !important;
+}
+
+#TabsToolbar .tabbrowser-tab[first-visible-tab]:not([selected]) {
+    min-width: 60px !important;
+    max-width: 100px !important;
 }
 
 #TabsToolbar .tab-background {
