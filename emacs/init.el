@@ -270,7 +270,6 @@
 			 company-semantic
 			 company-gtags
 			 company-c-headers
-			 company-yasnippet
 			 company-cmake
 			 company-files
 			 company-elisp
