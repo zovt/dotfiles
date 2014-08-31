@@ -40,6 +40,10 @@
     company-c-headers
     company-tern
     smartparens
+    anything
+    helm-anything
+    neotree
+    rainbow-delimiters
     ))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
@@ -161,6 +165,8 @@
 (evil-leader/set-key "k" 'kill-buffer)
 (evil-leader/set-key "e" 'other-window)
 (evil-leader/set-key "w" 'whitespace-mode)
+(evil-leader/set-key "f" 'anything)
+(evil-leader/set-key "n" 'neotree-toggle)
 
 ;; Org Mode
 (defvar org-log-done 'time)
@@ -310,6 +316,22 @@
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Anything
+(require 'anything-match-plugin)
+(require 'anything-config)
+
+;; Neotree
+(require 'neotree)
+(add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+
+;; Rainbow delimiters
+(global-rainbow-delimiters-mode)
 
 (provide 'init)
 ;;; init.el ends here
