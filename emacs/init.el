@@ -333,5 +333,8 @@
 ;; Rainbow delimiters
 (global-rainbow-delimiters-mode)
 
+;; Encryption
+(epa-file-enable)
+
 (provide 'init)
 ;;; init.el ends here
