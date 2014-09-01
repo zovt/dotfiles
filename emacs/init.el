@@ -21,29 +21,45 @@
 (defconst ragesalmon-config-packages
   '(evil
     evil-leader
+    ;; themes
+    stekene-theme
+    moe-theme
     sublime-themes
+    soothe-theme
+    ample-theme
+    tangotango-theme
+    leuven-theme
+    tango-plus-theme
+    flatui-theme
+    flatland-theme
+    afternoon-theme
+    purple-haze-theme
+    birds-of-paradise-plus-theme
+    gruvbox-theme
+    ;; Modes
     flycheck
     org
     cmake-mode
     magit
+    js2-mode
+    yasnippet
+    semantic
+    function-args
+    ;; Utilities
     smex
     helm
     helm-gtags
-    js2-mode
-    yasnippet
-    stekene-theme
-    moe-theme
-    semantic
-    function-args
+    helm-anything
     tern
+    smartparens
+    anything
+    neotree
+    rainbow-delimiters
+    powerline
+    ;; Company
     company
     company-c-headers
     company-tern
-    smartparens
-    anything
-    helm-anything
-    neotree
-    rainbow-delimiters
     ))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
@@ -72,16 +88,15 @@
 
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(require `moe-theme)
+(load-theme 'junio t)
 
-(moe-dark)
 ;; Highlight current line
 (global-hl-line-mode t)
 
 ;; Fullscreen
 (if (eq system-type 'windows-nt)
     (toggle-frame-fullscreen)
-)
+  )
 
 ;; Set Font
 (set-face-font 'default "InputMono-10")
@@ -117,22 +132,7 @@
  version-control t)
 
 ;; Customize modeline
-(setq-default
- mode-line-format
-	      '(
-	       (:propertize " %m: " face font-lock-doc-face)
-	       (:eval (when (buffer-modified-p)
-			 (propertize "(MOD) "
-				     'face 'font-lock-warning-face)))
-	       (:propertize "%b " face font-lock-function-name-face)
-	       (:propertize "[%02l : %02c] " face font-lock-keyword-face)
-	       (:propertize "[%02p / %02I] " face font-lock-preprocessor-face)
-	       (:eval (propertize (format-time-string "%H:%M:%S") 'face 'font-lock-builtin-face))
-	       " ("
-	       minor-mode-alist
-	       " )"
-	       (:propertize " %-" face font-lock-comment-face)))
-(set-face-background 'mode-line "#434445")
+;; (setq-default mode-line-format '((:propertize " %m: " face font-lock-doc-face) (:eval (when (buffer-modified-p) (propertize "(MOD) " 'face 'font-lock-warning-face))) (:propertize "%b " face font-lock-function-name-face) (:propertize "[%02l : %02c] " face font-lock-keyword-face) (:propertize "[%02p / %02I] " face font-lock-preprocessor-face) (:eval (propertize (format-time-string "%H:%M:%S") 'face 'font-lock-builtin-face)) " (" minor-mode-alist " )" (:propertize " %-" face font-lock-comment-face))) (set-face-background 'mode-line "#434445")
 
 ;; --------------- Custom Functions -----------------
 ;; Delete all but current buffer
@@ -171,26 +171,26 @@
 ;; Org Mode
 (defvar org-log-done 'time)
 (defvar org-agenda-files (list "~/.emacs.d/org/school.org"
-			     "~/.emacs.d/org/home.org"
-			     "~/.emacs.d/org/Schedule.org"
-			     "~/.emacs.d/org/life.org"))
+			       "~/.emacs.d/org/home.org"
+			       "~/.emacs.d/org/Schedule.org"
+			       "~/.emacs.d/org/life.org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
 (defvar org-todo-keywords '((type "BUG(b)" "|" "FIXED(f@)")
-			  (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
-			  (type "GOAL(g)" "|" "DONE(d!)")
-			  (type "|" "CANCELED(c@)")
-			  (type "TODO" "|" "DONE(d!)")))
+			    (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
+			    (type "GOAL(g)" "|" "DONE(d!)")
+			    (type "|" "CANCELED(c@)")
+			    (type "TODO" "|" "DONE(d!)")))
 
 (defvar
- org-export-backends '(ascii
-		       md
-		       html
-		       odt
-		       org
-		       latex
-		       man
-		       )
- )
+  org-export-backends '(ascii
+			md
+			html
+			odt
+			org
+			latex
+			man
+			)
+  )
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -210,7 +210,7 @@
 (defvar helm-idle-delay 0.01)
 (defvar helm-input-idle-delay 0.01)
 (defvar helm-ff-search-library-in-sexp t)
- 
+
 (defvar helm-split-window-default-side 'other )
 (defvar helm-split-window-in-side-p t )
 (defvar helm-buffers-favorite-modes '(picture-mode artist-mode))
@@ -272,17 +272,17 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 (defvar company-backends '(
-			 company-clang
-			 company-semantic
-			 company-gtags
-			 company-c-headers
-			 company-cmake
-			 company-files
-			 company-elisp
-			 company-tern
-			 company-css
-			 company
-			 ))
+			   company-clang
+			   company-semantic
+			   company-gtags
+			   company-c-headers
+			   company-cmake
+			   company-files
+			   company-elisp
+			   company-tern
+			   company-css
+			   company
+			   ))
 (defvar company-idle-delay 0.2)
 
 ;; C Indentation mode
@@ -335,6 +335,10 @@
 
 ;; Encryption
 (epa-file-enable)
+
+;; Powerline
+(require 'powerline)
+(powerline-center-evil-theme)
 
 (provide 'init)
 ;;; init.el ends here
