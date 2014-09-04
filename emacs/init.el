@@ -88,7 +88,7 @@
 
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'junio t)
+(load-theme 'soothe t)
 
 ;; Highlight current line
 (global-hl-line-mode t)
@@ -338,7 +338,50 @@
 
 ;; Powerline
 (require 'powerline)
-(powerline-center-evil-theme)
+(setq-default powerline-default-separator 'contour)
+(setq-default mode-line-format
+	      '("%e"
+		(:eval
+		 (let* ((active (powerline-selected-window-active))
+			(mode-line (if active 'mode-line 'mode-line-inactive))
+			(face1 (if active 'powerline-active1 'powerline-inactive1))
+			(face2 (if active 'powerline-active2 'powerline-inactive2))
+			(middle-face (if active 'powerline-inactive1 'powerline-active2))
+			(separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
+			(separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
+			(lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
+				   (powerline-raw " ")
+				   (powerline-major-mode)
+				   (powerline-raw ":")
+				   (powerline-buffer-id nil 'l)
+				   (powerline-buffer-size nil 'l)
+				   (powerline-raw " ")
+				   (funcall separator-left mode-line face2)
+				   (powerline-raw " " face2 face1)
+				   (powerline-raw (capitalize (symbol-name evil-state)) face2 face1)
+				   (powerline-raw " " face2 face1)
+				   (funcall separator-left face2 face1)
+				   (powerline-raw " " face1 face2)
+				   (powerline-minor-modes face1 face2)
+				   (powerline-raw " " face1 face2)
+				   (funcall separator-left face1 middle-face)
+				   ))
+			(rhs (list
+			      (funcall separator-right middle-face face2)
+			      (powerline-raw " " face2 'r)
+			      (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
+			      (powerline-raw " " face2 'r)
+			      (funcall separator-right face2 face1)
+			      (powerline-hud face2 face1)
+			      ))
+			)
+		   (concat (powerline-render lhs)
+			   (powerline-fill middle-face (powerline-width rhs))
+			   (powerline-render rhs))
+		   )
+		 )
+		)
+	      )
 
 (provide 'init)
 ;;; init.el ends here
