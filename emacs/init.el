@@ -1,6 +1,6 @@
 ;;; Init.el --- my emacs settings
 ;;; Commentary:
-;;; This will set up all necessary things to make emacs function the way I want it to
+;;; This will set up all necessary things to make Emacs function the way I want it to
 ;;; Code:
 ;; ---------------- Packages and package settings ---------------------
 ;; require necessary packages
@@ -88,7 +88,8 @@
 
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'soothe t)
+(require 'moe-theme)
+(moe-dark)
 
 ;; Highlight current line
 (global-hl-line-mode t)
@@ -191,6 +192,8 @@
 			man
 			)
   )
+
+(add-hook 'org-mode-hook (lambda() 'toggle-truncate-lines))
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
