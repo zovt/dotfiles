@@ -171,10 +171,12 @@
 
 ;; Org Mode
 (defvar org-log-done 'time)
-(defvar org-agenda-files (list "~/.emacs.d/org/school.org"
-			       "~/.emacs.d/org/home.org"
-			       "~/.emacs.d/org/Schedule.org"
-			       "~/.emacs.d/org/life.org"))
+(defvar org-agenda-files (list "~/.emacs.d/org/school.org.gpg"
+			       "~/.emacs.d/org/home.org.gpg"
+			       "~/.emacs.d/org/Schedule.org.gpg"
+			       "~/.emacs.d/org/Colleges.org.gpg"
+			       "~/.emacs.d/org/life.org.gpg"))
+
 (global-set-key (kbd "C-c a") 'org-agenda)
 (defvar org-todo-keywords '((type "BUG(b)" "|" "FIXED(f@)")
 			    (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
@@ -308,6 +310,7 @@
 (sp-local-pair 'js2-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
 (sp-local-pair 'css-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
 (setq sp-autoskip-closing-pair (quote always))
+(defvar sp-autoescape-string-quote nil)
 
 ;; Js2 Mode
 (autoload 'js2-mode "js2-mode.el" nil t)
@@ -319,6 +322,28 @@
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'c++-mode-hook
+          (lambda () (setq flycheck-clang-standard-library "libc++")))
+(add-hook 'c++-mode-hook
+          (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+(add-hook 'c-mode-hook
+          (lambda () (setq flycheck-clang-standard-library "libc")))
+
+(if (eq system-type 'windows-nt)
+    (progn
+      (add-hook 'c++-mode-hook
+		(lambda () (setq flycheck-clang-include-path
+				 (list (expand-file-name "C:/msys64/mingw64/include")
+				       (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
+      (add-hook 'c-mode-hook
+		(lambda () (setq flycheck-clang-include-path
+				 (list (expand-file-name "C:/msys64/mingw64/include")
+				       (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
+      )
+  )
+
+(defvar flycheck-idle-change-delay 5.0)
 
 ;; Anything
 (require 'anything-match-plugin)
