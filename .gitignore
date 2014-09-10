@@ -6,6 +6,10 @@ emacs/*
 !emacs/.gnus
 !emacs/org
 !emacs/org/*
+*/auto*
+*/auto
+*.log
+
 
 *~
 
