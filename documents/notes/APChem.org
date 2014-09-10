@@ -125,3 +125,38 @@ Ca3(PO4)2
 2P  = 2(31.0)
 8O  = 8(16.0)
       310.2
+* Wed Sep 10 10:50:26 2014
+Ca(NO3)2
+1 Ca
+2 N
+6 O
+
+164.0 amu
+% N = 2 (14) / 164.0 * 100 = 17.1%
+
+*** Avogadro's Number
+6.02 x 10^23 atoms or molecules is an amount that brings us to ONE MOLE
+
+**** Sample Exercise 3.7 Estimating Numbers of Atoms
+Na2O
+
+1 moles Na2O * (2 moles Na / 1 moles Na2O ) * (6.02 * 10^23 atoms) / (1 moles Na)
+$ 1.204e24 atoms $
+NaCl
+50g NaCl * (1 moles NaCl) / 58.5g NaCl * 1 moles Na / 1 moles NaCl * 6.02*10^23 atoms / 1 moles Na
+
+*** Molar Mass
+A molar mass is the mass of 1 mol of a substance (ie g/mol)
+
+The molar mass of an element is the atomic weight for the element from the periodic table. If it is diatomic, it is twice that atomic weight
+
+The formula weight will be the same number as the molar mass 
+
+$ 1 mol NaCl * (1 mol Na / 1 mol NaCl)  * ((6.02 * 10^23 atoms) / 1 mol Na)$
+
+**** Sample Exercise 3.10 Converting grams to moles
+5.380 g C6H2O6 * (1 mole/180 g C6H2O6) = $ 0.0298888888889 mole $
+
+**** Sample Exercise 3.10 Converting Grams to moles 
+***** Exercise 2
+1.00L H2O * (1000 mL / 1 L) * ( 1 g / 1 mL) * ( 1 mol H2O / 18.0 g H2O) = $ 55.5555555556 H2O mol $
