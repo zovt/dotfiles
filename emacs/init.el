@@ -56,10 +56,12 @@
     neotree
     rainbow-delimiters
     powerline
+    auctex
     ;; Company
     company
     company-c-headers
     company-tern
+    company-auctex
     ))
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
@@ -284,6 +286,7 @@
 			   company-cmake
 			   company-files
 			   company-elisp
+			   company-auctex
 			   company-tern
 			   company-css
 			   company
@@ -410,6 +413,33 @@
 		 )
 		)
 	      )
+
+;; Auctex
+(defvar TeX-auto-save t)
+(defvar TeX-parse-self t)
+(defvar TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(defvar reftex-plug-into-AUCTeX t)
+(require 'tex)
+(TeX-global-PDF-mode t)
+
+(defvar buffer-sans-gpg nil)
+(defun ragesalmon-enable-gpg-TeX-compile()
+  "This function will quickly write a file with extension .tex and compile it, and then delete it."
+  (interactive)
+  (setq buffer-sans-gpg (replace-regexp-in-string "\.gpg" "" (file-truename buffer-file-name)))
+  (add-hook 'after-save-hook (progn
+			       (with-current-buffer (find-file-noselect buffer-sans-gpg)
+				 (save-buffer)
+				 (tex-compile default-directory)
+			       (delete-file buffer-sans-gpg))) nil t))
+
 
 (provide 'init)
 ;;; init.el ends here
