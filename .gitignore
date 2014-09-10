@@ -9,7 +9,7 @@ emacs/*
 */auto*
 */auto
 *.log
-
+*.pdf
 
 *~
 
