@@ -1,0 +1,162 @@
+* Fri Sep  5 09:20:15 2014
+** Naming acids
+H2SO4  sulfuric acid
+NO3^-  nitric acid
+HNO2   nitrous acid
+SO3^2- sulfite
+| Name of Acid       | Formula of Acid    | Name of Anion |
+|--------------------+--------------------+---------------|
+| Sulfurous acid     | H2SO3              | sulfite       |
+| Chlorous acid      | HClO2              | chlorite      |
+| Nitric acid        | HNO3               | nitrate       |
+| acetic acid        | CH3COOH or HC2H3O2 | acetate       |
+| hydrobromic acid   | HBr                | bromide       |
+| hydrosulfuric acid | H2S                | sulfide       |
+| nitric acid        | HNo2               | nitride       |
+| chromic acid       | H2CrO4             | chromite      |
+| phosphoric acid    | H3PO4^3-           | phosphate     |
+
+** Balancing Chemical Equations
+| SYmbol | Description                                    |
+|--------+------------------------------------------------|
+| +      | Used to separate two reactants or two products |
+| ->     | Yields, separates reactants and products       |
+| <->    |                                                |
+|        |                                                |
+
+*** TODO finish Steps
+ 1. Determine the correct formulas
+ 2. Write the formulas for the reactants on the left and the formulas for the products on the right with a "yields" symbol -> in between
+ 3. Count the number of atoms of each element in the reactants and the products. For simplicity, a polyatomic ion appearing unchanged on both side of the equation is counted as a single unit.
+ 4. Balance the equations one at a time 
+ 5. Check each atom or polyatomic ion
+ 6. Finally
+
+*** Examples
+Zn(OH)2 + H3(PO4) -> Zn3(PO4)2 + H2O
+3(Zn(OH)2) + 2(H3PO4) -> Zn3(PO4)2 + 6(H2O)
+
+Al(OH)3 -> Al2O3 + H2O
+aluminum hydroxide -> aluminum oxide + water
+2(Al(OH)3) -> Al2O3 + 3(H2O)
+
+Li + O2 -> Li2O
+4(Li) + O2 -> 2(Li2O)
+
+C3H6 + O2 -> CO2 + H2O + heat + light
+2(C3H6) + 9(O2) -> 6(CO2) + 6(H2O) + heat + light
+
+Pb(NO3)2 + K2CrO4 -> PbCrO4 + KNO3
+lead (II) nitrate + potassium chromate -> lead (II) chromate + potassium nitrate
+Pb(NO3)2 + K2CrO4 -> PbCrO4 + 2(KNO3)
+
+strontium bromide + ammonium carbonate -> strontium carbonate + ammonium bromide
+Sr^2+ Br^- + NH4^+ CO3^2- -> Sr^2+ CO3^2- + NH4^+ Br^-
+SrBr2 + (NH4)2CO3 -> SrCO3 + NH4Br
+SrBr2 + (NH4)2CO3 -> SrCO3 + 2(NH4Br)
+
+NH4NO3 -> N2O + 2(H2O)
+
+* Mon Sep  8 13:10:17 2014
+Calculating average atomic weight
+Density
+Unit conversion
+* Tue Sep  9 13:54:14 2014
+** Chapter 3: Chemical Reactions and Reaction Stoichiometry
+Stoichiometry has to do with how much product you get out of a chemical reaction if you use a certain amount.
+
+2H2 + O2 -> 2 H2O
+
+Whenever a hydrocarbon reacts with oxygen to produce water, it is a combustion reaction.
+
+The states of the reactants and products are written in parentheses to the right of each compound
+
+Coefficients are inserted to balance the equation to follow the law of conservation. 
+
+O2 + 2NO -> 2NO2
+
+3H2 + N2 -> 2NH3
+
+*** Balancing Chemical Equations
+
+CH4 + 8Br2 -> CBr4 + 4HBr
+
+4Fe + 3O2 -> 2Fe2O3
+
+2Al + 6HCl -> 2AlCl3 + 3H2
+
+CaCO3 + 2HCl -> CaCl2 + CO2 + H2O
+
+*** Three Types of Chemical Reactions
+**** Combination or Synthesis
+Two or more substances react to form one product
+
+**** Decomposition
+One substance breaks down into two or more substances
+
+**** Combustion
+Generally rapid that produce a flame. Most often involve oxygen in the air as a reaction.
+
+*** Write Balanced Equations for Combination and Decomposition Reactions
+
+2Li + F2 -> 2LiF
+
+BaCO3 -> BaO + CO2
+
+*** Formula Weight
+A formula weight is the sum of the atomic weights for the atoms in a chemical formula
+This is the quantitative significance of a formula.
+
+*** Molecular Weight
+The sum of the atomic weight of the atoms in a molecule
+
+*** Ionic Compounds and Formulas
+Ionic compounds exist with a three dimensional order of ions
+Ionic compounds use empirical formulas and formula weights
+
+*** Percent Composition
+% Element = ((number of atoms)(atomic weight)) / (FW of the compound) x 100
+
+*** Calculating Formula Weights
+
+Ca3(PO4)2
+
+3Ca = 3(40.1)
+2P  = 2(31.0)
+8O  = 8(16.0)
+      310.2
+* Wed Sep 10 10:50:26 2014
+Ca(NO3)2
+1 Ca
+2 N
+6 O
+
+164.0 amu
+% N = 2 (14) / 164.0 * 100 = 17.1%
+
+*** Avogadro's Number
+6.02 x 10^23 atoms or molecules is an amount that brings us to ONE MOLE
+
+**** Sample Exercise 3.7 Estimating Numbers of Atoms
+Na2O
+
+1 moles Na2O * (2 moles Na / 1 moles Na2O ) * (6.02 * 10^23 atoms) / (1 moles Na)
+$ 1.204e24 atoms $
+NaCl
+50g NaCl * (1 moles NaCl) / 58.5g NaCl * 1 moles Na / 1 moles NaCl * 6.02*10^23 atoms / 1 moles Na
+
+*** Molar Mass
+A molar mass is the mass of 1 mol of a substance (ie g/mol)
+
+The molar mass of an element is the atomic weight for the element from the periodic table. If it is diatomic, it is twice that atomic weight
+
+The formula weight will be the same number as the molar mass 
+
+$ 1 mol NaCl * (1 mol Na / 1 mol NaCl)  * ((6.02 * 10^23 atoms) / 1 mol Na)$
+
+**** Sample Exercise 3.10 Converting grams to moles
+5.380 g C6H2O6 * (1 mole/180 g C6H2O6) = $ 0.0298888888889 mole $
+
+**** Sample Exercise 3.10 Converting Grams to moles 
+***** Exercise 2
+1.00L H2O * (1000 mL / 1 L) * ( 1 g / 1 mL) * ( 1 mol H2O / 18.0 g H2O) = $ 55.5555555556 H2O mol $

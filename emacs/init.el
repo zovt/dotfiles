@@ -402,7 +402,6 @@
 			      (powerline-raw " " face2 'r)
 			      (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
 			      (powerline-raw " " face2 'r)
-			      (funcall separator-right face2 face1)
 			      (powerline-hud face2 face1)
 			      ))
 			)
