@@ -3,6 +3,7 @@ vim/bundle/*
 
 emacs/*
 !emacs/init.el
+!emacs/.gnus
 !emacs/org
 !emacs/org/*
 
