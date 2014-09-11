@@ -445,7 +445,7 @@
 				 (delete-file buffer-sans-gpg))) nil t))
 
 ;; Slime
-(defvar inferior-lisp-program "clisp")
+(if (eq system-type 'windows-nt) (defvar inferior-lisp-program "clisp"))
 (require 'slime)
 (slime-setup)
 (add-hook 'lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
