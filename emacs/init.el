@@ -45,6 +45,8 @@
     yasnippet
     semantic
     function-args
+    auctex
+    slime
     ;; Utilities
     smex
     helm
@@ -56,7 +58,6 @@
     neotree
     rainbow-delimiters
     powerline
-    auctex
     ;; Company
     company
     company-c-headers
@@ -398,7 +399,11 @@
 				   (funcall separator-left face1 middle-face)
 				   ))
 			(rhs (list
-			      (funcall separator-right middle-face face2)
+			      (funcall separator-right middle-face mode-line)
+			      (powerline-raw "%4l")
+			      (powerline-raw ":")
+			      (powerline-raw " %3c")
+			      (funcall separator-right mode-line face2)
 			      (powerline-raw " " face2 'r)
 			      (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
 			      (powerline-raw " " face2 'r)
@@ -437,8 +442,14 @@
 			       (with-current-buffer (find-file-noselect buffer-sans-gpg)
 				 (save-buffer)
 				 (tex-compile default-directory)
-			       (delete-file buffer-sans-gpg))) nil t))
+				 (delete-file buffer-sans-gpg))) nil t))
 
+;; Slime
+(defvar inferior-lisp-program "clisp")
+(require 'slime)
+(slime-setup)
+(add-hook 'lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
+(add-hook 'emacs-lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
 
 (provide 'init)
 ;;; init.el ends here
