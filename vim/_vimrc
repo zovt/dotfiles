@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " Plugins
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -24,6 +24,12 @@ Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jamessan/vim-gnupg'
+Plugin 'tpope/vim-speeddating'
+Plugin 'vim-scripts/SyntaxRange'
+Plugin 'mattn/calendar-vim'
+Plugin 'vim-scripts/utl.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'jceb/vim-orgmode'
 call vundle#end()
 filetype plugin indent on
 
