@@ -23,6 +23,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'jamessan/vim-gnupg'
 call vundle#end()
 filetype plugin indent on
 
@@ -55,6 +56,8 @@ set showmode
 set backup
 set backupdir=~/.vimbackups
 set dir=~/.vimbackups
+"" Disable cursor blink
+set guicursor+=n-v-c:blinkon0
 
 " Visual Options
 "" Font
@@ -117,3 +120,5 @@ nnoremap <silent> <Leader>l :bnext<CR>
 nnoremap <silent> <Leader>h :bprev<CR>
 nnoremap <silent> <C-s> :w <CR>
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
+nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>cd :cd %:p:h<CR>
