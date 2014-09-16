@@ -1,5 +1,5 @@
 vim/bundle/*
-!vim/bundle/Vundle.vim
+!vim/bundle/Vundle
 
 emacs/*
 !emacs/init.el
