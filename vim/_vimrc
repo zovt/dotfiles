@@ -1,4 +1,4 @@
-" Default shit
+" Basic configuration
 set nocompatible
 filetype off
 
@@ -15,6 +15,7 @@ Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
 Plugin 'edkolev/promptline.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'flazz/vim-colorschemes'
@@ -25,48 +26,8 @@ Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 filetype plugin indent on
 
-" Plugin Specific options
-" Neocomplete options
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 4
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" Tab completion
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patters = {}
-endif
-
-" GitGutter
-highlight clear SignColumn
-
-" Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#show_tab_type = 1
-set laststatus=2
-
-" DelimitMate
-let delimitMate_autoclose = 1
-let delimitMate_expand_cr = 1
-let delimitMate_matchpairs = "{:},[:],(:),<:>"
-let delimitMate_jump_expansion = 1
-set backspace=2
-
-" Tagbar
-let g:tagbar_autoclose = 1
-
-" Syntastic
-let g:syntastic_enable_signs = 1
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
-
-
 " My options
+"" General Options
 set langmenu=en_US.UTF-8
 let $LANG = 'en'
 set autoindent
@@ -80,31 +41,71 @@ set hls
 set lbr
 set encoding=utf-8
 set foldmethod=marker
-" Colorscheme
-colorscheme smyck
-" Change tab to four spaces
+"" Change tab to four spaces
 set tabstop=4
 set shiftwidth=4
 set expandtab
-" Visual bell and cursorline
+"" Visual bell and cursorline
 set visualbell
 set cursorline
-" Leader
+"" Leader
 let mapleader = ","
-" other stuff
+"" other stuff
 set showmode
 set backup
 set backupdir=~/.vimbackups
 set dir=~/.vimbackups
 
-" Windows only
+" Visual Options
+"" Font
 set guifont:Sauce_Code_Powerline:h10:cANSI
-
-" Get rid of gross gui shit
+"" Colorscheme
+colorscheme smyck
+"" remove gui stuff
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 
+
+" Plugin Specific options
+"" Neocomplete options
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 4
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"" Tab completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+if !exists('g:neocomplete#sources#omni#input_patterns')
+	let g:neocomplete#sources#omni#input_patters = {}
+endif
+
+"" GitGutter
+highlight clear SignColumn
+
+"" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#show_tab_type = 1
+set laststatus=2
+
+"" DelimitMate
+let delimitMate_autoclose = 1
+let delimitMate_expand_cr = 1
+let delimitMate_matchpairs = "{:},[:],(:),<:>"
+let delimitMate_jump_expansion = 1
+set backspace=2
+
+"" Tagbar
+let g:tagbar_autoclose = 1
+
+"" Syntastic
+let g:syntastic_enable_signs = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_enable_balloons = 1
+let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
 
 " Custom mappings
 noremap <F9> :e ~/.vimrc<CR>
