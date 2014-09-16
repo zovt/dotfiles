@@ -198,7 +198,7 @@
 			)
   )
 
-(add-hook 'org-mode-hook (lambda() 'toggle-truncate-lines))
+(add-hook 'org-mode-hook (lambda () (visual-line-mode)))
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -445,11 +445,10 @@
 				 (delete-file buffer-sans-gpg))) nil t))
 
 ;; Slime
-(if (eq system-type 'windows-nt) (defvar inferior-lisp-program "clisp"))
+(defvar inferior-lisp-program "clisp")
 (require 'slime)
 (slime-setup)
 (add-hook 'lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
-(add-hook 'emacs-lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
 
 (provide 'init)
 ;;; init.el ends here

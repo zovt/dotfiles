@@ -28,7 +28,7 @@ SO3^2- sulfite
  1. Determine the correct formulas
  2. Write the formulas for the reactants on the left and the formulas for the products on the right with a "yields" symbol -> in between
  3. Count the number of atoms of each element in the reactants and the products. For simplicity, a polyatomic ion appearing unchanged on both side of the equation is counted as a single unit.
- 4. Balance the equations one at a time 
+ 4. Balance the equations one at a time
  5. Check each atom or polyatomic ion
  6. Finally
 
@@ -71,7 +71,7 @@ Whenever a hydrocarbon reacts with oxygen to produce water, it is a combustion r
 
 The states of the reactants and products are written in parentheses to the right of each compound
 
-Coefficients are inserted to balance the equation to follow the law of conservation. 
+Coefficients are inserted to balance the equation to follow the law of conservation.
 
 O2 + 2NO -> 2NO2
 
@@ -150,13 +150,88 @@ A molar mass is the mass of 1 mol of a substance (ie g/mol)
 
 The molar mass of an element is the atomic weight for the element from the periodic table. If it is diatomic, it is twice that atomic weight
 
-The formula weight will be the same number as the molar mass 
+The formula weight will be the same number as the molar mass
 
 $ 1 mol NaCl * (1 mol Na / 1 mol NaCl)  * ((6.02 * 10^23 atoms) / 1 mol Na)$
 
 **** Sample Exercise 3.10 Converting grams to moles
 5.380 g C6H2O6 * (1 mole/180 g C6H2O6) = $ 0.0298888888889 mole $
 
-**** Sample Exercise 3.10 Converting Grams to moles 
+**** Sample Exercise 3.10 Converting Grams to moles
 ***** Exercise 2
 1.00L H2O * (1000 mL / 1 L) * ( 1 g / 1 mL) * ( 1 mol H2O / 18.0 g H2O) = $ 55.5555555556 H2O mol $
+* Thu Sep 11 10:50:39 2014
+*** Determining Empirical Formulas
+Mass % Elements -> Assume 100g sample -> grams of each element -> use molar mass -> moles of each element -> calculate mole ratio -> get empirical formula
+$ 0.0216486261449 mol C$
+$ 0.0432957746479 Cl mol$
+
+*** Determining Molecular Formula
+If we find the empirical formula and know a molar mass (molecular weight) for the compound, we can find the molecular formula.
+
+**** Sample Exercise 3.14 Exercise 1
+85.6 % C, 14.4 % H, molar mass 84.2 g / mol
+85.6 g C * (1 mol C / 12 g C) = $7.13333333333 C mol$ = 1
+14.4 g H * ( 1 mol H / 1.01 g H) = $ 14.2574257426 H mol $ = 2
+
+EF CH2
+$ 6.01428571429 $
+
+*** Combustion Analysis
+Compounds containing C, H, and O and routinely analyzed through combustion in a chamber.
+ - C is determined from the mass of CO2 produced
+ - H is determined from the mass of H2O produced
+ - O is determined from the difference
+
+**** Sample Exercise 3.15
+0.561 g CO2 * (1 mol CO2 / 44.0 g CO2 ) * (1 mol C / 1 mol CO2 ) * (12.0 g C / 1 mol C) = $ 0.153 C g $
+0.306 g H2O * (1 mol H2O / 18.0g H2O ) * (2 mol H / 1 mol H2O ) * (1.01 g H / 1 mol H) = $ 0.0343399999999 H g $
+0.255 g - (0.153 + 0.0343 g ) = 0.068 g O
+C3H8O
+
+**** Sample Exercise 3.15 Practice Exercise 1
+2.203 g sample
+4.401 g CO2
+1.802 g H2O
+
+4.401 g CO2 * ( 1 mol CO2 / 44.0 g CO2) * ( 1 mole C / 1 mol CO2) * (12 g C / 1 mol C) = $ 1.20027272727 C g $
+1.802 g H2O * ( 1 mol H2O / 18.0 g H2O) * (2 mol H / 1 mol H2O ) * (1.01 g H / 1 mol H) = $ 0.202224444444 H g $
+mass O = Total Mass - Mass Carbon - mass Hydrogen
+2.203 - 1.2002 - .2022 = $ 0.8006 g $
+1.2002 g C * ( 1 mol C / 12.0 g C) = $ 0.100016666667 C mol $
+.20222 g H * ( 1 mol H / 1.01 g H) = $ 0.200217821782 H mol $
+.8006 g O * (1 mol O / 16.0 g O) = $ 0.0500375 O mol $
+
+0.200217821782 / .0500 = $ 4.00435643564$
+0.100016666667 / .0500 = $ 2.00033333334  $
+C2H4O
+
+*** Quantitative Relationships
+Each coefficient not only represents molecules but also moles
+
+*** Stoichiomeric Calculations
+Grams of Substance A -> Use molar mass of A -> Moles of Substance A -> Use coefficients from balanced equation -> Moles of Substance B -> Use molar mass of B -> Grams of substance B
+
+**** Practice Exercise 1
+2 NaOH + CO2 -> Na2CO3 + H2O
+
+2.40 g NaOH * ( 1 mol / 40 g NaOH) * ( 1 mol Na2CO3 / 2 mol NaOH) * ( / 1 mol Na2CO3)
+* Fri Sep 12 09:28:22 2014
+*** Limiting Reactant
+*** Theoretical Yield
+The maximum amount of product you can make. This is different than the actual yield.
+*** Percent Yield
+Compare the actual yield with the theoretical yield
+(AY / TY) * 100
+* Tue Sep 16 13:56:10 2014
+** Homework Check
+*** Question 102
+.450 g -> 0.467g CO, .733 g CO2, .450g H2O
+.467 g CO * 1 Mol CO / 28.0 g CO * 1 mole C / 1 mol CO * 12.01g C / 1 mol C = .200g C
+.733 g CO2 * 1 mol CO2 / 49.0 g CO2 * 1 mol C / 1 mol CO2 * 12.01 g C / 1 mol
+    C = .200 g C / 400g C
+.450 g H2O  * 1 mol H2O / 18.0 g H2O * 2 mole H / 1 mol H2O * 1.01gh / 1 mole
+    H = .0505 g H
+mass sample - .400g C - .0505 g H = 0
+    No oxygen
+

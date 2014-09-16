@@ -30,6 +30,11 @@ Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'jceb/vim-orgmode'
+Plugin 'ragesalmon/syntact'
+Plugin 'oblitum/rainbow'
+Plugin 'godlygeek/tabular'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 call vundle#end()
 filetype plugin indent on
 
@@ -64,12 +69,16 @@ set backupdir=~/.vimbackups
 set dir=~/.vimbackups
 "" Disable cursor blink
 set guicursor+=n-v-c:blinkon0
+"" change default shell on linux
+if has("unix")
+    set shell=/usr/bin/bash
+endif
 
 " Visual Options
 "" Font
-set guifont:Sauce_Code_Powerline:h10:cANSI
+set guifont="Source Code Pro for Powerline 10"
 "" Colorscheme
-colorscheme smyck
+colorscheme syntact
 "" remove gui stuff
 set guioptions-=m
 set guioptions-=T
@@ -115,6 +124,12 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
+
+"" Rainbow Parens
+let g:rainbow_active = 1
+
+"" Vim Notes
+let g:notes_directories = ['~/dotfiles/documents/notes/']
 
 " Custom mappings
 noremap <F9> :e ~/.vimrc<CR>
