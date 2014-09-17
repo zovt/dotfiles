@@ -3,7 +3,7 @@ set nocompatible
 filetype off
 
 " Include Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle
 
 " Plugins
 call vundle#begin()
@@ -36,10 +36,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 call vundle#end()
-filetype plugin indent on
 
 " My options
 "" General Options
+filetype plugin indent on
 set langmenu=en_US.UTF-8
 let $LANG = 'en'
 set autoindent
@@ -68,7 +68,7 @@ set backup
 set backupdir=~/.vimbackups
 set dir=~/.vimbackups
 "" Disable cursor blink
-set guicursor+=n-v-c:blinkon0
+set guicursor+=a:blinkon0
 "" change default shell on linux
 if has("unix")
     set shell=/usr/bin/bash
@@ -143,3 +143,4 @@ nnoremap <silent> <C-s> :w <CR>
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
+nnoremap <silent> <leader>gg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
