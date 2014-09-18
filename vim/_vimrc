@@ -89,11 +89,9 @@ else
     set guifont=Sauce_Code_Powerline:h10:cANSI
 endif
 "" }}}
-
 "" Colorscheme {{{
 colorscheme syntact
 "" }}}
-
 "" remove gui stuff {{{
 set guioptions-=m
 set guioptions-=T
