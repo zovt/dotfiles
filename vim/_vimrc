@@ -1,11 +1,11 @@
-" Basic configuration
+" Basic configuration {{{
 set nocompatible
 filetype off
-
-" Include Vundle
+" }}}
+" Include Vundle {{{
 set rtp+=~/.vim/bundle/Vundle
-
-" Plugins
+" }}}
+" Plugins {{{
 call vundle#begin()
 Plugin 'gmarik/Vundle'
 Plugin 'Shougo/neocomplete.vim'
@@ -36,9 +36,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 call vundle#end()
-
-" My options
-"" General Options
+" }}}
+" My options {{{
+"" General Options {{{
 filetype plugin indent on
 set langmenu=en_US.UTF-8
 let $LANG = 'en'
@@ -53,54 +53,96 @@ set hls
 set lbr
 set encoding=utf-8
 set foldmethod=marker
-"" Change tab to four spaces
+"" }}}
+"" Change tab to four spaces {{{
 set tabstop=4
 set shiftwidth=4
 set expandtab
-"" Visual bell and cursorline
+"" }}}
+"" Visual bell and cursorline {{{
 set visualbell
 set cursorline
-"" Leader
+"" }}}
+"" Leader {{{
 let mapleader = ","
-"" other stuff
+"" }}}
+"" other stuff {{{
 set showmode
 set backup
-set backupdir=~/.vimbackups
-set dir=~/.vimbackups
-"" Disable cursor blink
+set backupdir=~/.vimbackups//
+set dir=~/.vimbackups//
+"" }}}
+"" Disable cursor blink {{{
 set guicursor+=a:blinkon0
-"" change default shell on linux
+"" }}}
+"" change default shell on linux {{{
 if has("unix")
     set shell=/usr/bin/bash
 endif
+"" }}}
+" }}}
+" Visual Options {{{
+"" Font {{{
+if has("unix")
+    set guifont="Source Code Pro for Powerline 10"
+else
+    set guifont=Sauce_Code_Powerline:h10:cANSI
+endif
+"" }}}
 
-" Visual Options
-"" Font
-set guifont="Source Code Pro for Powerline 10"
-"" Colorscheme
+"" Colorscheme {{{
 colorscheme syntact
-"" remove gui stuff
+"" }}}
+
+"" remove gui stuff {{{
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
-
-
-" Plugin Specific options
-"" Neocomplete options
+"" }}}
+" }}}
+" Windows {{{
+"" Auto resize windows {{{
+au VimResized * exe "normal! \<c-w>="
+"" }}}
+"" Window movement binds {{{
+nnoremap <silent> <Leader>wl <c-w>l
+nnoremap <silent> <Leader>wh <c-w>h
+nnoremap <silent> <Leader>wj <c-w>j
+nnoremap <silent> <Leader>wk <c-w>k
+"" }}}
+"" Window creation binds {{{
+nnoremap <silent> <Leader>wv :vsplit<CR>
+nnoremap <silent> <Leader>ws :split<CR>
+nnoremap <silent> <Leader>wq :hide<CR>
+nnoremap <silent> <Leader>wx :only<CR>
+"" }}}
+" }}}
+" Auto-Resume line {{{
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") <= line("$") |
+        \       execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+" }}}
+" Plugin Specific options {{{
+"" Neocomplete options {{{
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 4
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"" Tab completion
+"" }}}
+"" Tab completion {{{
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 if !exists('g:neocomplete#sources#omni#input_patterns')
 	let g:neocomplete#sources#omni#input_patters = {}
 endif
-
-"" GitGutter
+"" }}}
+"" GitGutter {{{
 highlight clear SignColumn
-
-"" Airline
+"" }}}
+"" Airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -108,39 +150,64 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#show_tab_type = 1
 set laststatus=2
-
-"" DelimitMate
+"" }}}
+"" DelimitMate {{{
 let delimitMate_autoclose = 1
 let delimitMate_expand_cr = 1
 let delimitMate_matchpairs = "{:},[:],(:),<:>"
 let delimitMate_jump_expansion = 1
 set backspace=2
-
-"" Tagbar
+"" }}}
+"" Tagbar {{{
 let g:tagbar_autoclose = 1
-
-"" Syntastic
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
+"" }}}
+"" Syntastic {{{
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
-
-"" Rainbow Parens
+"" }}}
+"" Rainbow Parens {{{
 let g:rainbow_active = 1
-
-"" Vim Notes
+"" }}}
+"" Vim Notes {{{
 let g:notes_directories = ['~/dotfiles/documents/notes/']
-
-" Custom mappings
+"" }}}
+"" NERDTree {{{
+nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
+""}}}
+" }}}
+" Custom mappings {{{
+"" Sourcing vimrc {{{
 noremap <F9> :e ~/.vimrc<CR>
 noremap <F6> :so ~/.vimrc<CR>
-
+"" }}}
+"" Switch ; to : {{{
 nnoremap ; :
+"" }}}
+"" Hard left and right {{{
+nnoremap L $
+nnoremap H ^
+"" }}}
+"" Folding {{{
+nnoremap <silent> <Leader>z zMzvzz
+nnoremap <silent> <Leader><Space> za
+"" }}}
+"" Quickfix current search {{{
+nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+"" }}}
+"" Remove all trailing whitespace {{{
 nnoremap <silent> <Leader>w :%s/\s\+$//<CR>
+"" }}}
+"" Buffer manipulation {{{
 nnoremap <silent> <Leader>l :bnext<CR>
 nnoremap <silent> <Leader>h :bprev<CR>
+nnoremap <silent> <Leader>d :bdel<CR>
+"" }}}
+"" Misc {{{
 nnoremap <silent> <C-s> :w <CR>
-nnoremap <silent> <Leader>t :TagbarToggle<CR>
-nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
 nnoremap <silent> <leader>gg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+"" }}}
+" }}}
