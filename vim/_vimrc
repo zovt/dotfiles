@@ -35,6 +35,8 @@ Plugin 'oblitum/rainbow'
 Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 " }}}
 " My options {{{
