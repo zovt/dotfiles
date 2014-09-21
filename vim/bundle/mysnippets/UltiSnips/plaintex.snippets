@@ -107,4 +107,18 @@ endsnippet
 snippet lp "Long parenthesis"
 \left(${1:${VISUAL:contents}}\right)$0
 endsnippet
+
+snippet boipl "Boilerplate for many documents" b
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\title{${1:Title of document}}
+\date{\today}
+\maketitle
+$0
+\end{document}
+endsnippet
 # vim:ft=snippets:

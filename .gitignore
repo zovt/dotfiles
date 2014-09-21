@@ -12,6 +12,7 @@ emacs/*
 *.log
 *.pdf
 *.aux
+*.out
 
 *~
 

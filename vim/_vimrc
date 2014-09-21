@@ -5,6 +5,9 @@ filetype off
 " Include Vundle {{{
 set rtp+=~/.vim/bundle/Vundle
 " }}}
+" Include My snippets {{{
+set rtp+=~/.vim/bundle/mysnippets
+" }}}
 " Plugins {{{
 call vundle#begin()
 Plugin 'gmarik/Vundle'
