@@ -37,6 +37,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/csapprox'
 call vundle#end()
 " }}}
 " My options {{{
@@ -55,6 +56,7 @@ set hls
 set lbr
 set encoding=utf-8
 set foldmethod=marker
+set conceallevel=2
 "" }}}
 "" Change tab to four spaces {{{
 set tabstop=4
@@ -124,6 +126,19 @@ augroup line_return
         \ if line("'\"") <= line("$") |
         \       execute 'normal! g`"zvzz' |
         \ endif
+augroup END
+" }}}
+" Highlight character if line length is greater than 80 {{{
+match ColorColumn /\%81v.\+/
+" }}}
+" Custom conceal charaters {{{
+augroup custom_conceals
+    au!
+    autocmd BufReadPost,BufNewFile * 
+                \ if &filetype =~ "conf" || &filetype =~ "notes" |
+                \      syntax match noteChar "->" conceal cchar=➞ |
+                \ endif |
+                \ set cole=2
 augroup END
 " }}}
 " Plugin Specific options {{{
