@@ -5,6 +5,9 @@ filetype off
 " Include Vundle {{{
 set rtp+=~/.vim/bundle/Vundle
 " }}}
+" Include My snippets {{{
+set rtp+=~/.vim/bundle/mysnippets
+" }}}
 " Plugins {{{
 call vundle#begin()
 Plugin 'gmarik/Vundle'
@@ -19,7 +22,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'edkolev/promptline.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-gitgutter'
@@ -192,6 +195,11 @@ let g:notes_directories = ['~/dotfiles/documents/notes/']
 "" NERDTree {{{
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 ""}}}
+"" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" }}}
 " }}}
 " Custom mappings {{{
 "" Sourcing vimrc {{{
