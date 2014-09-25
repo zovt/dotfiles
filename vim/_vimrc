@@ -71,7 +71,8 @@ set visualbell
 set cursorline
 "" }}}
 "" Leader {{{
-let mapleader = ","
+let mapleader = " "
+nnoremap <Space> <nop>
 "" }}}
 "" other stuff {{{
 set showmode
@@ -196,9 +197,10 @@ let g:notes_directories = ['~/dotfiles/documents/notes/']
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 ""}}}
 "" UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<s-enter>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<s-enter>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "" }}}
 "" EasyAlign {{{
 vmap <enter> :EasyAlign

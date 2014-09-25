@@ -39,7 +39,7 @@ sod bic is limiting
 
 1.00 - .762 = .238 g cit acid
 
-.484 / .5237 = 92.4 % 
+.484 / .5237 = 92.4 %
 # Fri Sep 19 08:32:55 EDT 2014
 ## Chapter 4
 ### Solutions
@@ -75,9 +75,9 @@ dissolve
 | PO4^3-                    | Compounds of NH4^+ and the alkali metal cations                           |
 | OH-                       | Compounds of the alkali metal cations, and NH4^+, Ca^2+, Sr^2+, and Ba^2+ |
 ### Sample Exercise 4.2
-(NH4)2S 
+(NH4)2S
 CaCO3
-NaOH 
+NaOH
 Ag2SO4 - Insoluble
 Pb(CH3COO)2
 ### Ways to write Metathesis Reactions
@@ -101,9 +101,9 @@ Ba(NO3)2 + KOH
 Barium nitrate won’t form a precipitate
 #### Part 2
 What compound precipitaties when aqueous solutions of Fe2(SO4)3 and LiOH are
-mixed? 
+mixed?
 Fe2(SO4)3 + LiOH -> Fe(OH)3 + Li2SO4
- the -> 
+ the ->
 # 2014-09-23 14:04
 ## Strong Acids
 Hydrochloric acid
@@ -143,4 +143,13 @@ SCl2
 Na2SO3
    (+4)(-2)
 SO42-
-
+# 2014-09-24 10:50
+## Molarity
+The quantity of solute in a solution can matter to a chemist
+We call the amount dissolved its concentration
+Molarity is one way to measure the concentration of a solvent
+## Quiz
+2NaOH + H2SO4 -> Na2SO4 + 2H2O
+? M 45.7 mL
+20.0 ml .500M
+.5 mol / 1 L * .0457 L * 2 mole NaOH/1mol H2SO4 = 2.3 M NaOH
