@@ -41,6 +41,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/csapprox'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 " }}}
 " My options {{{
