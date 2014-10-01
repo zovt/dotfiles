@@ -41,7 +41,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/csapprox'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'mhinz/vim-startify'
+Plugin 'sjl/gundo.vim'
 call vundle#end()
 " }}}
 " My options {{{
@@ -93,7 +94,7 @@ endif
 " Visual Options {{{
 "" Font {{{
 if has("unix")
-    set guifont="Source Code Pro for Powerline 10"
+    set guifont=Input\ Mono\ 10
 else
     set guifont=Sauce_Code_Powerline:h10:cANSI
 endif
