@@ -33,7 +33,7 @@ Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'jceb/vim-orgmode'
-Plugin 'ragesalmon/syntact'
+Plugin 'zovt/syntact'
 Plugin 'oblitum/rainbow'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
@@ -96,7 +96,7 @@ endif
 if has("unix")
     set guifont=Input\ Mono\ 10
 else
-    set guifont=Sauce_Code_Powerline:h10:cANSI
+    set guifont=InputMono:h10:cANSI
 endif
 "" }}}
 "" Colorscheme {{{
@@ -164,12 +164,18 @@ endif
 highlight clear SignColumn
 "" }}}
 "" Airline {{{
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+ let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 set laststatus=2
 "" }}}
 "" DelimitMate {{{
