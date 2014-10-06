@@ -3,6 +3,7 @@ set downloadsort="-active","-date","-filename"
 set defsearch="duckduckgo1"
 set hintkeys='aoeuidhtnspgcrlqjkmwvz'
 set passkeys+=http://funnyjunk.com:<Left><Right>
+set ht+=.expando-button
 
 colorscheme molokai
 set guioptions="bCs"
