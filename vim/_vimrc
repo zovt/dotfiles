@@ -43,6 +43,7 @@ Plugin 'godlygeek/csapprox'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'mhinz/vim-startify'
 Plugin 'sjl/gundo.vim'
+Plugin 'fatih/vim-go'
 call vundle#end()
 " }}}
 " My options {{{
@@ -212,6 +213,13 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "" }}}
 "" EasyAlign {{{
 vmap <enter> :EasyAlign
+"" }}}
+"" Go Vim {{{
+if has("unix")
+    let $GOPATH=
+else
+    let $GOPATH="C:/Go/"
+end
 "" }}}
 " }}}
 " Custom mappings {{{
