@@ -50,6 +50,8 @@ Math.abs(total)
 -50-49
 # Programming Projects
 ## 2.8
+```
+public class 
 ## 2.9
 ```
 import java.util.Scanner;
