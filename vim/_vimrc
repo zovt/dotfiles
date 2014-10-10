@@ -5,9 +5,6 @@ filetype off
 " Include Vundle {{{
 set rtp+=~/.vim/bundle/Vundle
 " }}}
-" Include My snippets {{{
-set rtp+=~/.vim/bundle/mysnippets
-" }}}
 " Plugins {{{
 call vundle#begin()
 Plugin 'gmarik/Vundle'
@@ -34,6 +31,7 @@ Plugin 'vim-scripts/utl.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'jceb/vim-orgmode'
 Plugin 'zovt/syntact'
+Plugin 'zovt/mysnippets'
 Plugin 'oblitum/rainbow'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
