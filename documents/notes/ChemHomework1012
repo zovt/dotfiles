@@ -1,0 +1,64 @@
+ChemHomework1012
+
+# Problem 5.44
+82.3/252.8 = 0.3255 * 2 = .651
+Mol CH4 = 2.37
+2:1
+1.18 * 252.8 = 300
+
+# Problem 5.46
+2:3
+1.35 mol O2 * 2 mol KClO3 / 3 mol O2 = .9
+2 mol KClO3 : 3 mol O2
+1.35 mol O2 * 2 mol KClO3 / 3 mol O2 = 
+.135 mol * 89.4/2 = 
+
+# Problem 5.53
+2.22 J/g*K * 88.0 g * (24 - 10.4)
+2.22 * 114.229 * 5 = 1267.94
+4.186 * 18.015 * 5 = 377.05 
+
+# Problem 5.64
+2C + O2 → 2CO delta H = -221.0
+2C + O2 + 4H2 → 2CH3OH delta H = -402.4
+
+CO + 2H2 → CH3OH
+
+(2CO → 2C + O2) / 2
+CO → C + 1/2 O2
+(2C + O2 + 4H2 → 2CH3OH) / 2
+C + 1/2 O2 + 2H2 → CH3OH
+
+CO → C + 1/2 O2
+C + 1/2 O2 + 2H2 → CH3OH
+CO + 2H2 → CH3OH
+
+221/2 + -402.4/2 = -90.7
+
+# Problem 5.66
+N2 + O2 → 2NO delta H = 180.7
+2NO + O2 → 2NO2 delta H = -113.1
+2N2O → 2N2 + O2 delta H = -163.2
+
+N2O + NO2 → 3NO
+
+(2N2O → 2N2 + O2)/2
+(2NO2 → 2NO + O2)/2
+N2 + O2 → 2NO
+
+N2O → N2 + 1/2 O2
+NO2 → NO + 1/2 O2
+N2 + O2 → 2NO
+N2O + NO2 → 3NO
+
+180.7 + 113.1/2 - 163.2/2
+
+# Problem 5.72
+1 mole CaO delta H = -635.5
+2 mole HCl delta H = -92.3 * 2 = -184.6
+
+635.5 + 184.6 = -820.1
+
+1 mole CaCl2 delta H = -795.8
+1 mole H2O delta H = -241.82
+795.8 + 241.82 = -1037.62
