@@ -7,6 +7,19 @@
 (require 'package)
 (require 'cl-macs)
 
+;; Add el-get
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+
 ;; Enable melpa and Org-mode
 (add-to-list 'package-archives
 	     '("gnu" . "http://elpa.gnu.org/packages/") t)
@@ -40,13 +53,11 @@
     flycheck
     org
     cmake-mode
-    magit
     js2-mode
     yasnippet
     semantic
     function-args
     auctex
-    slime
     ;; Utilities
     smex
     helm
@@ -152,6 +163,11 @@
 (evil-mode 1) ;; Enable evil
 (define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
+(define-key evil-normal-state-map (kbd "SPC") nil) ;; disable SPC in normal mode
+(define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
+(define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
+(define-key evil-normal-state-map "L" 'end-of-line)
+(define-key evil-normal-state-map "H" 'beginning-of-line)
 (evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
 (defvar evil-auto-indent t) ;; I don't think this actually does anything
 (defvar evil-shift-width 4) ;; Set indent width
@@ -159,7 +175,7 @@
 (evil-set-initial-state 'erc-mode 'emacs)
 
 ;; Evil Leader Binds
-(evil-leader/set-leader ",")
+(evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "h" 'previous-buffer)
 (evil-leader/set-key "l" 'next-buffer)
 (evil-leader/set-key "u" 'smex)
@@ -168,9 +184,13 @@
 (evil-leader/set-key "o" 'helm-buffers-list)
 (evil-leader/set-key "k" 'kill-buffer)
 (evil-leader/set-key "e" 'other-window)
-(evil-leader/set-key "w" 'whitespace-mode)
+(evil-leader/set-key "W" 'whitespace-mode)
 (evil-leader/set-key "f" 'anything)
 (evil-leader/set-key "n" 'neotree-toggle)
+(evil-leader/set-key "wv" 'split-window-below)
+(evil-leader/set-key "wn" 'split-window-right)
+(evil-leader/set-key "wl" 'other-window)
+(evil-leader/set-key "wx" 'delete-window)
 
 ;; Org Mode
 (defvar org-log-done 'time)
@@ -370,7 +390,7 @@
 
 ;; Powerline
 (require 'powerline)
-(setq-default powerline-default-separator 'contour)
+(setq-default powerline-default-separator 'bar)
 (setq-default mode-line-format
 	      '("%e"
 		(:eval

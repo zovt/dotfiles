@@ -234,4 +234,46 @@ Compare the actual yield with the theoretical yield
     H = .0505 g H
 mass sample - .400g C - .0505 g H = 0
     No oxygen
+* Tue Oct 14 13:57:41 2014
+** Homework Review
+*** 107
+bpt NH3 - 33 C
+DNH3 - .81 g/cm3
+HVap = 23.2 KJ mole
+NH3 -> NH3(g)
+23.2 kJ/mole = HVap = dHf NH3 - dHf NH3
+23.2 kJ = -46.2 - dHf NH3
+-69.4 KJ = dHf NH3(l)
+NH3(l) + O2(g) -> N2(g) + H2O(g)
+
+dHrxn = 6 dHf H2O(g) - 4dHf NH3(l)
+      = 6(-241.8) - 4(-69.4 kJ/m)
+      = -1173.3 kJ
+
+-1173.3 kJ / 4 mole NH3 * 1 mole NH3 / 17.0 g NH3 * .81 g / cm3 * 1 cm^3 / 1 mL * 1000 mL / 1 L = -1.4*10^4 kJ/L
+
+2CH3OH(l) + 3O2(g) -> 2CO2(g) + 4H2O(g)
+
+dHrxn = 2 dHf CO2 + 4 dHf H2O - 0 - 2 dHf CH3OH
+dHrxn = -1276 kJ
+-1276 kJ / 2 mole CH3OH * 1 / 32 * .792 / 1 * 1 / 1 * 1000 mL / L = 1.58 * 10^4 kJ/L
+
+** Things to know for quiz
+Hess's Law
+dHf dHrxn
+calorimetry
+
+** Homework review continued
+*** 56
+4.25 g NH4NO3
+60.0 g H2O
+
+dT = 16.9 - 22.0
+
+NH4NO3	-> NH4^+ + NO3^-
+dH	= q = m*c*dT
+	= 64.25g * 4.18 J/gC * (16.9-22.0)
+	= -1370 J
+
+*** 104
 
