@@ -277,3 +277,22 @@ dH	= q = m*c*dT
 
 *** 104
 
+* Thu Oct 16 08:38:54 2014
+** Quiz Review
+*** Enthalpies of Reaction
+dH = dHproducts - dHreactants
+*** Calorimetry
+The heat capacity of one mole of a substance is called its molar heat capacity
+The heat capacity of one gram of a substance is called its specific heat capacity, or it's specific heat
+Cm						= J/(m*C)
+J/(m*C) * 1 mol Substance / 1 g Substance	= J / (g*C) = Cs
+q						= m*Cs*dT
+qsoln = (specific heat of Solution) * (grams of solution) * dT = -qrxn
+Specific heat of water = 4.18 J/(g*C)
+Find answer in kJ/m
+**** Bomb Calorimetry
+qrxn = -Ccal * dT
+Reactions in a bomb calorimeter are carried out at a constant volume, so change in internal energy = dE rather than dH
+*** Hess's Law
+Balance equations and shit
+dHrxn = sigma n dHf products - sigma m dHf reactants
