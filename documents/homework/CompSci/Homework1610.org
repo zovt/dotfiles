@@ -3,9 +3,7 @@ System = system library
 out = stdout
 println = method to print to standard out followed by a newline
 inside brackets = string
-* 2.2
-Here we go!12345
-Test this if you are not sure.Another.
+
 
 All done.
 
@@ -42,7 +40,7 @@ and still insists
 ** p. 23
 ** q. 0
 
-** 2.7
+* 2.7
 ** a. a - b - c - d
      1   2   3
 ** b. a - b + c - d
