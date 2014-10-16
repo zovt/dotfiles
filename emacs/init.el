@@ -7,26 +7,16 @@
 (require 'package)
 (require 'cl-macs)
 
-;; Add el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
 ;; Enable melpa and Org-mode
 (add-to-list 'package-archives
-	     '("gnu" . "http://elpa.gnu.org/packages/") t)
+	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
 	     '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (package-initialize)
 (package-refresh-contents)
 
@@ -53,9 +43,9 @@
     flycheck
     org
     cmake-mode
+    semantic
     js2-mode
     yasnippet
-    semantic
     function-args
     auctex
     ;; Utilities
@@ -73,8 +63,8 @@
     company
     company-c-headers
     company-tern
-    company-auctex
     ))
+
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
       (package-install p)))
@@ -194,18 +184,14 @@
 
 ;; Org Mode
 (defvar org-log-done 'time)
-(defvar org-agenda-files (list "~/.emacs.d/org/school.org.gpg"
-			       "~/.emacs.d/org/home.org.gpg"
-			       "~/.emacs.d/org/Schedule.org.gpg"
-			       "~/.emacs.d/org/Colleges.org.gpg"
-			       "~/.emacs.d/org/life.org.gpg"))
+(defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
 
 (global-set-key (kbd "C-c a") 'org-agenda)
-(defvar org-todo-keywords '((type "BUG(b)" "|" "FIXED(f@)")
+(defvar org-todo-keywords '((type "BUG(b)" "IN-PROGRESS" "WAITING" "|" "FIXED(f@)")
 			    (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
 			    (type "GOAL(g)" "|" "DONE(d!)")
 			    (type "|" "CANCELED(c@)")
-			    (type "TODO" "|" "DONE(d!)")))
+			    (type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
 
 (defvar
   org-export-backends '(ascii
@@ -383,7 +369,10 @@
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 ;; Rainbow delimiters
-(global-rainbow-delimiters-mode)
+(require 'rainbow-delimiters)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
+(add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
+(add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
 
 ;; Encryption
 (epa-file-enable)
@@ -463,12 +452,6 @@
 				 (save-buffer)
 				 (tex-compile default-directory)
 				 (delete-file buffer-sans-gpg))) nil t))
-
-;; Slime
-(defvar inferior-lisp-program "clisp")
-(require 'slime)
-(slime-setup)
-(add-hook 'lisp-mode-hook (progn (evil-leader/set-key "s" 'slime) (slime-mode)))
 
 (provide 'init)
 ;;; init.el ends here
