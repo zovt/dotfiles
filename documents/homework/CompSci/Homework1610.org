@@ -19,7 +19,7 @@ It should be a concatenation of two strings
 
 #+BEGIN_SRC java
 System.out.println("To be or not to be, that" +
-		   "is the question.")
+		   "is the question.");
 #+END_SRC
 
 * 2.4
@@ -28,13 +28,13 @@ System.out.println("To be or not to be, that" +
 The first plus concatenates, the second plus adds the two numbers together
 
 * 2.5
+
+#+BEGIN_SRC
 He thrusts his fists
-
    against the post
-
 and still insists
-
    he sees the "ghost"
+#+END_SRC
 
 * 2.6
 ** a. 5
@@ -87,9 +87,10 @@ and still insists
 
 * 2.8
 
-enum Days {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday}
-
+#+BEGIN_SRC java
+enum Days {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};
 Days day = Days.Sunday;
+#+END_SRC
 
 * 2.9
 Quest for tze Holy Grail quest for tze zoly grail
