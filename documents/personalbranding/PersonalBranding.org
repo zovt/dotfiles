@@ -1,0 +1,8 @@
+* Fonts
+** Username: Equip Condensed Thin
+** Written text: Livory
+** Other text: Relevant Thin
+* Colors
+** Main Color: #EC407A
+** Header/Accent: #2099B9
+** Background: #17070c

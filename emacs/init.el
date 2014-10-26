@@ -180,6 +180,7 @@
 (evil-leader/set-key "wv" 'split-window-below)
 (evil-leader/set-key "wn" 'split-window-right)
 (evil-leader/set-key "wl" 'other-window)
+(evil-leader/set-key "wh" 'previous-window)
 (evil-leader/set-key "wx" 'delete-window)
 
 ;; Org Mode
