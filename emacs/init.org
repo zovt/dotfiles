@@ -1,4 +1,3 @@
-#+NAME : init.el
 #+PROPERTY: header-args :tangle yes :comments org
 #+BABEL: :cache yes
 * Init.el
