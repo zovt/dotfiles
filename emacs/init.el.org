@@ -24,7 +24,7 @@ This section sets up the repositiories that I use and also initializes them.
 *** My Packages
 Lists packages that I want to install and installs them.
 
-#begin_src emacs-lisp
+#+begin_src emacs-lisp
 (defconst ragesalmon-config-packages
   '(evil
     evil-leader
@@ -74,10 +74,11 @@ Lists packages that I want to install and installs them.
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
       (package-install p)))
-#end_src
+#+end_src
 
 *** General Configuration
-**** Disable cursor blinking
+#+begin_src emacs-lisp
+;; Disable cursor blinking
 (blink-cursor-mode 0)
 
 ;; Don't use unecessary messages
@@ -141,56 +142,21 @@ Lists packages that I want to install and installs them.
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
+#+end_src
 
-;; Customize modeline
-;; (setq-default mode-line-format '((:propertize " %m: " face font-lock-doc-face) (:eval (when (buffer-modified-p) (propertize "(MOD) " 'face 'font-lock-warning-face))) (:propertize "%b " face font-lock-function-name-face) (:propertize "[%02l : %02c] " face font-lock-keyword-face) (:propertize "[%02p / %02I] " face font-lock-preprocessor-face) (:eval (propertize (format-time-string "%H:%M:%S") 'face 'font-lock-builtin-face)) " (" minor-mode-alist " )" (:propertize " %-" face font-lock-comment-face))) (set-face-background 'mode-line "#434445")
-
-;; --------------- Custom Functions -----------------
+*** Custom Functions
+#+begin_src emacs-lisp
 ;; Delete all but current buffer
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 (global-set-key (kbd "C-c x") 'kill-other-buffers)
+#+end_src
 
-;; ----------------- Plugin Configuration -----------------------
-;; Evil
-;; (global-evil-leader-mode)
-;; (evil-mode 1) ;; Enable evil
-;; (define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
-;; (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
-;; (define-key evil-normal-state-map (kbd "SPC") nil) ;; disable SPC in normal mode
-;; (define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
-;; (define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
-;; (define-key evil-normal-state-map "L" 'end-of-line)
-;; (define-key evil-normal-state-map "H" 'beginning-of-line)
-;; (evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
-;; (defvar evil-auto-indent t) ;; I don't think this actually does anything
-;; (defvar evil-shift-width 4) ;; Set indent width
-;; ;; Disable evil in ERC
-;; (evil-set-initial-state 'erc-mode 'emacs)
-;; ;; Disable evil in Term
-;; (evil-set-initial-state 'term-mode 'emacs)
-
-;; ;; Evil Leader Binds
-;; (evil-leader/set-leader "<SPC>")
-;; (evil-leader/set-key "h" 'previous-buffer)
-;; (evil-leader/set-key "l" 'next-buffer)
-;; (evil-leader/set-key "u" 'smex)
-;; (evil-leader/set-key "a" 'org-agenda)
-;; (evil-leader/set-key "x" 'kill-other-buffers)
-;; (evil-leader/set-key "o" 'helm-buffers-list)
-;; (evil-leader/set-key "k" 'kill-buffer)
-;; (evil-leader/set-key "e" 'other-window)
-;; (evil-leader/set-key "W" 'whitespace-mode)
-;; (evil-leader/set-key "f" 'anything)
-;; (evil-leader/set-key "n" 'neotree-toggle)
-;; (evil-leader/set-key "wv" 'split-window-below)
-;; (evil-leader/set-key "wn" 'split-window-right)
-;; (evil-leader/set-key "wl" 'other-window)
-;; (evil-leader/set-key "wx" 'delete-window)
-
-;; Org Mode
+*** Plugin Configuration
+**** Org Mode
+#+begin_src emacs-lisp
 (defvar org-log-done 'time)
 (defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
 
@@ -200,7 +166,6 @@ Lists packages that I want to install and installs them.
 							(type "GOAL(g)" "|" "DONE(d!)")
 							(type "|" "CANCELED(c@)")
 							(type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
-
 (defvar
   org-export-backends '(ascii
 						md
@@ -209,17 +174,19 @@ Lists packages that I want to install and installs them.
 						org
 						latex
 						man
-						)
-  )
+						))
 
 (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
-
-;; Smex
+#+end_src
+**** Smex
+#+begin_src emacs-lisp
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+#+end_src emacs-lisp
 
-;; Helm
+**** Helm
+#+begin_src emacs-lisp
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (defvar helm-mode-handle-completion-in-region nil)
@@ -245,8 +212,10 @@ Lists packages that I want to install and installs them.
 (defvar helm-buffers-fuzzy-matching t)
 
 (helm-mode 1)
+#+end_src
 
-;; Helm gtags
+***** Helm gtags
+#+begin_src emacs-lisp
 (defvar helm-gtags-prefix-key "\C-cg")
 
 (require 'helm-gtags)
@@ -272,9 +241,12 @@ Lists packages that I want to install and installs them.
 (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
 (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
 (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+#+end_src
 
-;; Yasnippet
+**** Yasnippet
+#+begin_src emacs-lisp
 (yas-global-mode 1)
+#+end_src
 
 ;; Semantic
 (require 'cc-mode)
