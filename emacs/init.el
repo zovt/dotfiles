@@ -9,13 +9,13 @@
 
 ;; Enable melpa and Org-mode
 (add-to-list 'package-archives
-	     '("gnu" . "https://elpa.gnu.org/packages/") t)
+			 '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+			 '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/") t)
+			 '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+			 '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (package-initialize)
 (package-refresh-contents)
@@ -24,6 +24,7 @@
 (defconst ragesalmon-config-packages
   '(evil
     evil-leader
+	god-mode
     ;; themes
     stekene-theme
     moe-theme
@@ -59,6 +60,7 @@
     neotree
     rainbow-delimiters
     powerline
+    aggressive-indent
     ;; Company
     company
     company-c-headers
@@ -149,38 +151,40 @@
 
 ;; ----------------- Plugin Configuration -----------------------
 ;; Evil
-(global-evil-leader-mode)
-(evil-mode 1) ;; Enable evil
-(define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
-(define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
-(define-key evil-normal-state-map (kbd "SPC") nil) ;; disable SPC in normal mode
-(define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
-(define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
-(define-key evil-normal-state-map "L" 'end-of-line)
-(define-key evil-normal-state-map "H" 'beginning-of-line)
-(evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
-(defvar evil-auto-indent t) ;; I don't think this actually does anything
-(defvar evil-shift-width 4) ;; Set indent width
-;; Disable evil in ERC
-(evil-set-initial-state 'erc-mode 'emacs)
+;; (global-evil-leader-mode)
+;; (evil-mode 1) ;; Enable evil
+;; (define-key evil-normal-state-map ";" 'evil-ex) ;; Bind ";" to ":"
+;; (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent) ;; Make newline indent in insert mode
+;; (define-key evil-normal-state-map (kbd "SPC") nil) ;; disable SPC in normal mode
+;; (define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
+;; (define-key evil-visual-state-map (kbd "RET") 'align-regexp) ;; Align with align-regexp in Visual Mode
+;; (define-key evil-normal-state-map "L" 'end-of-line)
+;; (define-key evil-normal-state-map "H" 'beginning-of-line)
+;; (evil-define-key 'insert org-mode-map (kbd "RET") 'newline) ;; Disable auto-indent in org-mode
+;; (defvar evil-auto-indent t) ;; I don't think this actually does anything
+;; (defvar evil-shift-width 4) ;; Set indent width
+;; ;; Disable evil in ERC
+;; (evil-set-initial-state 'erc-mode 'emacs)
+;; ;; Disable evil in Term
+;; (evil-set-initial-state 'term-mode 'emacs)
 
-;; Evil Leader Binds
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key "h" 'previous-buffer)
-(evil-leader/set-key "l" 'next-buffer)
-(evil-leader/set-key "u" 'smex)
-(evil-leader/set-key "a" 'org-agenda)
-(evil-leader/set-key "x" 'kill-other-buffers)
-(evil-leader/set-key "o" 'helm-buffers-list)
-(evil-leader/set-key "k" 'kill-buffer)
-(evil-leader/set-key "e" 'other-window)
-(evil-leader/set-key "W" 'whitespace-mode)
-(evil-leader/set-key "f" 'anything)
-(evil-leader/set-key "n" 'neotree-toggle)
-(evil-leader/set-key "wv" 'split-window-below)
-(evil-leader/set-key "wn" 'split-window-right)
-(evil-leader/set-key "wl" 'other-window)
-(evil-leader/set-key "wx" 'delete-window)
+;; ;; Evil Leader Binds
+;; (evil-leader/set-leader "<SPC>")
+;; (evil-leader/set-key "h" 'previous-buffer)
+;; (evil-leader/set-key "l" 'next-buffer)
+;; (evil-leader/set-key "u" 'smex)
+;; (evil-leader/set-key "a" 'org-agenda)
+;; (evil-leader/set-key "x" 'kill-other-buffers)
+;; (evil-leader/set-key "o" 'helm-buffers-list)
+;; (evil-leader/set-key "k" 'kill-buffer)
+;; (evil-leader/set-key "e" 'other-window)
+;; (evil-leader/set-key "W" 'whitespace-mode)
+;; (evil-leader/set-key "f" 'anything)
+;; (evil-leader/set-key "n" 'neotree-toggle)
+;; (evil-leader/set-key "wv" 'split-window-below)
+;; (evil-leader/set-key "wn" 'split-window-right)
+;; (evil-leader/set-key "wl" 'other-window)
+;; (evil-leader/set-key "wx" 'delete-window)
 
 ;; Org Mode
 (defvar org-log-done 'time)
@@ -188,20 +192,20 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (defvar org-todo-keywords '((type "BUG(b)" "IN-PROGRESS" "WAITING" "|" "FIXED(f@)")
-			    (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
-			    (type "GOAL(g)" "|" "DONE(d!)")
-			    (type "|" "CANCELED(c@)")
-			    (type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
+							(type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
+							(type "GOAL(g)" "|" "DONE(d!)")
+							(type "|" "CANCELED(c@)")
+							(type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
 
 (defvar
   org-export-backends '(ascii
-			md
-			html
-			odt
-			org
-			latex
-			man
-			)
+						md
+						html
+						odt
+						org
+						latex
+						man
+						)
   )
 
 (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
@@ -286,18 +290,18 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 (defvar company-backends '(
-			   company-clang
-			   company-semantic
-			   company-gtags
-			   company-c-headers
-			   company-cmake
-			   company-files
-			   company-elisp
-			   company-auctex
-			   company-tern
-			   company-css
-			   company
-			   ))
+						   company-clang
+						   company-semantic
+						   company-gtags
+						   company-c-headers
+						   company-cmake
+						   company-files
+						   company-elisp
+						   company-auctex
+						   company-tern
+						   company-css
+						   company
+						   ))
 (defvar company-idle-delay 0.2)
 
 ;; C Indentation mode
@@ -343,13 +347,13 @@
 (if (eq system-type 'windows-nt)
     (progn
       (add-hook 'c++-mode-hook
-		(lambda () (setq flycheck-clang-include-path
-				 (list (expand-file-name "C:/msys64/mingw64/include")
-				       (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
+				(lambda () (setq flycheck-clang-include-path
+								 (list (expand-file-name "C:/msys64/mingw64/include")
+									   (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
       (add-hook 'c-mode-hook
-		(lambda () (setq flycheck-clang-include-path
-				 (list (expand-file-name "C:/msys64/mingw64/include")
-				       (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
+				(lambda () (setq flycheck-clang-include-path
+								 (list (expand-file-name "C:/msys64/mingw64/include")
+									   (expand-file-name "C:/msys64/mingw64/x86_64-w64-mingw32/include")))))
       )
   )
 
@@ -381,51 +385,51 @@
 (require 'powerline)
 (setq-default powerline-default-separator 'bar)
 (setq-default mode-line-format
-	      '("%e"
-		(:eval
-		 (let* ((active (powerline-selected-window-active))
-			(mode-line (if active 'mode-line 'mode-line-inactive))
-			(face1 (if active 'powerline-active1 'powerline-inactive1))
-			(face2 (if active 'powerline-active2 'powerline-inactive2))
-			(middle-face (if active 'powerline-inactive1 'powerline-active2))
-			(separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
-			(separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
-			(lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
-				   (powerline-raw " ")
-				   (powerline-major-mode)
-				   (powerline-raw ":")
-				   (powerline-buffer-id nil 'l)
-				   (powerline-buffer-size nil 'l)
-				   (powerline-raw " ")
-				   (funcall separator-left mode-line face2)
-				   (powerline-raw " " face2 face1)
-				   (powerline-raw (capitalize (symbol-name evil-state)) face2 face1)
-				   (powerline-raw " " face2 face1)
-				   (funcall separator-left face2 face1)
-				   (powerline-raw " " face1 face2)
-				   (powerline-minor-modes face1 face2)
-				   (powerline-raw " " face1 face2)
-				   (funcall separator-left face1 middle-face)
-				   ))
-			(rhs (list
-			      (funcall separator-right middle-face mode-line)
-			      (powerline-raw "%4l")
-			      (powerline-raw ":")
-			      (powerline-raw " %3c")
-			      (funcall separator-right mode-line face2)
-			      (powerline-raw " " face2 'r)
-			      (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
-			      (powerline-raw " " face2 'r)
-			      (powerline-hud face2 face1)
-			      ))
-			)
-		   (concat (powerline-render lhs)
-			   (powerline-fill middle-face (powerline-width rhs))
-			   (powerline-render rhs))
-		   )
-		 )
-		)
-	      )
+			  '("%e"
+				(:eval
+				 (let* ((active (powerline-selected-window-active))
+						(mode-line (if active 'mode-line 'mode-line-inactive))
+						(face1 (if active 'powerline-active1 'powerline-inactive1))
+						(face2 (if active 'powerline-active2 'powerline-inactive2))
+						(middle-face (if active 'powerline-inactive1 'powerline-active2))
+						(separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
+						(separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
+						(lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
+								   (powerline-raw " ")
+								   (powerline-major-mode)
+								   (powerline-raw ":")
+								   (powerline-buffer-id nil 'l)
+								   (powerline-buffer-size nil 'l)
+								   (powerline-raw " ")
+								   (funcall separator-left mode-line face2)
+								   (powerline-raw " " face2 face1)
+								   (powerline-raw (capitalize (symbol-name evil-state)) face2 face1)
+								   (powerline-raw " " face2 face1)
+								   (funcall separator-left face2 face1)
+								   (powerline-raw " " face1 face2)
+								   (powerline-minor-modes face1 face2)
+								   (powerline-raw " " face1 face2)
+								   (funcall separator-left face1 middle-face)
+								   ))
+						(rhs (list
+							  (funcall separator-right middle-face mode-line)
+							  (powerline-raw "%4l")
+							  (powerline-raw ":")
+							  (powerline-raw " %3c")
+							  (funcall separator-right mode-line face2)
+							  (powerline-raw " " face2 'r)
+							  (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
+							  (powerline-raw " " face2 'r)
+							  (powerline-hud face2 face1)
+							  ))
+						)
+				   (concat (powerline-render lhs)
+						   (powerline-fill middle-face (powerline-width rhs))
+						   (powerline-render rhs))
+				   )
+				 )
+				)
+			  )
 
 ;; Auctex
 (defvar TeX-auto-save t)
@@ -448,10 +452,17 @@
   (interactive)
   (setq buffer-sans-gpg (replace-regexp-in-string "\.gpg" "" (file-truename buffer-file-name)))
   (add-hook 'after-save-hook (progn
-			       (with-current-buffer (find-file-noselect buffer-sans-gpg)
-				 (save-buffer)
-				 (tex-compile default-directory)
-				 (delete-file buffer-sans-gpg))) nil t))
+							   (with-current-buffer (find-file-noselect buffer-sans-gpg)
+								 (save-buffer)
+								 (tex-compile default-directory)
+								 (delete-file buffer-sans-gpg))) nil t))
+
+;; Aggressive Indent mode
+(global-aggressive-indent-mode 1)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+
+;; God-mode
+(global-set-key (kbd "<escape>") 'god-local-mode)
 
 (provide 'init)
 ;;; init.el ends here
