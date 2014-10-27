@@ -1,10 +1,13 @@
+#+NAME : init.el
+#+PROPERTY: header-args :tangle yes :comments org
+#+BABEL: :cache yes
 * Init.el
 ** Info
    This is my init.el. It will change from time to time, and sets up packages and settings that I like. Feel free to  use, modify, or redistribute it
 ** Code
-*** Basic Packaging
+*** Basic Packagingg
     This section sets up the repositiories that I use and also initializes them.
-    #+begin_src emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 (require 'package)
 (require 'cl-macs)
 
@@ -19,12 +22,12 @@
 
 (package-initialize)
 (package-refresh-contents)
-    #+end_src
+    #+END_SRC
     
 *** My Packages
     Lists packages that I want to install and installs them.
     
-    #+begin_src emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 (defconst ragesalmon-config-packages
   '(evil
     evil-leader
@@ -74,10 +77,10 @@
 (dolist (p ragesalmon-config-packages)
   (if (not (package-installed-p p))
       (package-install p)))
-    #+end_src
+    #+END_SRC
     
 *** General Configuration
-    #+begin_src emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 ;; Disable cursor blinking
 (blink-cursor-mode 0)
 
@@ -142,21 +145,21 @@
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
-    #+end_src
+    #+END_SRC
     
 *** Custom Functions
-    #+begin_src emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 ;; Delete all but current buffer
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 (global-set-key (kbd "C-c x") 'kill-other-buffers)
-    #+end_src
+    #+END_SRC
     
 *** Plugin Configuration
 **** Org Mode
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (defvar org-log-done 'time)
 (defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
 
@@ -177,16 +180,16 @@
 			man))
 
 (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
-     #+end_src
+     #+END_SRC
 **** Smex
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-     #+end_src emacs-lisp
+     #+END_SRC emacs-lisp
      
 **** Helm
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (defvar helm-mode-handle-completion-in-region nil)
@@ -212,10 +215,10 @@
 (defvar helm-buffers-fuzzy-matching t)
 
 (helm-mode 1)
-     #+end_src
+     #+END_SRC
      
 ***** Helm gtags
-      #+begin_src emacs-lisp
+      #+BEGIN_SRC emacs-lisp
 (defvar helm-gtags-prefix-key "\C-cg")
 
 (require 'helm-gtags)
@@ -241,15 +244,15 @@
 (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
 (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
 (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
-      #+end_src
+      #+END_SRC
       
 **** Yasnippet
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (yas-global-mode 1)
-     #+end_src
+     #+END_SRC
      
 **** Semantic
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'cc-mode)
 (require 'semantic)
 
@@ -257,18 +260,18 @@
 (global-semantic-idle-scheduler-mode 1)
 
 (semantic-mode 1)
-     #+end_src
+     #+END_SRC
      
 **** Function-args
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'function-args)
 (fa-config-default)
 (define-key c-mode-map [(tab)] 'moo-complete)
 (define-key c++-mode-map [(tab)] 'moo-complete)
-     #+end_src
+     #+END_SRC
      
 **** Company
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
 (defvar company-backends '(
 						   company-clang
@@ -284,15 +287,15 @@
 						   company
 						   ))
 (defvar company-idle-delay 0.2)
-     #+end_src
+     #+END_SRC
      
 **** C Indentation mode
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (defvar c-defualt-style "linux")
-     #+end_src
+     #+END_SRC
      
 **** Smartparens
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'smartparens-config)
 (show-smartparens-global-mode +1)
 (smartparens-global-mode 1)
@@ -310,22 +313,22 @@
 (sp-local-pair 'css-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
 (setq sp-autoskip-closing-pair (quote always))
 (defvar sp-autoescape-string-quote nil)
-     #+end_src emacs-lisp
+     #+END_SRC emacs-lisp
      
 **** Js2 Mode
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (autoload 'js2-mode "js2-mode.el" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-     #+end_src
+     #+END_SRC
      
 **** Tern
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-     #+end_src
+     #+END_SRC
      
 **** Flycheck
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'c++-mode-hook
           (lambda () (setq flycheck-clang-standard-library "libc++")))
@@ -349,16 +352,16 @@
   )
 
 (defvar flycheck-idle-change-delay 5.0)
-     #+end_src
+     #+END_SRC
      
 **** Anything
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'anything-match-plugin)
 (require 'anything-config)
-     #+end_src
+     #+END_SRC
      
 **** Neotree
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'neotree)
 (add-hook 'neotree-mode-hook
           (lambda ()
@@ -366,23 +369,23 @@
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-     #+end_src
+     #+END_SRC
      
 **** Rainbow delimiters
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
-     #+end_src
+     #+END_SRC
      
 **** Encryption
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (epa-file-enable)
-     #+end_src
+     #+END_SRC
      
 **** Powerline
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'powerline)
 (setq-default powerline-default-separator 'bar)
 (setq-default mode-line-format
@@ -431,10 +434,10 @@
 				 )
 				)
 			  )
-     #+end_src
+     #+END_SRC
      
 **** Auctex
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (defvar TeX-auto-save t)
 (defvar TeX-parse-self t)
 (defvar TeX-master nil)
@@ -459,20 +462,26 @@
 								 (save-buffer)
 								 (tex-compile default-directory)
 								 (delete-file buffer-sans-gpg))) nil t))
-     #+end_src
+     #+END_SRC
      
 **** Aggressive Indent mode
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-     #+end_src
+     #+END_SRC
      
 **** God-mode
-     #+begin_src emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "<escape>") 'god-local-mode)
-     #+end_src
+     #+END_SRC
      
+*** Keybindings
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c =") (progn (mark-whole-buffer) (indent-region)))
+  (global-set-key (kbd "C-F") (forward-word))
+  (global-set-key (kbd "C-B") (backward-word))
+#+END_SRC
 ** Provide Init
-   #+begin_src emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (provide 'init)
-   #+end_src
+   #+END_SRC
