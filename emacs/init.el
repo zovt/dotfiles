@@ -24,7 +24,7 @@
 (defconst ragesalmon-config-packages
   '(evil
     evil-leader
-	god-mode
+    god-mode
     ;; themes
     stekene-theme
     moe-theme
