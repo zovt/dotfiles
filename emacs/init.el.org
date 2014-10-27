@@ -19,7 +19,7 @@ This section sets up the repositiories that I use and also initializes them.
 
 (package-initialize)
 (package-refresh-contents)
-#end_src
+#+end_src
 
 *** My Packages
 Lists packages that I want to install and installs them.
