@@ -248,7 +248,8 @@ Lists packages that I want to install and installs them.
 (yas-global-mode 1)
 #+end_src
 
-;; Semantic
+**** Semantic
+#+begin_src emacs-lisp
 (require 'cc-mode)
 (require 'semantic)
 
@@ -256,14 +257,18 @@ Lists packages that I want to install and installs them.
 (global-semantic-idle-scheduler-mode 1)
 
 (semantic-mode 1)
+#+end_src
 
-;; Function-args
+**** Function-args
+#+begin_src emacs-lisp
 (require 'function-args)
 (fa-config-default)
 (define-key c-mode-map [(tab)] 'moo-complete)
 (define-key c++-mode-map [(tab)] 'moo-complete)
+#+end_src
 
-;; Company
+**** Company
+#+begin_src emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
 (defvar company-backends '(
 						   company-clang
@@ -279,11 +284,15 @@ Lists packages that I want to install and installs them.
 						   company
 						   ))
 (defvar company-idle-delay 0.2)
+#+end_src
 
-;; C Indentation mode
+**** C Indentation mode
+#+begin_src emacs-lisp
 (defvar c-defualt-style "linux")
+#+end_src
 
-;; Smartparens
+**** Smartparens
+#+begin_src emacs-lisp
 (require 'smartparens-config)
 (show-smartparens-global-mode +1)
 (smartparens-global-mode 1)
@@ -301,16 +310,22 @@ Lists packages that I want to install and installs them.
 (sp-local-pair 'css-mode "{" nil  :post-handlers '((ragesalmon-newline-sp "RET")))
 (setq sp-autoskip-closing-pair (quote always))
 (defvar sp-autoescape-string-quote nil)
+#+end_src emacs-lisp
 
-;; Js2 Mode
+**** Js2 Mode
+#+begin_src emacs-lisp
 (autoload 'js2-mode "js2-mode.el" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+#+end_src
 
-;; Tern
+**** Tern
+#+begin_src emacs-lisp
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+#+end_src
 
-;; Flycheck
+**** Flycheck
+#+begin_src emacs-lisp
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'c++-mode-hook
           (lambda () (setq flycheck-clang-standard-library "libc++")))
@@ -334,12 +349,16 @@ Lists packages that I want to install and installs them.
   )
 
 (defvar flycheck-idle-change-delay 5.0)
+#+end_src
 
-;; Anything
+**** Anything
+#+begin_src emacs-lisp
 (require 'anything-match-plugin)
 (require 'anything-config)
+#+end_src
 
-;; Neotree
+**** Neotree
+#+begin_src emacs-lisp
 (require 'neotree)
 (add-hook 'neotree-mode-hook
           (lambda ()
@@ -347,17 +366,23 @@ Lists packages that I want to install and installs them.
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+#+end_src
 
-;; Rainbow delimiters
+**** Rainbow delimiters
+#+begin_src emacs-lisp
 (require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
+#+end_src
 
-;; Encryption
+**** Encryption
+#+begin_src emacs-lisp
 (epa-file-enable)
+#+end_src
 
-;; Powerline
+**** Powerline
+#+begin_src emacs-lisp
 (require 'powerline)
 (setq-default powerline-default-separator 'bar)
 (setq-default mode-line-format
@@ -406,8 +431,10 @@ Lists packages that I want to install and installs them.
 				 )
 				)
 			  )
+#+end_src
 
-;; Auctex
+**** Auctex
+#+begin_src emacs-lisp
 (defvar TeX-auto-save t)
 (defvar TeX-parse-self t)
 (defvar TeX-master nil)
@@ -432,13 +459,20 @@ Lists packages that I want to install and installs them.
 								 (save-buffer)
 								 (tex-compile default-directory)
 								 (delete-file buffer-sans-gpg))) nil t))
+#+end_src
 
-;; Aggressive Indent mode
+**** Aggressive Indent mode
+#+begin_src emacs-lisp
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+#+end_src
 
-;; God-mode
+**** God-mode
+#+begin_src emacs-lisp
 (global-set-key (kbd "<escape>") 'god-local-mode)
+#+end_src
 
+** Provide Init
+#+begin_src emacs-lisp
 (provide 'init)
-;;; init.el ends here
+#+end_src
