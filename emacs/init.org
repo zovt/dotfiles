@@ -27,55 +27,55 @@
     Lists packages that I want to install and installs them.
     
     #+BEGIN_SRC emacs-lisp
-(defconst ragesalmon-config-packages
-  '(evil
-    evil-leader
-    god-mode
-    ;; themes
-    stekene-theme
-    moe-theme
-    sublime-themes
-    soothe-theme
-    ample-theme
-    tangotango-theme
-    leuven-theme
-    tango-plus-theme
-    flatui-theme
-    flatland-theme
-    afternoon-theme
-    purple-haze-theme
-    birds-of-paradise-plus-theme
-    gruvbox-theme
-    ;; Modes
-    flycheck
-    org
-    cmake-mode
-    semantic
-    js2-mode
-    yasnippet
-    function-args
-    auctex
-    ;; Utilities
-    smex
-    helm
-    helm-gtags
-    helm-anything
-    tern
-    smartparens
-    anything
-    neotree
-    rainbow-delimiters
-    powerline
-    aggressive-indent
-    ;; Company
-    company
-    company-c-headers
-    company-tern
-    ))
+      (defconst ragesalmon-config-packages
+        '(god-mode
+          ;; themes
+          stekene-theme
+          moe-theme
+          sublime-themes
+          soothe-theme
+          ample-theme
+          tangotango-theme
+          leuven-theme
+          tango-plus-theme
+          flatui-theme
+          flatland-theme
+          afternoon-theme
+          purple-haze-theme
+          birds-of-paradise-plus-theme
+          gruvbox-theme
+          ;; Modes
+          flycheck
+          org
+          cmake-mode
+          semantic
+          js2-mode
+          yasnippet
+          function-args
+          auctex
+          ;; Utilities
+          smex
+          helm
+          helm-gtags
+          helm-anything
+          tern
+          smartparens
+          anything
+          neotree
+          rainbow-delimiters
+          powerline
+          aggressive-indent
+          undo-tree
+          expand-region
+          ;; Company
+          company
+          company-c-headers
+          company-tern
+          ))
 
-(dolist (p ragesalmon-config-packages)
-  (if (not (package-installed-p p))
-      (package-install p)))
+      (dolist (p ragesalmon-config-packages)
+        (if (not (package-installed-p p))
+            (package-install p)))
     #+END_SRC
     
 *** General Configuration
@@ -146,16 +146,6 @@
  version-control t)
     #+END_SRC
     
-*** Custom Functions
-    #+BEGIN_SRC emacs-lisp
-;; Delete all but current buffer
-(defun kill-other-buffers ()
-  "Kill all other buffers."
-  (interactive)
-  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
-(global-set-key (kbd "C-c x") 'kill-other-buffers)
-    #+END_SRC
-    
 *** Plugin Configuration
 **** Org Mode
      #+BEGIN_SRC emacs-lisp
@@ -182,14 +172,14 @@
      #+END_SRC
 **** Smex
      #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-     #+END_SRC emacs-lisp
+       (require 'smex)
+       (global-set-key (kbd "M-x") 'smex)
+       (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+       (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+     #+END_SRC
      
 **** Helm
      #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (defvar helm-mode-handle-completion-in-region nil)
 
@@ -362,12 +352,6 @@
 **** Neotree
      #+BEGIN_SRC emacs-lisp
 (require 'neotree)
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
      #+END_SRC
      
 **** Rainbow delimiters
@@ -385,54 +369,43 @@
      
 **** Powerline
      #+BEGIN_SRC emacs-lisp
-(require 'powerline)
-(setq-default powerline-default-separator 'bar)
-(setq-default mode-line-format
-			  '("%e"
-				(:eval
-				 (let* ((active (powerline-selected-window-active))
-						(mode-line (if active 'mode-line 'mode-line-inactive))
-						(face1 (if active 'powerline-active1 'powerline-inactive1))
-						(face2 (if active 'powerline-active2 'powerline-inactive2))
-						(middle-face (if active 'powerline-inactive1 'powerline-active2))
-						(separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
-						(separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
-						(lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
-								   (powerline-raw " ")
-								   (powerline-major-mode)
-								   (powerline-raw ":")
-								   (powerline-buffer-id nil 'l)
-								   (powerline-buffer-size nil 'l)
-								   (powerline-raw " ")
-								   (funcall separator-left mode-line face2)
-								   (powerline-raw " " face2 face1)
-								   (powerline-raw (capitalize (symbol-name evil-state)) face2 face1)
-								   (powerline-raw " " face2 face1)
-								   (funcall separator-left face2 face1)
-								   (powerline-raw " " face1 face2)
-								   (powerline-minor-modes face1 face2)
-								   (powerline-raw " " face1 face2)
-								   (funcall separator-left face1 middle-face)
-								   ))
-						(rhs (list
-							  (funcall separator-right middle-face mode-line)
-							  (powerline-raw "%4l")
-							  (powerline-raw ":")
-							  (powerline-raw " %3c")
-							  (funcall separator-right mode-line face2)
-							  (powerline-raw " " face2 'r)
-							  (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
-							  (powerline-raw " " face2 'r)
-							  (powerline-hud face2 face1)
-							  ))
-						)
-				   (concat (powerline-render lhs)
-						   (powerline-fill middle-face (powerline-width rhs))
-						   (powerline-render rhs))
-				   )
-				 )
-				)
-			  )
+       (require 'powerline)
+       (setq-default powerline-default-separator 'bar)
+       (setq-default mode-line-format
+                     '("%e"
+                       (:eval
+                        (let* ((active (powerline-selected-window-active))
+                               (mode-line (if active 'mode-line 'mode-line-inactive))
+                               (face1 (if active 'powerline-active1 'powerline-inactive1))
+                               (face2 (if active 'powerline-active2 'powerline-inactive2))
+                               (middle-face (if active 'powerline-inactive1 'powerline-active2))
+                               (separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
+                               (separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
+                               (lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
+                                          (powerline-raw " ")
+                                          (powerline-major-mode)
+                                          (powerline-raw ":")
+                                          (powerline-buffer-id nil 'l)
+                                          (powerline-buffer-size nil 'l)
+                                          (powerline-raw " ")
+                                          (funcall separator-left mode-line face1)
+                                          (powerline-raw " " face1 face2)
+                                          (powerline-minor-modes face1 face2)
+                                          (powerline-raw " " face1 face2)
+                                          (funcall separator-left face1 middle-face)))
+                               (rhs (list
+                                     (funcall separator-right middle-face mode-line)
+                                     (powerline-raw "%4l")
+                                     (powerline-raw ":")
+                                     (powerline-raw " %3c")
+                                     (funcall separator-right mode-line face2)
+                                     (powerline-raw " " face2 'r)
+                                     (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
+                                     (powerline-raw " " face2 'r)
+                                     (powerline-hud face2 face1))))
+                          (concat (powerline-render lhs)
+                                  (powerline-fill middle-face (powerline-width rhs))
+                                  (powerline-render rhs))))))
      #+END_SRC
      
 **** Auctex
@@ -474,12 +447,45 @@
 (global-set-key (kbd "<escape>") 'god-local-mode)
      #+END_SRC
      
+**** Expand-Region
+	 #+BEGIN_SRC emacs-lisp
+  (require 'expand-region)
+	 #+END_SRC
 *** Keybindings
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c =") (progn (mark-whole-buffer) (indent-region)))
-  (global-set-key (kbd "C-F") (forward-word))
-  (global-set-key (kbd "C-B") (backward-word))
-#+END_SRC
+	#+BEGIN_SRC emacs-lisp
+      (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
+      (global-set-key (kbd "C-S-f") 'forward-word)
+      (global-set-key (kbd "C-S-b") 'backward-word)
+      (global-set-key (kbd "C-c n") 'neotree)
+      (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+      (global-set-key (kbd "C-S-d") 'kill-word)
+      (global-set-key (kbd "C-c o") 'helm-buffer-list)
+      (global-set-key (kbd "C-c x") 'kill-other-buffers)
+      (global-set-key (kbd "C-c f") 'anything)
+      (global-set-key (kbd "C->") 'end-of-buffer)
+      (global-set-key (kbd "C-<") 'beginning-of-buffer)
+      (global-set-key (kbd "C-=") 'er/expand-region)
+      (global-set-key (kbd "C-c h") 'backward-char)
+      (global-set-key (kbd "C-c H") 'backward-word)
+      (global-set-key (kbd "C-c l") 'forward-char)
+      (global-set-key (kbd "C-c L") 'forward-word)
+	#+END_SRC
+*** Custom Functions
+    #+BEGIN_SRC emacs-lisp
+      ;; Delete all but current buffer
+      (defun kill-other-buffers ()
+        "Kill all other buffers."
+        (interactive)
+        (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+      (defun indent-whole-buffer ()
+        "Indent the whole buffer."
+        (interactive)
+        (mark-whole-buffer)
+        (indent-region (region-beginning) (region-end))) 
+
+    #+END_SRC
+	
 ** Provide Init
    #+BEGIN_SRC emacs-lisp
 (provide 'init)
