@@ -1,0 +1,127 @@
+* Chapter 3 Sections 0 - 4
+** Self Review 3.1 - 3.11
+*** 3.1
+   1. Establishing the requirements
+   2. Creating a design
+   3. Implementing the code
+   4. Testing the implementation
+*** 3.2
+    Algorithm - a step-by-step process for solving a problem
+    
+    Pseudocode - A mixture of code statements and English phrases sort of like a rough draft of an essay
+    
+*** 3.3
+    The order in which statements are executed, usually starting at the first statement and moving down one at a time.
+    
+*** 3.4
+    Boolean expressions
+    
+*** 3.5
+    The equality operators are "==" and "!=", the relational operators are like "<", "<=", ">=", and ">".
+    
+*** 3.6
+    A nested if statement is an if statement inside of another if statement. A nested loop is the same thing, but with a loop. Wow!
+
+*** 3.7
+    A block statement allows us to do more than one thing based on the result of a conditional.
+
+*** 3.8
+    A truth table lists all the combinations of values for the variables involved in an expression.
+
+*** 3.9
+#+BEGIN_SRC java
+string1.equals(string2);
+#+END_SRC
+
+*** 3.10
+    If the underlying values of a floating point are not equal, for example, 5.349 and 5.3490000001, the operator "==" will return false.
+
+*** 3.11
+    An assignment operator assign a value to a variable and can do other operations as well, for example, concatenate a string.
+
+** Multiple Choice
+*** 3.1
+    E
+*** 3.2
+    D
+*** 3.3
+    E
+*** 3.4
+    D
+*** 3.5
+    C
+*** 3.6
+    C
+*** 3.7
+    B
+*** 3.8
+    C
+*** 3.9
+    D
+*** 3.10
+    A
+
+** True/False
+*** 3.1
+    T
+*** 3.2
+    F
+*** 3.3
+    F
+*** 3.4
+    T
+*** 3.5
+    T
+*** 3.6
+    F
+
+** Short Answer
+*** 3.1
+    You will still get the right answer.
+*** 3.2
+    #+BEGIN_SRC java
+      if (total == MAX) {
+          if (total < sum)
+              System.out.println ("total == MAX and is < sum.");
+      } else {
+          System.out.println ("total is not equal to MAX");
+      }
+    #+END_SRC
+*** 3.3
+    No, it uses an assignment operator to compare things. That's dumb.
+*** 3.4
+    #+BEGIN_SRC
+apple
+orange
+pear
+    #+END_SRC
+*** 3.5
+    #+BEGIN_SRC
+lime
+grape
+    #+END_SRC
+*** 3.6
+    #+BEGIN_SRC
+"        "
+"******"
+"12345"
+"6789"
+";+<?"
+"?-?-?-?"
+"Ethel"
+"HEPHALUMP"
+"Lucy"
+"^^^^^^^^^^^^^^^^"
+"book"
+"bookkeeper"
+"fred"
+"hephalump"
+"ricky"
+"{([])}"
+   #+END_SRC
+
+** AP*-Style Multiple Choice
+*** 3.2
+    A
+*** 3.6
+    A
