@@ -142,7 +142,7 @@
  version-control t)
     #+END_SRC
     
-*** Plugin Configuration
+*** Plugin and Mode Configuration
 **** Org Mode
      #+BEGIN_SRC emacs-lisp
 (defvar org-log-done 'time)
@@ -447,6 +447,10 @@
 	 #+BEGIN_SRC emacs-lisp
   (require 'expand-region)
 	 #+END_SRC
+**** Undo-tree
+     #+BEGIN_SRC emacs-lisp
+       (global-undo-tree-mode)
+     #+END_SRC
 *** Keybindings
 	#+BEGIN_SRC emacs-lisp
       (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
