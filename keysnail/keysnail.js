@@ -130,6 +130,10 @@ key.setGlobalKey(['C-x', 'C-k'], function (ev) {
     BrowserCloseTabOrWindow();
 }, 'Close tab / window');
 
+key.setGlobalKey(['C-x', 'C-T'], function (ev) {
+    undoCloseTab();
+}, 'Undo closed tab');
+
 key.setGlobalKey('M-w', function (ev) {
                 command.copyRegion(ev);
             }, 'Copy selected text', true);
@@ -153,6 +157,14 @@ key.setGlobalKey(['C-c', 'C-c', 'C-v'], function (ev) {
 key.setGlobalKey(['C-c', 'C-c', 'C-c'], function (ev) {
                 command.clearConsole();
             }, 'Clear Javascript console', true);
+
+key.setGlobalKey(['C-c', 'C-h'], function (ev) {
+    BrowserBack();
+}, 'Back');
+
+key.setGlobalKey(['C-c', 'C-l'], function (ev) {
+    BrowserForward();
+}, 'Forward');
 
 key.setGlobalKey('C-M-l', function (ev) {
                 getBrowser().mTabContainer.advanceSelectedTab(1, true);
@@ -494,7 +506,3 @@ key.setCaretKey('M-p', function (ev) {
 key.setCaretKey('M-n', function (ev) {
                 command.walkInputElement(command.elementsRetrieverButton, false, true);
             }, 'Focus to the previous button');
-
-key.setGlobalKey(['C-x', 'C-T'], function (ev) {
-    undoCloseTab();
-}, 'Undo closed tab');
