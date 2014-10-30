@@ -67,6 +67,7 @@
           aggressive-indent
           undo-tree
           expand-region
+          magit
           ;; Company
           company
           company-c-headers
@@ -447,6 +448,10 @@
 	 #+BEGIN_SRC emacs-lisp
   (require 'expand-region)
 	 #+END_SRC
+**** Undo-Tree
+     #+BEGIN_SRC emacs-lisp
+       (global-undo-tree-mode)
+     #+END_SRC
 *** Keybindings
 	#+BEGIN_SRC emacs-lisp
       (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
