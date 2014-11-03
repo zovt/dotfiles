@@ -296,3 +296,5 @@ Reactions in a bomb calorimeter are carried out at a constant volume, so change 
 *** Hess's Law
 Balance equations and shit
 dHrxn = sigma n dHf products - sigma m dHf reactants
+* Mon Nov  3 10:50:54 2014
+** Chapter 8
