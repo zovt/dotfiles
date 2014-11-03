@@ -144,7 +144,7 @@
  version-control t)
     #+END_SRC
     
-*** Plugin Configuration
+*** Plugin and Mode Configuration
 **** Org Mode
      #+BEGIN_SRC emacs-lisp
 (defvar org-log-done 'time)
