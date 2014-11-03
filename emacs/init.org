@@ -355,10 +355,11 @@
      
 **** Rainbow delimiters
      #+BEGIN_SRC emacs-lisp
-(require 'rainbow-delimiters)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
-(add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
-(add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
+       (require 'rainbow-delimiters)
+       (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
+       (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
+       (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
+       (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
      #+END_SRC
      
 **** Encryption
