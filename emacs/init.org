@@ -53,6 +53,7 @@
           yasnippet
           function-args
           auctex
+          slime
           ;; Utilities
           smex
           helm
@@ -456,6 +457,12 @@
 **** Ace-Jump
 	 #+BEGIN_SRC emacs-lisp
        ;; Placeholder
+	 #+END_SRC
+**** SLIME
+	 #+BEGIN_SRC emacs-lisp
+       (require 'slime-autoloads)
+       (setq inferior-lisp-program "clisp")
+       (setq slime-contribs '(slime-fancy))
 	 #+END_SRC
 *** Keybindings
 	#+BEGIN_SRC emacs-lisp
