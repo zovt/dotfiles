@@ -462,7 +462,7 @@
 **** SLIME
 	 #+BEGIN_SRC emacs-lisp
        (require 'slime-autoloads)
-       (setq inferior-lisp-program "sbcl")
+       (setq inferior-lisp-program "clisp")
        (setq slime-contribs '(slime-fancy))
 	 #+END_SRC
 *** Keybindings
