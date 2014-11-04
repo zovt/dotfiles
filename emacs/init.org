@@ -4,7 +4,7 @@
 ** Info
    This is my init.el. It will change from time to time, and sets up packages and settings that I like. Feel free to  use, modify, or redistribute it
 ** Code
-*** Basic Packagingg
+*** Basic Packaging
     This section sets up the repositiories that I use and also initializes them.
     #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -51,7 +51,6 @@
           semantic
           js2-mode
           yasnippet
-          function-args
           auctex
           slime
           ;; Utilities
@@ -249,15 +248,7 @@
 
 (semantic-mode 1)
      #+END_SRC
-     
-**** Function-args
-     #+BEGIN_SRC emacs-lisp
-(require 'function-args)
-(fa-config-default)
-(define-key c-mode-map [(tab)] 'moo-complete)
-(define-key c++-mode-map [(tab)] 'moo-complete)
-     #+END_SRC
-     
+          
 **** Company
      #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
@@ -460,13 +451,17 @@
        ;; Placeholder
 	 #+END_SRC
 **** SLIME
-	 #+BEGIN_SRC emacs-lisp
-       (require 'slime-autoloads)
-       (setq inferior-lisp-program "sbcl")
-       (setq slime-contribs '(slime-fancy))
-	 #+END_SRC
+     #+BEGIN_SRC emacs-lisp
+           (require 'slime)
+           (require 'slime-autoloads)
+           (setq inferior-lisp-program "sbcl")
+           (setq slime-contribs '(slime-fancy))
+           (setq slime-auto-connect 'ask)
+           (slime-setup)
+
+     #+END_SRC
 *** Keybindings
-	#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
       (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
       (global-set-key (kbd "C-S-f") 'forward-word)
       (global-set-key (kbd "C-S-b") 'backward-word)
@@ -486,8 +481,10 @@
       (global-set-key (kbd "C-c r") 'align-regexp)
       (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
       (global-set-key (kbd "C-c m") 'magit-status)
-      (add-hook 'lisp-mode-hook (local-set-key (kbd "C-c e") 'slime-eval-buffer))
-	#+END_SRC
+      (eval-after-load 'slime
+        '(define-key slime-mode-map (kbd "C-c e") 'slime-eval-buffer))
+
+    #+END_SRC
 *** Custom Functions
     #+BEGIN_SRC emacs-lisp
       ;; Delete all but current buffer
