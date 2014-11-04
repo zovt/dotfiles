@@ -298,3 +298,27 @@ Balance equations and shit
 dHrxn = sigma n dHf products - sigma m dHf reactants
 * Mon Nov  3 10:50:54 2014
 ** Chapter 8
+* Tue Nov  4 08:31:08 2014
+** Test Review
+*** Chapter 8
+**** Wave nature of light
+**** Highest wave length waves
+**** Visible spectrum: 400 nm to 750 nm
+**** E = hf
+**** Line Spectrum and Reidberg equation in page 220
+**** Know what the uncertainty principle is
+     Can't know where an electron is and what its momentum is at the same time
+**** What the quantum number stands for
+***** q	= shell
+***** l	= shape
+***** ml = where
+**** Three principles that govern the position of an electron
+***** Aufbau's Rule
+***** Hun's Rule
+***** Paulie Exclusion Principle
+**** How 2 fill orbital diagram
+**** Need to know the exceptions
+***** Chromium, Molybdenum, Copper, and Silver
+**** Expanded and condensed electron configuration
+*** Chapter 7
+**** Effective nuclear charge

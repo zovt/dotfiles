@@ -73,7 +73,7 @@
           company
           company-c-headers
           company-tern
-          ))
+          slime-company))
 
       (dolist (p ragesalmon-config-packages)
         (if (not (package-installed-p p))
