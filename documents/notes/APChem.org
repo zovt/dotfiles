@@ -300,7 +300,7 @@ dHrxn = sigma n dHf products - sigma m dHf reactants
 ** Chapter 8
 * Tue Nov  4 08:31:08 2014
 ** Test Review
-*** Chapter 8
+*** Chapter 6
 **** Wave nature of light
 **** Highest wave length waves
 **** Visible spectrum: 400 nm to 750 nm
@@ -322,3 +322,7 @@ dHrxn = sigma n dHf products - sigma m dHf reactants
 **** Expanded and condensed electron configuration
 *** Chapter 7
 **** Effective nuclear charge
+**** Ionization energy
+**** Know the whole damn chapter
+**** Electron Affinity
+**** Metallic Character

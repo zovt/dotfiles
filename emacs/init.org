@@ -455,9 +455,9 @@
            (require 'slime)
            (require 'slime-autoloads)
            (setq inferior-lisp-program "sbcl")
-           (setq slime-contribs '(slime-fancy))
+           (setq slime-contribs '(slime-fancy slime-company))
            (setq slime-auto-connect 'ask)
-           (slime-setup)
+           (slime-setup '(slime-company))
 
      #+END_SRC
 *** Keybindings
