@@ -5,4 +5,6 @@
 * Colors
 ** Main Color: #EC407A
 ** Header/Accent: #2099B9
-** Background: #17070c
+** Background: #224156
+** Extra 1: #FOD9E4
+** Extra 2: #D8B4CF
