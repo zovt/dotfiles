@@ -1,10 +1,9 @@
 #+PROPERTY: header-args :tangle yes :comments org
 #+BABEL: :cache yes
-* Init.el
-** Info
-   This is my init.el. It will change from time to time, and sets up packages and settings that I like. Feel free to  use, modify, or redistribute it
-** Code
-*** Basic Packaging
+* Info
+  This is my init.el. It will change from time to time, and sets up packages and settings that I like. Feel free to  use, modify, or redistribute it
+* Code
+** Basic Packaging
     This section sets up the repositiories that I use and also initializes them.
     #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -23,64 +22,68 @@
 (package-refresh-contents)
     #+END_SRC
     
-*** My Packages
-    Lists packages that I want to install and installs them.
-    
-    #+BEGIN_SRC emacs-lisp
-      (defconst ragesalmon-config-packages
-        '(god-mode
-          ;; themes
-          stekene-theme
-          moe-theme
-          sublime-themes
-          soothe-theme
-          ample-theme
-          tangotango-theme
-          leuven-theme
-          tango-plus-theme
-          flatui-theme
-          flatland-theme
-          afternoon-theme
-          purple-haze-theme
-          birds-of-paradise-plus-theme
-          gruvbox-theme
-          ;; Modes
-          flycheck
-          org
-          cmake-mode
-          semantic
-          js2-mode
-          yasnippet
-          auctex
-          slime
-          ;; Utilities
-          smex
-          helm
-          helm-gtags
-          helm-anything
-          tern
-          smartparens
-          anything
-          neotree
-          rainbow-delimiters
-          powerline
-          aggressive-indent
-          undo-tree
-          expand-region
-          magit
-          ace-jump-mode
-          ;; Company
-          company
-          company-c-headers
-          company-tern
-          slime-company))
+** My Packages
+   Lists packages that I want to install and installs them.
+   
+   #+BEGIN_SRC emacs-lisp
+     (defconst ragesalmon-config-packages
+       '(god-mode
+         ;; themes
+         stekene-theme
+         moe-theme
+         sublime-themes
+         soothe-theme
+         ample-theme
+         tangotango-theme
+         leuven-theme
+         tango-plus-theme
+         flatui-theme
+         flatland-theme
+         afternoon-theme
+         purple-haze-theme
+         birds-of-paradise-plus-theme
+         gruvbox-theme
+         ;; Modes
+         flycheck
+         org
+         cmake-mode
+         semantic
+         js2-mode
+         yasnippet
+         auctex
+         slime
+         emmet-mode
+         ;; Utilities
+         smex
+         helm
+         helm-gtags
+         helm-anything
+         tern
+         smartparens
+         anything
+         neotree
+         rainbow-delimiters
+         powerline
+         aggressive-indent
+         undo-tree
+         expand-region
+         magit
+         ace-jump-mode
+         ;; Company
+         company
+         company-c-headers
+         company-tern
+         slime-company
+         ;; Evil
+         evil
+         evil-leader))
 
-      (dolist (p ragesalmon-config-packages)
-        (if (not (package-installed-p p))
-            (package-install p)))
-    #+END_SRC
-    
-*** General Configuration
+     (dolist (p ragesalmon-config-packages)
+       (if (not (package-installed-p p))
+           (package-install p)))
+   #+END_SRC
+   
+** General Configuration
     #+BEGIN_SRC emacs-lisp
 ;; Disable cursor blinking
 (blink-cursor-mode 0)
@@ -144,8 +147,8 @@
  version-control t)
     #+END_SRC
     
-*** Plugin and Mode Configuration
-**** Org Mode
+** Plugin and Mode Configuration
+*** Org Mode
      #+BEGIN_SRC emacs-lisp
 (defvar org-log-done 'time)
 (defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
@@ -168,15 +171,15 @@
 
 (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
      #+END_SRC
-**** Smex
-     #+BEGIN_SRC emacs-lisp
-       (require 'smex)
-       (global-set-key (kbd "M-x") 'smex)
-       (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-       (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-     #+END_SRC
-     
-**** Helm
+*** Smex
+    #+BEGIN_SRC emacs-lisp
+      (require 'smex)
+      (global-set-key (kbd "M-x") 'smex)
+      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+    #+END_SRC
+    
+*** Helm
      #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c b") 'helm-buffers-list)
 (defvar helm-mode-handle-completion-in-region nil)
@@ -204,7 +207,7 @@
 (helm-mode 1)
      #+END_SRC
      
-***** Helm gtags
+**** Helm gtags
       #+BEGIN_SRC emacs-lisp
 (defvar helm-gtags-prefix-key "\C-cg")
 
@@ -233,12 +236,12 @@
 (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
       #+END_SRC
       
-**** Yasnippet
+*** Yasnippet
      #+BEGIN_SRC emacs-lisp
 (yas-global-mode 1)
      #+END_SRC
      
-**** Semantic
+*** Semantic
      #+BEGIN_SRC emacs-lisp
 (require 'cc-mode)
 (require 'semantic)
@@ -249,7 +252,7 @@
 (semantic-mode 1)
      #+END_SRC
           
-**** Company
+*** Company
      #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
 (defvar company-backends '(
@@ -268,12 +271,12 @@
 (defvar company-idle-delay 0.2)
      #+END_SRC
      
-**** C Indentation mode
+*** C Indentation mode
      #+BEGIN_SRC emacs-lisp
 (defvar c-defualt-style "linux")
      #+END_SRC
      
-**** Smartparens
+*** Smartparens
      #+BEGIN_SRC emacs-lisp
 (require 'smartparens-config)
 (show-smartparens-global-mode +1)
@@ -294,19 +297,19 @@
 (defvar sp-autoescape-string-quote nil)
      #+END_SRC emacs-lisp
      
-**** Js2 Mode
+*** Js2 Mode
      #+BEGIN_SRC emacs-lisp
 (autoload 'js2-mode "js2-mode.el" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
      #+END_SRC
      
-**** Tern
+*** Tern
      #+BEGIN_SRC emacs-lisp
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
      #+END_SRC
      
-**** Flycheck
+*** Flycheck
      #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'c++-mode-hook
@@ -333,73 +336,75 @@
 (defvar flycheck-idle-change-delay 5.0)
      #+END_SRC
      
-**** Anything
+*** Anything
      #+BEGIN_SRC emacs-lisp
 (require 'anything-match-plugin)
 (require 'anything-config)
      #+END_SRC
      
-**** Neotree
+*** Neotree
      #+BEGIN_SRC emacs-lisp
 (require 'neotree)
      #+END_SRC
      
-**** Rainbow delimiters
-     #+BEGIN_SRC emacs-lisp
-       (require 'rainbow-delimiters)
-       (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
-       (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
-       (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
-       (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
-     #+END_SRC
-     
-**** Encryption
+*** Rainbow delimiters
+    #+BEGIN_SRC emacs-lisp
+      (require 'rainbow-delimiters)
+      (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
+      (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
+      (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
+      (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
+    #+END_SRC
+    
+*** Encryption
      #+BEGIN_SRC emacs-lisp
 (epa-file-enable)
      #+END_SRC
      
-**** Powerline
-     #+BEGIN_SRC emacs-lisp
-       (require 'powerline)
-       (setq-default powerline-default-separator 'bar)
-       (setq-default mode-line-format
-                     '("%e"
-                       (:eval
-                        (let* ((active (powerline-selected-window-active))
-                               (mode-line (if active 'mode-line 'mode-line-inactive))
-                               (face1 (if active 'powerline-active1 'powerline-inactive1))
-                               (face2 (if active 'powerline-active2 'powerline-inactive2))
-                               (middle-face (if active 'powerline-inactive1 'powerline-active2))
-                               (separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
-                               (separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
-                               (lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
-                                          (powerline-raw " ")
-                                          (powerline-major-mode)
-                                          (powerline-raw ":")
-                                          (powerline-buffer-id nil 'l)
-                                          (powerline-buffer-size nil 'l)
-                                          (powerline-raw " ")
-                                          (funcall separator-left mode-line face1)
-                                          (powerline-raw " " face1 face2)
-                                          (powerline-minor-modes face1 face2)
-                                          (powerline-raw " " face1 face2)
-                                          (funcall separator-left face1 middle-face)))
-                               (rhs (list
-                                     (funcall separator-right middle-face mode-line)
-                                     (powerline-raw "%4l")
-                                     (powerline-raw ":")
-                                     (powerline-raw " %3c")
-                                     (funcall separator-right mode-line face2)
-                                     (powerline-raw " " face2 'r)
-                                     (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
-                                     (powerline-raw " " face2 'r)
-                                     (powerline-hud face2 face1))))
-                          (concat (powerline-render lhs)
-                                  (powerline-fill middle-face (powerline-width rhs))
-                                  (powerline-render rhs))))))
-     #+END_SRC
-     
-**** Auctex
+*** Powerline
+    #+BEGIN_SRC emacs-lisp
+      (require 'powerline)
+      (setq-default powerline-default-separator 'bar)
+      (setq-default mode-line-format
+                    '("%e"
+                      (:eval
+                       (let* ((active (powerline-selected-window-active))
+                              (mode-line (if active 'mode-line 'mode-line-inactive))
+                              (face1 (if active 'powerline-active1 'powerline-inactive1))
+                              (face2 (if active 'powerline-active2 'powerline-inactive2))
+                              (middle-face (if active 'powerline-inactive1 'powerline-active2))
+                              (separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
+                              (separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
+                              (lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
+                                         (powerline-raw " ")
+                                         (powerline-major-mode)
+                                         (powerline-raw ":")
+                                         (powerline-buffer-id nil 'l)
+                                         (powerline-buffer-size nil 'l)
+                                         (powerline-raw " ")
+                                         (funcall separator-left mode-line face1)
+                                         (powerline-raw " " face1 face2)
+                                         (powerline-minor-modes face1 face2)
+                                         (powerline-raw " " face1 face2)
+                                         (funcall separator-left face1 middle-face)))
+                              (rhs (list
+                                    (funcall separator-right middle-face mode-line)
+                                    (powerline-raw "%4l")
+                                    (powerline-raw ":")
+                                    (powerline-raw " %3c")
+                                    (funcall separator-right mode-line face1)
+                                    (powerline-raw (capitalize (symbol-name evil-state)) face2 'r)
+                                    (funcall separator-right face1 face2)
+                                    (powerline-raw " " face2 'r)
+                                    (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
+                                    (powerline-raw " " face2 'r)
+                                    (powerline-hud face2 face1))))
+                         (concat (powerline-render lhs)
+                                 (powerline-fill middle-face (powerline-width rhs))
+                                 (powerline-render rhs))))))
+    #+END_SRC
+    
+*** Auctex
      #+BEGIN_SRC emacs-lisp
 (defvar TeX-auto-save t)
 (defvar TeX-parse-self t)
@@ -427,149 +432,200 @@
 								 (delete-file buffer-sans-gpg))) nil t))
      #+END_SRC
      
-**** Aggressive Indent mode
+*** Aggressive Indent mode
      #+BEGIN_SRC emacs-lisp
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
      #+END_SRC
      
-**** God-mode
+*** God-mode
      #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "<escape>") 'god-local-mode)
      #+END_SRC
      
-**** Expand-Region
-	 #+BEGIN_SRC emacs-lisp
-  (require 'expand-region)
-	 #+END_SRC
-**** Undo-Tree
-     #+BEGIN_SRC emacs-lisp
-       (global-undo-tree-mode)
-     #+END_SRC
-**** Ace-Jump
-	 #+BEGIN_SRC emacs-lisp
-       ;; Placeholder
-	 #+END_SRC
-**** SLIME
-     #+BEGIN_SRC emacs-lisp
-           (require 'slime)
-           (require 'slime-autoloads)
-           (setq inferior-lisp-program "sbcl")
-           (setq slime-contribs '(slime-fancy slime-company))
-           (setq slime-auto-connect 'ask)
-           (slime-setup '(slime-company))
-
-     #+END_SRC
-*** Keybindings
+*** Expand-Region
+	#+BEGIN_SRC emacs-lisp
+ (require 'expand-region)
+	#+END_SRC
+*** Undo-Tree
     #+BEGIN_SRC emacs-lisp
-      (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
-      (global-set-key (kbd "C-S-f") 'forward-word)
-      (global-set-key (kbd "C-S-b") 'backward-word)
-      (global-set-key (kbd "C-c n") 'neotree)
-      (global-set-key (kbd "C-x u") 'undo-tree-visualize)
-      (global-set-key (kbd "C-S-d") 'kill-word)
-      (global-set-key (kbd "C-c o") 'helm-buffer-list)
-      (global-set-key (kbd "C-c x") 'kill-other-buffers)
-      (global-set-key (kbd "C-c f") 'anything)
-      (global-set-key (kbd "C->") 'end-of-buffer)
-      (global-set-key (kbd "C-<") 'beginning-of-buffer)
-      (global-set-key (kbd "C-=") 'er/expand-region)
-      (global-set-key (kbd "C-c h") 'backward-char)
-      (global-set-key (kbd "C-c H") 'backward-word)
-      (global-set-key (kbd "C-c l") 'forward-char)
-      (global-set-key (kbd "C-c L") 'forward-word)
-      (global-set-key (kbd "C-c r") 'align-regexp)
-      (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
-      (global-set-key (kbd "C-c m") 'magit-status)
-      (eval-after-load 'slime
-        '(define-key slime-mode-map (kbd "C-c e") 'slime-eval-buffer))
+      (global-undo-tree-mode)
+    #+END_SRC
+*** Ace-Jump
+	#+BEGIN_SRC emacs-lisp
+      ;; Placeholder
+	#+END_SRC
+*** SLIME
+    #+BEGIN_SRC emacs-lisp
+      (require 'slime)
+      (require 'slime-autoloads)
+      (setq inferior-lisp-program "sbcl")
+      (setq slime-contribs '(slime-fancy))
+      (setq slime-auto-connect 'ask)
+      (slime-setup)
 
     #+END_SRC
-*** Custom Functions
+*** Emmet
     #+BEGIN_SRC emacs-lisp
-      ;; Delete all but current buffer
-      (defun kill-other-buffers ()
-        "Kill all other buffers."
-        (interactive)
-        (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
-
-      (defun indent-whole-buffer ()
-        "Indent the whole buffer."
-        (interactive)
-        (point-to-register ?m)  
-        (mark-whole-buffer)
-        (indent-region (region-beginning) (region-end))
-        (jump-to-register ?m))
-
+      (add-hook 'sgml-mode-hook 'emmet-mode)
+      (add-hook 'css-mode-hook 'emmet-mode)
     #+END_SRC
-**** Minimal writing mode
+*** Evil
+**** Evil Leader
      #+BEGIN_SRC emacs-lisp
-       (defvar-local hidden-mode-line-mode nil)
-       (defvar-local hidden-mode-line nil)
-       (defvar-local hidden-mode-line-mode-enabled nil)
+       (require 'evil-leader)
+       (evil-leader/set-leader "<SPC>")
 
-       (defun hidden-mode-line-mode ()
-         "Minor mode to hide the mode-line in the current buffer."
-         :init-value nil
-         :global nil
-         :variable hidden-mode-line-mode
-         :group 'editing-basics
-         (if (not hidden-mode-line-mode-enabled)
-             (setq hidden-mode-line mode-line-format
-                   mode-line-format nil
-                   hidden-mode-line-mode-enabled t)
-           (setq mode-line-format hidden-mode-line
-                 hidden-mode-line nil
-                 hidden-mode-line-mode-enabled nil))
-         (force-mode-line-update)
-         (redraw-display)
-         (when (and (called-interactively-p 'interactive)
-                    hidden-mode-line-mode)
-           (run-with-idle-timer 0 nil 'message
-                                (concat "Hidden Mode Line Mode enabled. Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+       (evil-leader/set-key "c=" 'indent-whole-buffer)
+       (evil-leader/set-key "c<SPC>" 'er/expand-region)
+       (evil-leader/set-key "j" 'ace-jump-mode)
 
-       (defvar-local big-fringe-mode nil)
-       (defvar-local big-fringe-mode-enabled nil)
-       (define-minor-mode big-fringe-mode ()
-         "Minor mode for using a big fringe."
-         :init-value nil
-         :global t
-         :variable big-fringe-mode
-         :group 'editing-basics
-         (if (not big-fringe-mode-enabled)
-             (progn (set-fringe-style nil)
-                    (set-fringe-mode
-                     (/ (- (frame-pixel-width)
-                           (* 80 (frame-char-width)))
-                        2))
-                    (setq big-fringe-mode-enabled t))
-           (progn (set-fringe-style '(8 . 8))
-                  (setq big-fringe-mode-enabled nil))))
+       ;; Enable evil-leader
+       (setq evil-leader/in-all-states t)
+       (evil-leader-mode)
+     #+END_SRC
+**** Evil Mode
+     #+BEGIN_SRC emacs-lisp
+      (evil-mode 1)
 
 
-       (defvar-local writing-mode nil)
-       (defvar-local writing-mode-enabled nil)
-       (define-minor-mode writing-mode ()
-         "Enable writing mode."
-         :init-value nil
-         :global nil
-         :variable writing-mode
-         :group 'writing-mode-group
-         (interactive)
-         (if (not writing-mode-enabled)
-             (progn (hl-line-mode t)
-                    (big-fringe-mode)
-                    (hidden-mode-line-mode)
-                    (setq writing-mode-enabled t))
-           (progn (hl-line-mode nil)
-                  (big-fringe-mode)
-                  (hidden-mode-line-mode)
-                  (setq writing-mode-enabled nil))))
+      ;; Set evil to ignore certain modes
+      (add-to-list 'evil-emacs-state-modes 'term-mode)
+      (add-to-list 'evil-emacs-state-modes 'eshell-mode)
+      (add-to-list 'evil-emacs-state-modes 'dired-mode)
 
-     #+end_src
-     
-     
-** Provide Init
+     #+END_SRC
+***** Evil Keybinds
+      #+BEGIN_SRC emacs-lisp
+        (evil-global-set-key 'visual "a" 'align-regexp)
+        (evil-global-set-key 'insert (kbd "C-e") 'evil-move-end-of-line)
+        (evil-global-set-key 'insert (kbd "C-a") 'evil-move-beginning-of-line)
+        (evil-global-set-key 'insert "x" 'zovt/maybe-esc)
+        (evil-global-set-key 'normal ";" 'evil-ex)
+
+      #+END_SRC
+** Keybindings
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
+     (global-set-key (kbd "C-S-f") 'forward-word)
+     (global-set-key (kbd "C-S-b") 'backward-word)
+     (global-set-key (kbd "C-c n") 'neotree)
+     (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+     (global-set-key (kbd "C-S-d") 'kill-word)
+     (global-set-key (kbd "C-c o") 'helm-buffer-list)
+     (global-set-key (kbd "C-c x") 'kill-other-buffers)
+     (global-set-key (kbd "C-c f") 'anything)
+     (global-set-key (kbd "C->") 'end-of-buffer)
+     (global-set-key (kbd "C-<") 'beginning-of-buffer)
+     (global-set-key (kbd "C-=") 'er/expand-region)
+     (global-set-key (kbd "C-c h") 'backward-char)
+     (global-set-key (kbd "C-c H") 'backward-word)
+     (global-set-key (kbd "C-c l") 'forward-char)
+     (global-set-key (kbd "C-c L") 'forward-word)
+     (global-set-key (kbd "C-c r") 'align-regexp)
+     (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
+     (global-set-key (kbd "C-c m") 'magit-status)
+     (eval-after-load 'slime
+       '(define-key slime-mode-map (kbd "C-c e") 'slime-eval-buffer))
+
+   #+END_SRC
+** Custom Functions
+   #+BEGIN_SRC emacs-lisp
+     ;; Delete all but current buffer
+     (defun kill-other-buffers ()
+       "Kill all other buffers."
+       (interactive)
+       (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+     (defun indent-whole-buffer ()
+       "Indent the whole buffer."
+       (interactive)
+       (point-to-register ?m)  
+       (mark-whole-buffer)
+       (indent-region (region-beginning) (region-end))
+       (jump-to-register ?m))
+
+     (defun zovt/maybe-esc ()
+       "Maybe escape in insert mode after KEY-STRING is pressed."
+       (interactive)
+       (let ((modified (buffer-modified-p)))
+         (insert "x")
+         (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                                nil 0.5)))
+           (cond ((null evt) (message " "))
+                 ((and (integerp evt) (char-equal evt ?j))
+                  (delete-char -1)
+                  (set-buffer-modified-p modified)
+                  (push 'escape unread-command-events))
+                 (t (setq unread-command-events (append unread-command-events (list evt))))))))
+   #+END_SRC
+*** Minimal writing mode
+    #+BEGIN_SRC emacs-lisp
+      (defvar-local hidden-mode-line-mode nil)
+      (defvar-local hidden-mode-line nil)
+      (defvar-local hidden-mode-line-mode-enabled nil)
+
+      (defun hidden-mode-line-mode ()
+	"Minor mode to hide the mode-line in the current buffer."
+	:init-value nil
+	:global nil
+	:variable hidden-mode-line-mode
+	:group 'editing-basics
+	(if (not hidden-mode-line-mode-enabled)
+	    (setq hidden-mode-line mode-line-format
+		  mode-line-format nil
+		  hidden-mode-line-mode-enabled t)
+	  (setq mode-line-format hidden-mode-line
+		hidden-mode-line nil
+		hidden-mode-line-mode-enabled nil))
+	(force-mode-line-update)
+	(redraw-display)
+	(when (and (called-interactively-p 'interactive)
+		   hidden-mode-line-mode)
+	  (run-with-idle-timer 0 nil 'message
+			       (concat "Hidden Mode Line Mode enabled. Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+
+      (defvar-local big-fringe-mode nil)
+      (defvar-local big-fringe-mode-enabled nil)
+      (define-minor-mode big-fringe-mode ()
+	"Minor mode for using a big fringe."
+	:init-value nil
+	:global t
+	:variable big-fringe-mode
+	:group 'editing-basics
+	(if (not big-fringe-mode-enabled)
+	    (progn (set-fringe-style nil)
+		   (set-fringe-mode
+		    (/ (- (frame-pixel-width)
+			  (* 80 (frame-char-width)))
+		       2))
+		   (setq big-fringe-mode-enabled t))
+	  (progn (set-fringe-style '(8 . 8))
+		 (setq big-fringe-mode-enabled nil))))
+
+
+      (defvar-local writing-mode nil)
+      (defvar-local writing-mode-enabled nil)
+      (define-minor-mode writing-mode ()
+	"Enable writing mode."
+	:init-value nil
+	:global nil
+	:variable writing-mode
+	:group 'writing-mode-group
+	(interactive)
+	(if (not writing-mode-enabled)
+	    (progn (hl-line-mode t)
+		   (big-fringe-mode)
+		   (hidden-mode-line-mode)
+		   (setq writing-mode-enabled t))
+	  (progn (hl-line-mode nil)
+		 (big-fringe-mode)
+		 (hidden-mode-line-mode)
+		 (setq writing-mode-enabled nil))))
+
+    #+end_src
+    
+* Provide Init
    #+BEGIN_SRC emacs-lisp
 (provide 'init)
    #+END_SRC
