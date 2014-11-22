@@ -486,23 +486,25 @@
      #+END_SRC
 **** Evil Mode
      #+BEGIN_SRC emacs-lisp
-      (evil-mode 1)
+       (evil-mode 1)
 
 
-      ;; Set evil to ignore certain modes
-      (add-to-list 'evil-emacs-state-modes 'term-mode)
-      (add-to-list 'evil-emacs-state-modes 'eshell-mode)
-      (add-to-list 'evil-emacs-state-modes 'dired-mode)
+       ;; Set evil to ignore certain modes
+       (evil-set-initial-state 'term-mode 'emacs)
+       (evil-set-initial-state 'eshell-mode 'emacs)
+       (evil-set-initial-state 'dired-mode 'emacs)
 
      #+END_SRC
 ***** Evil Keybinds
       #+BEGIN_SRC emacs-lisp
         (evil-global-set-key 'visual "a" 'align-regexp)
-        (evil-global-set-key 'insert (kbd "C-e") 'evil-move-end-of-line)
-        (evil-global-set-key 'insert (kbd "C-a") 'evil-move-beginning-of-line)
+        (evil-global-set-key 'insert (kbd "C-e") (evil-move-end-of-line))
+        (evil-global-set-key 'insert (kbd "C-a") (evil-move-beginning-of-line))
+        (evil-global-set-key 'normal (kbd "C-a") (evil-move-beginning-of-line))
+        (evil-global-set-key 'normal (kbd "C-e") (evil-move-end-of-line))
         (evil-global-set-key 'insert "x" 'zovt/maybe-esc)
         (evil-global-set-key 'normal ";" 'evil-ex)
-
+        (evil-global-set-key 'normal "U" 'undo-tree-visualize)
       #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
