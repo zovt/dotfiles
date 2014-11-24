@@ -506,6 +506,11 @@
         (evil-global-set-key 'normal ";" 'evil-ex)
         (evil-global-set-key 'normal "U" 'undo-tree-visualize)
       #+END_SRC
+*** ISpell
+    #+BEGIN_SRC emacs-lisp
+      (if (eq system-type 'windows-nt)
+          (setq ispell-program-name "C:/Aspell/bin/aspell.exe"))
+    #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
