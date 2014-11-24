@@ -75,8 +75,7 @@
          company-tern
          slime-company
          ;; Evil
-         evil
-         evil-leader))
+         evil))
 
      (dolist (p ragesalmon-config-packages)
        (if (not (package-installed-p p))
@@ -107,7 +106,7 @@
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (require 'moe-theme)
-(moe-dark)
+(run-with-timer 0 3600 'sync-theme)
 
 ;; Highlight current line
 (global-hl-line-mode t)
@@ -471,19 +470,6 @@
       (add-hook 'css-mode-hook 'emmet-mode)
     #+END_SRC
 *** Evil
-**** Evil Leader
-     #+BEGIN_SRC emacs-lisp
-       (require 'evil-leader)
-       (evil-leader/set-leader "<SPC>")
-
-       (evil-leader/set-key "c=" 'indent-whole-buffer)
-       (evil-leader/set-key "c<SPC>" 'er/expand-region)
-       (evil-leader/set-key "j" 'ace-jump-mode)
-
-       ;; Enable evil-leader
-       (setq evil-leader/in-all-states t)
-       (evil-leader-mode)
-     #+END_SRC
 **** Evil Mode
      #+BEGIN_SRC emacs-lisp
        (evil-mode 1)
@@ -501,34 +487,52 @@
         (evil-global-set-key 'insert (kbd "C-e") (evil-move-end-of-line))
         (evil-global-set-key 'insert (kbd "C-a") (evil-move-beginning-of-line))
         (evil-global-set-key 'normal (kbd "C-a") (evil-move-beginning-of-line))
-        (evil-global-set-key 'normal (kbd "C-e") (evil-move-end-of-line))
-        (evil-global-set-key 'insert "x" 'zovt/maybe-esc)
+        (define-key evil-normal-state-map (kbd "C-e") (evil-move-end-of-line))
+        (evil-global-set-key 'insert "j" 'zovt/maybe-esc)
         (evil-global-set-key 'normal ";" 'evil-ex)
         (evil-global-set-key 'normal "U" 'undo-tree-visualize)
+
+        ;; set up a pseudo-leader
+        (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
       #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-c C-=") 'indent-whole-buffer)
-     (global-set-key (kbd "C-S-f") 'forward-word)
-     (global-set-key (kbd "C-S-b") 'backward-word)
-     (global-set-key (kbd "C-c n") 'neotree)
-     (global-set-key (kbd "C-x u") 'undo-tree-visualize)
-     (global-set-key (kbd "C-S-d") 'kill-word)
-     (global-set-key (kbd "C-c o") 'helm-buffer-list)
-     (global-set-key (kbd "C-c x") 'kill-other-buffers)
-     (global-set-key (kbd "C-c f") 'anything)
-     (global-set-key (kbd "C->") 'end-of-buffer)
-     (global-set-key (kbd "C-<") 'beginning-of-buffer)
+     ;; Code-related binds
+     (global-set-key (kbd "C-c c =") 'indent-whole-buffer)
      (global-set-key (kbd "C-=") 'er/expand-region)
-     (global-set-key (kbd "C-c h") 'backward-char)
-     (global-set-key (kbd "C-c H") 'backward-word)
-     (global-set-key (kbd "C-c l") 'forward-char)
-     (global-set-key (kbd "C-c L") 'forward-word)
-     (global-set-key (kbd "C-c r") 'align-regexp)
-     (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
-     (global-set-key (kbd "C-c m") 'magit-status)
+     (global-set-key (kbd "C-c c i") 'imenu)
+     ;;; Mode-specific
      (eval-after-load 'slime
        '(define-key slime-mode-map (kbd "C-c e") 'slime-eval-buffer))
+
+     ;; Movement-related binds
+     (global-set-key (kbd "C-S-f") 'forward-word)
+     (global-set-key (kbd "C-S-b") 'backward-word)
+     (global-set-key (kbd "C->") 'end-of-buffer)
+     (global-set-key (kbd "C-<") 'beginning-of-buffer)
+     (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
+
+     ;; Editing-related binds
+     (global-set-key (kbd "C-S-d") 'kill-word)
+     (global-set-key (kbd "C-c r") 'align-regexp)
+     (global-set-key (kbd "C-c M w") 'writing-mode)
+
+     ;; Utility-related binds
+     (global-set-key (kbd "C-c n") 'neotree)
+     (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+     (global-set-key (kbd "C-c F") 'anything)
+     ;;; Magit
+     (global-set-key (kbd "C-c m m") 'magit-status)
+     (global-set-key (kbd "C-c m c") 'magit-commit)
+     (global-set-key (kbd "C-c m C") 'magit-commit-amend)
+     (global-set-key (kbd "C-c m P") 'magit-push)
+     (global-set-key (kbd "C-c m f") 'magit-fetch)
+     (global-set-key (kbd "C-c m F") 'magit-pull)
+     (global-set-key (kbd "C-c m d") 'magit-diff-working-tree)
+
+     ;; File-related binds
+     (global-set-key (kbd "C-c f o") 'helm-buffer-list)
+     (global-set-key (kbd "C-c f x") 'kill-other-buffers)
 
    #+END_SRC
 ** Custom Functions
@@ -548,18 +552,31 @@
        (jump-to-register ?m))
 
      (defun zovt/maybe-esc ()
-       "Maybe escape in insert mode after KEY-STRING is pressed."
+       "Maybe escape in insert mode after KEY-STRING is pressed. Taken from StackOverflow"
        (interactive)
        (let ((modified (buffer-modified-p)))
-         (insert "x")
-         (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+         (insert "j")
+         (let ((evt (read-event (format "Insert %c to exit insert state" ?k)
                                 nil 0.5)))
            (cond ((null evt) (message " "))
-                 ((and (integerp evt) (char-equal evt ?j))
+                 ((and (integerp evt) (char-equal evt ?k))
                   (delete-char -1)
                   (set-buffer-modified-p modified)
                   (push 'escape unread-command-events))
                  (t (setq unread-command-events (append unread-command-events (list evt))))))))
+
+     ;; Automatic theme switching
+     (setq custom-enabled-themes nil)
+
+     (defun sync-theme ()
+       (setq hour (string-to-number (substring (current-time-string) 11 13)))
+       (if (and (> hour 6) (< hour 17))
+           (progn (disable-theme 'moe-dark)
+                  (moe-light))
+         (progn (disable-theme 'moe-light)
+                (moe-dark))))
+
+     (run-with-timer 0 3600 'sync-theme)
    #+END_SRC
 *** Minimal writing mode
     #+BEGIN_SRC emacs-lisp
