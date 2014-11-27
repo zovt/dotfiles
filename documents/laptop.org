@@ -1,0 +1,125 @@
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834317538][Lenovo Y50 59425944]] 					   :highrange:gaming:
+** Price: 949.99
+** Specs
+  - NVIDIA GeForce GTX 860M 2GB
+  - Intel Core i7 4700HQ (2.40GHz)
+  - 8GB Memory 1TB HDD 8GB SSD
+  - 15.6" 1920 x 1080
+  - Windows 8.1 64-Bit
+  - External DVD+/-RW
+  - 15.24" x 10.37" x 0.94" 5.29lbs
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834259734][HP 350 G1 K4L54UT#ABA]] 					   :lowrange:
+** Price: 399.99
+** Specs
+  - Intel Core i5 4210U (1.70GHz)
+  - 4GB Memory 500GB HDD
+  - Intel HD Graphics 4400
+  - 1366 x 768
+  - Windows 7 Professional 64-Bit with Windows 8.1 Pro License
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834259735][HP 350 G1 (K4L55UT#ABA)]]					   :midrange:
+** Price: 569.99
+** Specs
+  - Intel Core i7 4510U (2.00GHz)
+  - 8GB Memory 500GB HDD
+  - Intel HD Graphics 4400
+  - 1366 x 768
+  - Windows 7 Professional 64-Bit with Windows 8.1 Pro License
+  - DVD Super Multi
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834232195][ASUS ROG GL551JK-EH71]]					   :highrange:gaming:
+** Price: 899.00
+** Specs
+  - NVIDIA GeForce GTX 850M 2GB
+  - Intel Core i7 4710HQ (2.50GHz)
+  - 12 GB DDR3L Memory 750GB HDD
+  - 15.6" 1920 x 1080
+  - Windows 8.1 64-Bit
+  - DL DVD±RW/CD-RW
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=9SIA4YW22X8751][Lenovo IdeaPad G50 (59421808)]]					   :midrange:
+** Price: 649.99
+** Specs
+  - Intel Core i7 4510U (2.00GHz)
+  - 8GB Memory 1TB HDD
+  - Intel HD Graphics 4400
+  - 1366 x 768
+  - Windows 8.1
+  - DVDRW
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834300664][DELL Inspiron 15 i5547-3750sLV]]				   :midrange:
+** Price: 649.99
+** Specs
+  - Intel Core i5 4210U (1.70GHz)
+  - 8GB Memory 1TB HDD
+  - Intel HD Graphics 4400
+  - 1366 x 768
+  - Windows 8.1 64-Bit
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834317598][Lenovo G50 (59421806)]]						   :midrange:
+** Price: 568.99
+** Specs:
+  - Intel Core i5 4210U (1.70GHz)
+  - 6GB Memory 1TB HDD
+  - Intel HD Graphics 4400
+  - 1366 x 768
+  - Windows 8.1
+  - DVDRW
+
+* [[http://www.newegg.com/Product/Product.aspx?Item=N82E16834317614][Lenovo Z710 (59421370)]]					  :highrange:
+** Price: 999.99
+** Specs:
+  - Intel Core i7 4710MQ (2.50GHz)
+  - 16GB Memory 1TB HDD 8GB SSD
+  - NVIDIA GeForce GT 745M
+  - 1920 x 1080
+  - Windows 8.1
+  - BD Combo
+    
+* Macbook Pro							  :highrange:
+** Price: 1,649.00
+** Specs
+   - 3.0 GHz Dual Core Intel core i7, turbo up to 3.5GHz
+   - 16GB 1600MHz DDR3L SDRAM
+   - 128GB PCIe-based Flash Storage
+   - Intel Iris Graphics
+   - Backlit Keyboard
+
+* [[http://www.microcenter.com/product/436564/N550JK-DB74T_156_Laptop_Computer_-_Dark_Grey][ASUS N550JK-DB74T]]						  :highrange:
+** Price: 1399.99
+  - Intel Core i7-4710HQ Processor 2.5GHz
+  - Microsoft Windows 8.1 64-bit
+  - 16GB DDR3L RAM
+  - 256GB Solid State Drive
+  - NVIDIA GeForce GTX 850M
+  - DL DVDRW Drive/CD-RW Drive
+  - Memory Card Reader
+  - 10/100/1000 Network
+  - 802.11ac Wireless
+  - Bluetooth 4.0
+  - 15.6" Full HD Display
+* [[http://shop.lenovo.com/us/en/laptops/thinkpad/t-series/t540p/#tab-customize][Acceptable Lenovo Thinkpad T540p Customized]]			  :highrange:
+** Price: 1180.92
+** Specs
+   - Intel Core i7-4700MQ up to 3.40GHz
+   - 15.6 FHD 1920x1080 display
+   - NVIDIA GeForce GT 730M 1GB
+   - 8GB DDR3L SDRAM 1600MHz SODIMM
+   - 500GB HDD 7200rpm
+   - 9 Cell Li-Ion 99.9Wh
+
+* Entry-level Lenovo Thinkpad T540p Customized
+** Price: 1017.12
+** Specs
+   - 
+
+* Dream Lenovo Thinkpad T540p Customized			 :dreamrange:
+** Price: 2046.72
+** Specs
+   - Intel Core i7-4900MQ Processor up to 3.80GHz
+   - 15.5" 3K (2880x1620) IPS with WWAN
+   - NVIDIA GeForce GT 730M 1GB
+   - 16GB PC3-12800 DDR3L
+   - 256GB SSD
+   - 9 Cell Li-Ion 99.9Wh

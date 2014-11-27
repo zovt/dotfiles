@@ -480,6 +480,11 @@
        (evil-set-initial-state 'eshell-mode 'emacs)
        (evil-set-initial-state 'dired-mode 'emacs)
 
+       ;; Visual line mode
+       (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+       (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+       (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+       (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
      #+END_SRC
 ***** Evil Keybinds
       #+BEGIN_SRC emacs-lisp
