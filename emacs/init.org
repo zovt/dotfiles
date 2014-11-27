@@ -106,7 +106,7 @@
 ;; Set theme location
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (require 'moe-theme)
-(run-with-timer 0 3600 'sync-theme)
+;;; Theme is set by `sync-theme' defined in the custom function area.
 
 ;; Highlight current line
 (global-hl-line-mode t)
@@ -577,9 +577,9 @@
        (setq hour (string-to-number (substring (current-time-string) 11 13)))
        (if (and (> hour 6) (< hour 17))
            (progn (disable-theme 'moe-dark)
-                  (moe-light))
+                  (load-theme 'moe-light t nil))
          (progn (disable-theme 'moe-light)
-                (moe-dark))))
+                (load-theme 'moe-dark t nil))))
 
      (run-with-timer 0 3600 'sync-theme)
    #+END_SRC
