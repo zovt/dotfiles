@@ -69,6 +69,7 @@
          expand-region
          magit
          ace-jump-mode
+         lispy
          ;; Company
          company
          company-c-headers
@@ -504,6 +505,11 @@
     #+BEGIN_SRC emacs-lisp
       (if (eq system-type 'windows-nt)
           (setq ispell-program-name "C:/Aspell/bin/aspell.exe"))
+    #+END_SRC
+*** Lispy
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'common-lisp-mode-hook (lambda () (lispy-mode 1)))
+      (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
     #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
