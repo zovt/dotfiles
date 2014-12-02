@@ -53,6 +53,7 @@
          auctex
          slime
          emmet-mode
+         rust-mode
          ;; Utilities
          smex
          helm
