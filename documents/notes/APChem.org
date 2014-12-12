@@ -326,3 +326,10 @@ dHrxn = sigma n dHf products - sigma m dHf reactants
 **** Know the whole damn chapter
 **** Electron Affinity
 **** Metallic Character
+* Mon Dec  8 11:51:21 EST 2014
+1.5	= A = -log T
+10^-1.5 = T = 0.032
+%T	= 3.2 %
+
+*Part A*
+CuSO4 + 4NH3 -> Cu(NH3)4SO4
