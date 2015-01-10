@@ -44,6 +44,7 @@
          birds-of-paradise-plus-theme
          gruvbox-theme
          ;; Modes
+         processing-mode
          flycheck
          org
          cmake-mode
@@ -54,8 +55,11 @@
          slime
          emmet-mode
          rust-mode
+         skewer-mode
          ;; Utilities
+         processing-snippets
          smex
+         ess
          helm
          helm-gtags
          helm-anything
@@ -112,10 +116,6 @@
 
 ;; Highlight current line
 (global-hl-line-mode t)
-
-;; Fullscreen
-(if (eq system-type 'windows-nt)
-    (toggle-frame-fullscreen))
 
 ;; Set Font
 (set-face-font 'default "InputMono-10")
@@ -505,6 +505,23 @@
     #+BEGIN_SRC emacs-lisp
       (add-hook 'common-lisp-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+    #+END_SRC
+*** Skewer Mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode)
+#+END_SRC
+*** ESS
+    #+BEGIN_SRC emacs-lisp
+      (require 'ess-site)
+
+    #+END_SRC
+*** Processing
+    #+BEGIN_SRC emacs-lisp
+      (defvar processing-location "c:/processing-2.2.1/processing-java.exe")
+      (defvar processing-application-dir "c:/processing-2.2.1/")
+      (defvar processing-application-dir "~/githubs/processing")
     #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
