@@ -524,6 +524,11 @@
       (defvar processing-application-dir "c:/processing-2.2.1/")
       (defvar processing-application-dir "~/githubs/processing")
     #+END_SRC
+*** Web-Mode
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+    #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
      ;; Code-related binds
