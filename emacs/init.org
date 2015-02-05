@@ -57,6 +57,7 @@
          rust-mode
          skewer-mode
          web-mode
+         jade-mode
          ;; Utilities
          processing-snippets
          smex
@@ -75,7 +76,6 @@
          expand-region
          magit
          ace-jump-mode
-         lispy
          ;; Company
          company
          company-c-headers
@@ -119,7 +119,7 @@
 (global-hl-line-mode t)
 
 ;; Set Font
-(set-face-font 'default "InputMono-10")
+(set-face-font 'default "Pitch-11")
 
 ;; Tramp settings
 (defvar tramp-default-method "plink")
@@ -502,11 +502,6 @@
       (if (eq system-type 'windows-nt)
           (setq ispell-program-name "C:/Aspell/bin/aspell.exe"))
     #+END_SRC
-*** Lispy
-    #+BEGIN_SRC emacs-lisp
-      (add-hook 'common-lisp-mode-hook (lambda () (lispy-mode 1)))
-      (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
-    #+END_SRC
 *** Skewer Mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'js2-mode-hook 'skewer-mode)
@@ -528,6 +523,14 @@
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+    #+END_SRC
+*** Jade-Mode
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'jade-mode-hook (lambda ()
+                                  (interactive)
+                                  (yas-minor-mode -1)
+                                  (define-key evil-normal-state-map (kbd "TAB") (sws-do-indent-line))
+                                  (define-key evil-insert-state-map (kbd "TAB") (sws-do-indent-line))))
     #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
