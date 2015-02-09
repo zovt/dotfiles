@@ -4,7 +4,7 @@
   This is my init.el. It will change from time to time, and sets up packages and settings that I like. Feel free to  use, modify, or redistribute it
 * Code
 ** Basic Packaging
-    This section sets up the repositiories that I use and also initializes them.
+   This section sets up the repositiories that I use and also initializes them.
     #+BEGIN_SRC emacs-lisp
 (require 'package)
 (require 'cl-macs)
@@ -35,31 +35,20 @@
          soothe-theme
          ample-theme
          tangotango-theme
-         leuven-theme
-         tango-plus-theme
-         flatui-theme
-         flatland-theme
-         afternoon-theme
-         purple-haze-theme
-         birds-of-paradise-plus-theme
-         gruvbox-theme
          ;; Modes
-         processing-mode
          flycheck
          org
          cmake-mode
          semantic
          js2-mode
-         yasnippet
          auctex
          slime
-         emmet-mode
          rust-mode
          skewer-mode
+         processing-mode
          web-mode
          jade-mode
          ;; Utilities
-         processing-snippets
          smex
          ess
          helm
@@ -238,11 +227,6 @@
 (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
       #+END_SRC
       
-*** Yasnippet
-     #+BEGIN_SRC emacs-lisp
-(yas-global-mode 1)
-     #+END_SRC
-     
 *** Semantic
      #+BEGIN_SRC emacs-lisp
 (require 'cc-mode)
@@ -496,6 +480,29 @@
 
         ;; set up a pseudo-leader
         (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
+      #+END_SRC
+***** Colemak binds
+      #+BEGIN_SRC emacs-lisp
+        (evil-global-set-key 'normal "n" 'evil-backward-char)
+        (evil-global-set-key 'normal "N" 'evil-window-top)
+        (evil-global-set-key 'normal "e" 'evil-previous-line)
+        (evil-global-set-key 'normal "E" 'evil-join)
+        (evil-global-set-key 'normal "i" 'evil-next-line)
+        (evil-global-set-key 'normal "I" 'evil-lookup)
+        (evil-global-set-key 'normal "o" 'evil-forward-char)
+        (evil-global-set-key 'normal "O" 'evil-window-bottom)
+
+        (evil-global-set-key 'normal "k" 'evil-search-next)
+        (evil-global-set-key 'normal "K" 'evil-search-previous)
+        (evil-global-set-key 'normal "h" 'evil-forward-word-end)
+        (evil-global-set-key 'normal "H" 'evil-forward-WORD-end)
+        (evil-global-set-key 'normal "r" 'evil-insert)
+        (evil-global-set-key 'normal "R" 'evil-insert-line)
+        (evil-global-set-key 'normal "j" 'evil-replace)
+        (evil-global-set-key 'normal "J" 'evil-replace-state)
+        (evil-global-set-key 'normal "l" 'evil-open-below)
+        (evil-global-set-key 'normal "L" 'evil-open-above)
+
       #+END_SRC
 *** ISpell
     #+BEGIN_SRC emacs-lisp
