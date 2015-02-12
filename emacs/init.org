@@ -503,6 +503,25 @@
         (evil-global-set-key 'normal "l" 'evil-open-below)
         (evil-global-set-key 'normal "L" 'evil-open-above)
 
+        (evil-global-set-key 'visual "n" 'evil-backward-char)
+        (evil-global-set-key 'visual "N" 'evil-window-top)
+        (evil-global-set-key 'visual "e" 'evil-previous-line)
+        (evil-global-set-key 'visual "E" 'evil-join)
+        (evil-global-set-key 'visual "i" 'evil-next-line)
+        (evil-global-set-key 'visual "I" 'evil-lookup)
+        (evil-global-set-key 'visual "o" 'evil-forward-char)
+        (evil-global-set-key 'visual "O" 'evil-window-bottom)
+
+        (evil-global-set-key 'visual "k" 'evil-search-next)
+        (evil-global-set-key 'visual "K" 'evil-search-previous)
+        (evil-global-set-key 'visual "h" 'evil-forward-word-end)
+        (evil-global-set-key 'visual "H" 'evil-forward-WORD-end)
+        (evil-global-set-key 'visual "r" 'evil-insert)
+        (evil-global-set-key 'visual "R" 'evil-insert-line)
+        (evil-global-set-key 'visual "j" 'evil-replace)
+        (evil-global-set-key 'visual "J" 'evil-replace-state)
+        (evil-global-set-key 'visual "l" 'evil-open-below)
+        (evil-global-set-key 'visual "L" 'evil-open-above)
       #+END_SRC
 *** ISpell
     #+BEGIN_SRC emacs-lisp
