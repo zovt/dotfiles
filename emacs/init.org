@@ -481,29 +481,6 @@
         ;; set up a pseudo-leader
         (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
       #+END_SRC
-***** Colemak binds
-      #+BEGIN_SRC emacs-lisp
-        (evil-global-set-key 'normal "n" 'evil-backward-char)
-        (evil-global-set-key 'normal "N" 'evil-window-top)
-        (evil-global-set-key 'normal "e" 'evil-previous-line)
-        (evil-global-set-key 'normal "E" 'evil-join)
-        (evil-global-set-key 'normal "i" 'evil-next-line)
-        (evil-global-set-key 'normal "I" 'evil-lookup)
-        (evil-global-set-key 'normal "o" 'evil-forward-char)
-        (evil-global-set-key 'normal "O" 'evil-window-bottom)
-
-        (evil-global-set-key 'normal "k" 'evil-search-next)
-        (evil-global-set-key 'normal "K" 'evil-search-previous)
-        (evil-global-set-key 'normal "h" 'evil-forward-word-end)
-        (evil-global-set-key 'normal "H" 'evil-forward-WORD-end)
-        (evil-global-set-key 'normal "r" 'evil-insert)
-        (evil-global-set-key 'normal "R" 'evil-insert-line)
-        (evil-global-set-key 'normal "j" 'evil-replace)
-        (evil-global-set-key 'normal "J" 'evil-replace-state)
-        (evil-global-set-key 'normal "l" 'evil-open-below)
-        (evil-global-set-key 'normal "L" 'evil-open-above)
-
-      #+END_SRC
 *** ISpell
     #+BEGIN_SRC emacs-lisp
       (if (eq system-type 'windows-nt)
