@@ -48,6 +48,7 @@
          processing-mode
          web-mode
          jade-mode
+         haskell-mode
          ;; Utilities
          smex
          ess
@@ -379,7 +380,6 @@
                                     (powerline-raw ":")
                                     (powerline-raw " %3c")
                                     (funcall separator-right mode-line face1)
-                                    (powerline-raw (capitalize (symbol-name evil-state)) face2 'r)
                                     (funcall separator-right face1 face2)
                                     (powerline-raw " " face2 'r)
                                     (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
@@ -456,9 +456,9 @@
       (add-hook 'sgml-mode-hook 'emmet-mode)
       (add-hook 'css-mode-hook 'emmet-mode)
     #+END_SRC
-*** Evil
+*** COMMENT Evil
 **** Evil Mode
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle no
        (evil-mode 1)
 
 
@@ -466,9 +466,11 @@
        (evil-set-initial-state 'term-mode 'emacs)
        (evil-set-initial-state 'eshell-mode 'emacs)
        (evil-set-initial-state 'dired-mode 'emacs)
+       (evil-set-initial-state 'haskell-interactive-mode 'emacs)
+       (evil-set-initial-state 'haskell-error-mode 'emacs)
      #+END_SRC
 ***** Evil Keybinds
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
         (evil-global-set-key 'visual "a" 'align-regexp)
         (evil-global-set-key 'insert (kbd "C-e") (evil-move-end-of-line))
         (evil-global-set-key 'insert (kbd "C-a") (evil-move-beginning-of-line))
@@ -515,6 +517,42 @@
                                   (yas-minor-mode -1)
                                   (define-key evil-normal-state-map (kbd "TAB") (sws-do-indent-line))
                                   (define-key evil-insert-state-map (kbd "TAB") (sws-do-indent-line))))
+    #+END_SRC
+*** Haskell Mode
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+      (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+      (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+        (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+        (add-to-list 'exec-path my-cabal-path))
+      (custom-set-variables '(haskell-tags-on-save t))
+
+      (custom-set-variables
+        '(haskell-process-suggest-remove-import-lines t)
+        '(haskell-process-auto-import-loaded-modules t)
+        '(haskell-process-log t))
+      (eval-after-load 'haskell-mode '(progn
+        (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+        (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+        (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+        (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+        (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+        (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+        (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+      (eval-after-load 'haskell-cabal '(progn
+                                         (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                         (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+                                         (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+                                         (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+      (custom-set-variables '(haskell-process-type 'cabal-repl))
+    #+END_SRC
+*** EWE Mode
+    #+BEGIN_SRC emacs-lisp
+      (load "~/githubs/ewe/ewe-mode.el")
+
+      (ewe-global-mode)
     #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
