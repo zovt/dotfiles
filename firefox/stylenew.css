@@ -7,16 +7,16 @@
 }
 
 #TabsToolbar .tabbrowser-tabs {
-    min-height: 20px !important;
-    height: 20px !important;
+    min-height: 25px !important;
+    height: 25px !important;
     line-height: 20px !important;
     text-align: center !important;
-    font-family: 'Input Sans' !important;
-    font-size: 12px !important;
+    font-family: 'Metric' !important;
+    font-size: 16px !important;
 }
 
 .tab-close-button, .tab-close {
-    opacity:0!important;
+    opacity: 0 !important;
 }
 
 .tab-close-button:hover, .tab-close:hover {
@@ -28,32 +28,26 @@
 }
 
 #main-window .tabbrowser-tab > .tab-stack {
-    border-width: 0px 0px 0px 0px !important;
     border-style: none !important;
     background-clip: padding-box !important;
     border-radius: 0 !important;
     margin-top: 1px !important;
-    margin-left: -1px !important;
-    max-height: 20px !important;
-    height: 20px !important;
+    padding-top: 3px !important;
+    max-height: 17px !important;
+    height: 17px !important;
 }
 
 #TabsToolbar .tabbrowser-tab {
-    -moz-border-top-colors: none !important;
-    -moz-border-left-colors: none !important;
-    -moz-border-right-colors: none !important;
-    -moz-border-bottom-colors: none !important;
-    background: #262626 !important;
-    background-clip: padding-box !important;
-    color: #aaaaaa !important;
-    margin-top: -1px !important;
-    font-family: 'Input Sans' !important;
-    font-size: 13px !important;
-    min-width: 60px !important;
+    background: hsl(196, 77%, 61%) !important;
+    color: #FFF !important;
+    font-family: 'Metric' !important;
+    font-size: 16px !important;
+    min-width: 150px !important;
     max-width: 200px !important;
     transition: all 0.25s ease !important;
     margin-left: 1px !important;
     margin-right: 1px !important;
+    margin-top: 2px;
 }
 
 #TabsToolbar .tabbrowser-tab:not([selected]) {
@@ -66,6 +60,9 @@
     width: 200px !important;
     max-height: 20px !important;
     height: 20px !important;
+    background: #FFF !important;
+    color: hsl(196, 77%, 61%) !important;
+    border: solid 1px hsl(196, 77%, 61%);
     border-bottom: none !important;
 }
 
@@ -80,12 +77,12 @@
 #TabsToolbar .tabbrowser-tab[first-visible-tab] {
     margin-left: -15px !important;
     max-width: 200px !important;
-    min-width: 60px !important;
+    min-width: 150px !important;
 }
 
 #TabsToolbar .tabbrowser-tab[first-visible-tab]:not([selected]) {
-    min-width: 60px !important;
-    max-width: 100px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
 }
 
 #TabsToolbar .tab-background {
