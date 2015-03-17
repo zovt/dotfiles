@@ -109,7 +109,7 @@
 (global-hl-line-mode t)
 
 ;; Set Font
-(set-face-font 'default "Pitch-11")
+(set-face-font 'default "Inconsolata-14")
 
 ;; Tramp settings
 (defvar tramp-default-method "plink")
