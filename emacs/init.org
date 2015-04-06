@@ -35,6 +35,7 @@
          soothe-theme
          ample-theme
          tangotango-theme
+         gruvbox-theme
          ;; Modes
          flycheck
          org
@@ -81,62 +82,61 @@
    
 ** General Configuration
     #+BEGIN_SRC emacs-lisp
-;; Disable cursor blinking
-(blink-cursor-mode 0)
+      ;; Disable cursor blinking
+      (blink-cursor-mode 0)
 
-;; Don't use unecessary messages
-(setq initial-scratch-message "")
-(setq inhibit-startup-message t)
+      ;; Don't use unecessary messages
+      (setq initial-scratch-message "")
+      (setq inhibit-startup-message t)
 
-;; Turn off bell
-(setq visible-bell t)
+      ;; Turn off bell
+      (setq visible-bell t)
 
-(setq inhibit-startup-echo-area-message "mondieu")
+      (setq inhibit-startup-echo-area-message "mondieu")
 
-;; Get rid of scroll bar
-(scroll-bar-mode 0)
+      ;; Get rid of scroll bar
+      (scroll-bar-mode 0)
 
-;; Get rid of gui things
-(tool-bar-mode 0)
-(menu-bar-mode 0)
+      ;; Get rid of gui things
+      (tool-bar-mode 0)
+      (menu-bar-mode 0)
 
-;; Set theme location
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(require 'moe-theme)
-;;; Theme is set by `sync-theme' defined in the custom function area.
+      ;; Set theme location
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+      (load-theme 'pretty)
 
-;; Highlight current line
-(global-hl-line-mode t)
+      ;; Set Font
+      (set-face-font 'default "Meslo LG S-12")
 
-;; Set Font
-(set-face-font 'default "Inconsolata-14")
+      ;; Linum
+      (global-linum-mode)
 
-;; Tramp settings
-(defvar tramp-default-method "plink")
+      ;; Tramp settings
+      (defvar tramp-default-method "plink")
 
-;; Start emacsclient when opening a GUI
-(when window-system
-  (server-start))
+      ;; Start emacsclient when opening a GUI
+      (when window-system
+        (server-start))
 
-;; Make Git not slow
-(if (eq system-type 'windows-nt)
-    (progn
-      (require 'vc)
-      (remove-hook 'find-file-hooks 'vc-find-file-hook)
-      (delete 'Git vc-handled-backends)))
+      ;; Make Git not slow
+      (if (eq system-type 'windows-nt)
+          (progn
+            (require 'vc)
+            (remove-hook 'find-file-hooks 'vc-find-file-hook)
+            (delete 'Git vc-handled-backends)))
 
-;; Tab width
-(setq tab-width 4)
+      ;; Tab width
+      (setq tab-width 4)
 
-;; Change save path
-(setq
- backup-by-copying t
- backup-directory-alist '(("." . "~/.saves"))
- auto-save-file-name-transforms '((".*" "~/.saves/" t))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)
+      ;; Change save path
+      (setq
+       backup-by-copying t
+       backup-directory-alist '(("." . "~/.saves"))
+       auto-save-file-name-transforms '((".*" "~/.saves/" t))
+       delete-old-versions t
+       kept-new-versions 6
+       kept-old-versions 2
+       version-control t)
     #+END_SRC
     
 ** Plugin and Mode Configuration
@@ -241,23 +241,23 @@
           
 *** Company
      #+BEGIN_SRC emacs-lisp
-(add-hook 'after-init-hook 'global-company-mode)
-(defvar company-backends '(
-						   company-clang
-						   company-semantic
-						   company-gtags
-						   company-c-headers
-						   company-cmake
-						   company-files
-						   company-elisp
-						   company-auctex
-						   company-tern
-						   company-css
-						   company
-						   ))
-(defvar company-idle-delay 0.2)
+       (add-hook 'after-init-hook 'global-company-mode)
+       (defvar company-backends '(company-clang
+                                  company-semantic
+                                  company-gtags
+                                  company-c-headers
+                                  company-cmake
+                                  company-files
+                                  company-elisp
+                                  company-auctex
+                                  company-tern
+                                  company-css
+                                  company))
+       (defvar company-idle-delay 0.2)
+       (defvar company-minimum-prefix-length 4)
+
      #+END_SRC
-     
+    
 *** C Indentation mode
      #+BEGIN_SRC emacs-lisp
 (defvar c-defualt-style "linux")
@@ -348,46 +348,11 @@
 (epa-file-enable)
      #+END_SRC
      
-*** Powerline
-    #+BEGIN_SRC emacs-lisp
+*** COMMENT Powerline
+    #+BEGIN_SRC emacs-lisp :tangle no
       (require 'powerline)
       (setq-default powerline-default-separator 'bar)
-      (setq-default mode-line-format
-                    '("%e"
-                      (:eval
-                       (let* ((active (powerline-selected-window-active))
-                              (mode-line (if active 'mode-line 'mode-line-inactive))
-                              (face1 (if active 'powerline-active1 'powerline-inactive1))
-                              (face2 (if active 'powerline-active2 'powerline-inactive2))
-                              (middle-face (if active 'powerline-inactive1 'powerline-active2))
-                              (separator-left (intern (format "powerline-%s-%s" powerline-default-separator (car powerline-default-separator-dir))))
-                              (separator-right (intern (format "powerline-%s-%s" powerline-default-separator (cdr powerline-default-separator-dir))))
-                              (lhs (list (if (buffer-modified-p) (powerline-raw " (MOD)") (powerline-raw " -----"))
-                                         (powerline-raw " ")
-                                         (powerline-major-mode)
-                                         (powerline-raw ":")
-                                         (powerline-buffer-id nil 'l)
-                                         (powerline-buffer-size nil 'l)
-                                         (powerline-raw " ")
-                                         (funcall separator-left mode-line face1)
-                                         (powerline-raw " " face1 face2)
-                                         (powerline-minor-modes face1 face2)
-                                         (powerline-raw " " face1 face2)
-                                         (funcall separator-left face1 middle-face)))
-                              (rhs (list
-                                    (funcall separator-right middle-face mode-line)
-                                    (powerline-raw "%4l")
-                                    (powerline-raw ":")
-                                    (powerline-raw " %3c")
-                                    (funcall separator-right mode-line face1)
-                                    (funcall separator-right face1 face2)
-                                    (powerline-raw " " face2 'r)
-                                    (powerline-raw (format-time-string "%H:%M:%S") face2 'r)
-                                    (powerline-raw " " face2 'r)
-                                    (powerline-hud face2 face1))))
-                         (concat (powerline-render lhs)
-                                 (powerline-fill middle-face (powerline-width rhs))
-                                 (powerline-render rhs))))))
+      (powerline-default-theme)
     #+END_SRC
     
 *** Auctex
@@ -627,15 +592,15 @@
      ;; Automatic theme switching
      (setq custom-enabled-themes nil)
 
-     (defun sync-theme ()
-       (setq hour (string-to-number (substring (current-time-string) 11 13)))
-       (if (and (> hour 6) (< hour 17))
-           (progn (disable-theme 'moe-dark)
-                  (load-theme 'moe-light t nil))
-         (progn (disable-theme 'moe-light)
-                (load-theme 'moe-dark t nil))))
+     ;; (defun sync-theme ()
+     ;;  (setq hour (string-to-number (substring (current-time-string) 11 13)))
+     ;;  (if (and (> hour 6) (< hour 17))
+     ;;      (progn (disable-theme 'moe-dark)
+     ;;             (load-theme 'moe-light t nil))
+     ;;    (progn (disable-theme 'moe-light)
+     ;;           (load-theme 'moe-dark t nil))))
 
-     (run-with-timer 0 3600 'sync-theme)
+     ;; (run-with-timer 0 3600 'sync-theme)
    #+END_SRC
 *** Minimal writing mode
     #+BEGIN_SRC emacs-lisp
