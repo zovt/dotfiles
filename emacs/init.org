@@ -512,6 +512,12 @@
                                          (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
       (custom-set-variables '(haskell-process-type 'cabal-repl))
+
+      (add-hook 'interactive-haskell-mode-hook
+                (lambda ()
+                  (aggressive-indent-mode -1)
+                  (electric-indent-mode -1)
+                  (flycheck-mode -1)))
     #+END_SRC
 *** EWE Mode
     #+BEGIN_SRC emacs-lisp
