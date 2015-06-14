@@ -50,6 +50,7 @@
          web-mode
          jade-mode
          haskell-mode
+         arduino-mode
          ;; Utilities
          smex
          ess
@@ -103,6 +104,7 @@
 
       ;; Set theme location
       (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+      (add-to-list 'custom-theme-load-path "~/githubs/pretty-emacs")
       (load-theme 'pretty)
 
       ;; Set Font
@@ -146,26 +148,29 @@
     #+END_SRC
 *** Org Mode
      #+BEGIN_SRC emacs-lisp
-(defvar org-log-done 'time)
-(defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
+       (defvar org-log-done 'time)
+       (defvar org-agenda-files (list "~/dotfiles/documents/todo/todo.org.gpg"))
 
-(global-set-key (kbd "C-c a") 'org-agenda)
-(defvar org-todo-keywords '((type "BUG(b)" "IN-PROGRESS" "WAITING" "|" "FIXED(f@)")
-			    (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
-			    (type "GOAL(g)" "|" "DONE(d!)")
-			    (type "|" "CANCELED(c@)")
-			    (type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
+       (global-set-key (kbd "C-c a") 'org-agenda)
+       (defvar org-todo-keywords '((type "BUG(b)" "IN-PROGRESS" "WAITING" "|" "FIXED(f@)")
+                                   (type "SUGGESTION(s)" "ENHANCEMENT(e)" "|" "ADDED(a@)")
+                                   (type "GOAL(g)" "|" "DONE(d!)")
+                                   (type "|" "CANCELED(c@)")
+                                   (type "TODO" "IN-PROGRESS" "WAITING" "|" "DONE(d!)")))
 
-(defvar
-  org-export-backends '(ascii
-			md
-			html
-			odt
-			org
-			latex
-			man))
+       (defvar
+         org-export-backends '(ascii
+                               md
+                               html
+                               odt
+                               org
+                               latex
+                               man))
 
-(add-hook 'org-mode-hook (lambda () (visual-line-mode)))
+       (defvar org-clock-persist 'history)
+       (org-clock-persistence-insinuate)
+
+       (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
      #+END_SRC
 *** Smex
     #+BEGIN_SRC emacs-lisp
@@ -478,6 +483,10 @@
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+      (add-hook 'web-mode-hook (lambda ()
+                                 (setq web-mode-markup-indent-offset 2)
+                                 (setq web-mode-css-indent-offset 4)
+                                 (setq web-mode-code-indent-offset 2)))
     #+END_SRC
 *** Jade-Mode
     #+BEGIN_SRC emacs-lisp
@@ -525,7 +534,7 @@
     #+END_SRC
 *** EWE Mode
     #+BEGIN_SRC emacs-lisp
-      (load "~/githubs/ewe/ewe-mode.el")
+      (load "~/githubs/ewe-mode/ewe-mode.el")
 
       (ewe-global-mode)
     #+END_SRC
