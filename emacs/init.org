@@ -51,6 +51,7 @@
          jade-mode
          haskell-mode
          arduino-mode
+         elixir-mode
          ;; Utilities
          smex
          ess
@@ -127,8 +128,11 @@
             (remove-hook 'find-file-hooks 'vc-find-file-hook)
             (delete 'Git vc-handled-backends)))
 
+      ;; use indent-tabs-mode
+      (defvar indent-tabs-mode t)
+
       ;; Tab width
-      (setq tab-width 4)
+      (setq tab-width 3)
 
       ;; Change save path
       (setq
@@ -425,11 +429,6 @@
       (slime-setup)
 
     #+END_SRC
-*** Emmet
-    #+BEGIN_SRC emacs-lisp
-      (add-hook 'sgml-mode-hook 'emmet-mode)
-      (add-hook 'css-mode-hook 'emmet-mode)
-    #+END_SRC
 *** COMMENT Evil
 **** Evil Mode
      #+BEGIN_SRC emacs-lisp :tangle no
@@ -483,10 +482,11 @@
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+      (defvar web-mode-enable-tab-indentation t)
       (add-hook 'web-mode-hook (lambda ()
-                                 (setq web-mode-markup-indent-offset 2)
-                                 (setq web-mode-css-indent-offset 4)
-                                 (setq web-mode-code-indent-offset 2)))
+                                 (setq web-mode-markup-indent-offset 3)
+                                 (setq web-mode-css-indent-offset 3)
+                                 (setq web-mode-code-indent-offset 3)))
     #+END_SRC
 *** Jade-Mode
     #+BEGIN_SRC emacs-lisp
