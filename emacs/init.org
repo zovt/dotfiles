@@ -27,15 +27,8 @@
    
    #+BEGIN_SRC emacs-lisp
      (defconst ragesalmon-config-packages
-       '(god-mode
-         ;; themes
-         stekene-theme
-         moe-theme
-         sublime-themes
-         soothe-theme
-         ample-theme
-         tangotango-theme
-         gruvbox-theme
+       '(;; themes
+         material-theme
          ;; Modes
          flycheck
          org
@@ -103,10 +96,8 @@
       (tool-bar-mode 0)
       (menu-bar-mode 0)
 
-      ;; Set theme location
-      (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-      (add-to-list 'custom-theme-load-path "~/githubs/pretty-emacs")
-      (load-theme 'pretty)
+      ;; Set theme
+      (load-theme 'material-light)
 
       ;; Set Font
       (set-face-font 'default "Meslo LG S-12")
@@ -132,7 +123,7 @@
       (defvar indent-tabs-mode t)
 
       ;; Tab width
-      (setq tab-width 3)
+      (setq tab-width 2)
 
       ;; Change save path
       (setq
@@ -402,11 +393,6 @@
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
      #+END_SRC
      
-*** God-mode
-     #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<escape>") 'god-local-mode)
-     #+END_SRC
-     
 *** Expand-Region
 	#+BEGIN_SRC emacs-lisp
  (require 'expand-region)
@@ -429,33 +415,6 @@
       (slime-setup)
 
     #+END_SRC
-*** COMMENT Evil
-**** Evil Mode
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (evil-mode 1)
-
-
-       ;; Set evil to ignore certain modes
-       (evil-set-initial-state 'term-mode 'emacs)
-       (evil-set-initial-state 'eshell-mode 'emacs)
-       (evil-set-initial-state 'dired-mode 'emacs)
-       (evil-set-initial-state 'haskell-interactive-mode 'emacs)
-       (evil-set-initial-state 'haskell-error-mode 'emacs)
-     #+END_SRC
-***** Evil Keybinds
-      #+BEGIN_SRC emacs-lisp :tangle no
-        (evil-global-set-key 'visual "a" 'align-regexp)
-        (evil-global-set-key 'insert (kbd "C-e") (evil-move-end-of-line))
-        (evil-global-set-key 'insert (kbd "C-a") (evil-move-beginning-of-line))
-        (evil-global-set-key 'normal (kbd "C-a") (evil-move-beginning-of-line))
-        (define-key evil-normal-state-map (kbd "C-e") (evil-move-end-of-line))
-        (evil-global-set-key 'insert "j" 'zovt/maybe-esc)
-        (evil-global-set-key 'normal ";" 'evil-ex)
-        (evil-global-set-key 'normal "U" 'undo-tree-visualize)
-
-        ;; set up a pseudo-leader
-        (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
-      #+END_SRC
 *** ISpell
     #+BEGIN_SRC emacs-lisp
       (if (eq system-type 'windows-nt)
@@ -532,38 +491,60 @@
                   (electric-indent-mode -1)
                   (flycheck-mode -1)))
     #+END_SRC
-*** EWE Mode
-    #+BEGIN_SRC emacs-lisp
-      (load "~/githubs/ewe-mode/ewe-mode.el")
+*** Evil
+**** Evil Mode
+     #+BEGIN_SRC emacs-lisp
+       (evil-mode 1)
 
-      (ewe-global-mode)
-    #+END_SRC
+
+       ;; Set evil to ignore certain modes
+       (evil-set-initial-state 'term-mode 'emacs)
+       (evil-set-initial-state 'eshell-mode 'emacs)
+       (evil-set-initial-state 'dired-mode 'emacs)
+       (evil-set-initial-state 'haskell-interactive-mode 'emacs)
+       (evil-set-initial-state 'haskell-error-mode 'emacs)
+       (evil-set-initial-state 'magit-popup-mode 'emacs)
+     #+END_SRC
+***** Evil Keybinds
+      #+BEGIN_SRC emacs-lisp
+        (evil-global-set-key 'visual "a" 'align-regexp)
+        (evil-global-set-key 'insert (kbd "C-e") (evil-move-end-of-line))
+        (evil-global-set-key 'insert (kbd "C-a") (evil-move-beginning-of-line))
+        (evil-global-set-key 'normal (kbd "C-a") (evil-move-beginning-of-line))
+        (define-key evil-normal-state-map (kbd "C-e") (evil-move-end-of-line))
+        (evil-global-set-key 'insert "j" 'zovt/maybe-esc)
+        (evil-global-set-key 'normal ";" 'evil-ex)
+        (evil-global-set-key 'normal "U" 'undo-tree-visualize)
+
+        ;; set up a pseudo-leader
+        (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
+      #+END_SRC
 ** Keybindings
    #+BEGIN_SRC emacs-lisp
      ;; Code-related binds
      (global-set-key (kbd "C-c c =") 'indent-whole-buffer)
-     (global-set-key (kbd "C-=") 'er/expand-region)
+     (global-set-key (kbd "C-c =") 'er/expand-region)
      (global-set-key (kbd "C-c c i") 'imenu)
+
      ;;; Mode-specific
      (eval-after-load 'slime
        '(define-key slime-mode-map (kbd "C-c e") 'slime-eval-buffer))
 
      ;; Movement-related binds
-     (global-set-key (kbd "C-S-f") 'forward-word)
-     (global-set-key (kbd "C-S-b") 'backward-word)
      (global-set-key (kbd "C->") 'end-of-buffer)
      (global-set-key (kbd "C-<") 'beginning-of-buffer)
-     (global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
+     (global-set-key (kbd "C-c j") 'ace-jump-mode)
+     (global-set-key (kbd "C-c o") 'next-window)
+     (global-set-key (kbd "C-c b") 'helm-buffer-list)
 
      ;; Editing-related binds
-     (global-set-key (kbd "C-S-d") 'kill-word)
      (global-set-key (kbd "C-c r") 'align-regexp)
      (global-set-key (kbd "C-c M w") 'writing-mode)
 
      ;; Utility-related binds
      (global-set-key (kbd "C-c n") 'neotree)
      (global-set-key (kbd "C-x u") 'undo-tree-visualize)
-     (global-set-key (kbd "C-c F") 'anything)
+
      ;;; Magit
      (global-set-key (kbd "C-c m m") 'magit-status)
      (global-set-key (kbd "C-c m c") 'magit-commit)
@@ -576,6 +557,11 @@
      ;; File-related binds
      (global-set-key (kbd "C-c f o") 'helm-buffer-list)
      (global-set-key (kbd "C-c f x") 'kill-other-buffers)
+     (global-set-key (kbd "C-c f f") 'find-file)
+
+     ;; Leave minibuffer with ESC
+     (define-key minibuffer-local-map (kbd "ESC") 'keyboard-escape-quit)
+     (add-hook 'after-init-hook (lambda () (define-key helm-map (kbd "ESC") 'keyboard-escape-quit)))
 
    #+END_SRC
 ** Custom Functions
