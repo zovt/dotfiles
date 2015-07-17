@@ -19,6 +19,7 @@
 
 (defun zovt-install-packages ()
   "Install packages."
+  (interactive)
   (dolist (p zovt-packages)
     (quelpa p)))
 
@@ -78,7 +79,7 @@
 
 (setq backup-by-copying t
       backup-directory-alist '(("." . "~/.emacs.d/.saves"))
-      auto-save-file-name-transforms '((".*" "~/.emacs.d/saves/" t))
+      auto-save-file-name-transforms '((".*" "~/.emacs.d/.saves/" t))
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 6
@@ -107,19 +108,23 @@
     (package-install 'let-alist)))
 
 ;; My package list for quelpa
-(setq zovt-packages '(;; Themes
-		      material-theme
-		      monokai-theme
-		      solarized-theme
-		      ;; Modes
-		      flycheck flymake-hlint org cmake-mode js2-mode
-		      auctex web-mode haskell-mode arduino-mode evil ghc-mod
-		      ;; Utilities
-		      smex helm helm-gtags tern rainbow-delimiters
-		      powerline aggressive-indent undo-tree magit
-		      ace-jump-mode hydra helm-swoop yasnippet rainbow-mode
-		      ;; Company
-		      company company-c-headers company-tern company-ghc))
+(setq zovt-packages
+      '(;; Themes
+	material-theme
+	monokai-theme
+	solarized-theme
+	;; Modes
+	flycheck flymake-hlint org cmake-mode js2-mode
+	auctex web-mode haskell-mode arduino-mode evil ghc-mod
+	;; Utilities
+	smex helm helm-gtags tern rainbow-delimiters
+	powerline aggressive-indent undo-tree magit
+	ace-jump-mode hydra helm-swoop yasnippet
+	(rainbow-mode :url
+		      "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/rainbow-mode/rainbow-mode.el"
+		      :fetcher url)
+	;; Company
+	company company-c-headers company-tern company-ghc))
 
 ;; Install packages
 (unless (file-exists-p "~/.emacs.d/init-done")
@@ -372,8 +377,8 @@
 
 (defhydra hydra-windows (global-map "C-c w")
   "Windows"
-  ("j" other-window)
-  ("k" other-window -1)
+  ("J" other-window)
+  ("K" other-window -1)
   ("d" delete-window)
   ("D" delete-other-windows)
   ("v" split-window-vertically)
