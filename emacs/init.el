@@ -5,6 +5,31 @@
 ;;; everything commented in-line so that it is organized and whatnot.
 ;;; Code:
 
+;;;; Helper functions
+(defun check-executable (exe)
+  "Check if EXE exists in path, and warn if not."
+  (unless (executable-find exe)
+    (warn-executable-not-found exe)))
+
+(defun warn-executable-not-found (exe)
+  "Warn that EXE wasn't found in path."
+  (read-event
+   (concat "Couldn't find '" exe "', please install it, the press a key"))
+  nil)
+
+(defun zovt-install-packages ()
+  "Install packages."
+  (dolist (p zovt-packages)
+    (quelpa p)))
+
+(defun indent-whole-buffer ()
+  "Indent the whole buffer."
+  (interactive)
+  (point-to-register ?m)
+  (mark-whole-buffer)
+  (indent-region (region-beginning) (region-end))
+  (jump-to-register ?m))
+
 ;;;; Basic configuration that doesn't require any external packaging
 ;; Disable cursor blinking
 (blink-cursor-mode 0)
@@ -48,6 +73,9 @@
 (setq tab-width 2)
 
 ;; Backups
+(unless (file-accessible-directory-p "~/.emacs.d/.saves")
+  (shell-command "mkdir ~/.emacs.d/.saves"))
+
 (setq backup-by-copying t
       backup-directory-alist '(("." . "~/.emacs.d/.saves"))
       auto-save-file-name-transforms '((".*" "~/.emacs.d/saves/" t))
@@ -64,23 +92,25 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("marmalade"
 				 . "http://marmalade-repo.org/packages/") t)
+;; Check if hg is installed
+(check-executable "hg")
 
 ;; Install quelpa
-(package-refresh-contents)
 (package-initialize)
 (if (require 'quelpa nil t)
     (quelpa-self-upgrade)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
+    (eval-buffer)
+    (package-refresh-contents)
+    (setq package-check-signature nil)
+    (package-install 'let-alist)))
 
-;; Enable automatic package updates
-(setq quelpa-upgrade-p t)
-
-;; My package list for el-get
+;; My package list for quelpa
 (setq zovt-packages '(;; Themes
 		      material-theme
-		      monokai
+		      monokai-theme
+		      solarized-theme
 		      ;; Modes
 		      flycheck flymake-hlint org cmake-mode js2-mode
 		      auctex web-mode haskell-mode arduino-mode evil ghc-mod
@@ -89,38 +119,16 @@
 		      powerline aggressive-indent undo-tree magit
 		      ace-jump-mode hydra helm-swoop yasnippet rainbow-mode
 		      ;; Company
-		      company company-c-headers company-tern company-ghc
-		      slime-company))
+		      company company-c-headers company-tern company-ghc))
 
 ;; Install packages
 (unless (file-exists-p "~/.emacs.d/init-done")
   (zovt-install-packages)
   (shell-command "touch ~/.emacs.d/init-done"))
 
-;;;; Helper functions
-(defun check-executable (exe)
-  "Check if EXE exists in path, and warn if not."
-  (unless (executable-find exe)
-    (warn-executable-not-found exe)))
 
-(defun warn-executable-not-found (exe)
-  "Warn that EXE wasn't found in path."
-  (read-event
-   (concat "Couldn't find '" exe "', please install it, the press a key"))
-  nil)
-
-(defun zovt-install-packages ()
-  "Install packages."
-  (dolist (p zovt-packages)
-    (quelpa p)))
-
-(defun indent-whole-buffer ()
-  "Indent the whole buffer."
-  (interactive)
-  (point-to-register ?m)  
-  (mark-whole-buffer)
-  (indent-region (region-beginning) (region-end))
-  (jump-to-register ?m))
+;;;; Theme
+(load-theme 'solarized-light)
 
 ;;;; Plugins and modes
 ;;; Electric pair mode
@@ -246,8 +254,9 @@
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
 
 ;;; Powerline
-(setq powerline-default-separator 'bar)
-(powerline-vim-theme)
+(require 'powerline-themes)
+(setq powerline-default-separator 'chamfer)
+(powerline-center-evil-theme)
 
 ;;; Auctex
 ;; Settings
@@ -261,9 +270,6 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 ;; Reftex
 (setq reftex-plug-into-AUCTeX t)
-;; Tex
-(require 'tex)
-(TeX-global-PDF-mode t)
 
 ;;; Aggressive Indent Mode
 (global-aggressive-indent-mode 1)
@@ -293,7 +299,7 @@
 (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-cabal-path))
-(custom-set-variables '(haskell-tags-on-save t))
+(setq haskell-tags-on-save t)
 ;; Ghc-mod
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
@@ -329,53 +335,55 @@
 ;;;; Keybindings
 (defhydra hydra-code (global-map "C-c c")
   "Code"
-  ("=" 'indent-whole-buffer)
-  ("i" 'imenu))
+  ("=" indent-whole-buffer)
+  ("i" imenu))
 
 (defhydra hydra-movement (global-map "C-c m")
   "Movement"
-  ("j" 'ace-jump-mode)
-  ("s" 'helm-swoop))
+  ("j" ace-jump-mode)
+  ("s" helm-swoop))
 
 (defhydra hydra-editing (global-map "C-c e")
   "Editing"
-  ("r" 'align-regexp)
-  ("u" 'undo-tree-visualize))
+  ("r" align-regexp)
+  ("u" undo-tree-visualize))
 
 (defhydra hydra-git (global-map "C-c g")
   "Git"
-  ("s" 'magit-status)
-  ("c" 'magit-commit)
-  ("C" 'magit-amend)
-  ("P" 'magit-push)
-  ("f" 'magit-fetch)
-  ("F" 'magit-pull)
-  ("i" 'magit-init)
-  ("d" 'magit-diff-working-tree))
+  ("s" magit-status)
+  ("c" magit-commit)
+  ("C" magit-amend)
+  ("P" magit-push)
+  ("f" magit-fetch)
+  ("F" magit-pull)
+  ("i" magit-init)
+  ("d" magit-diff-working-tree))
 
 (defhydra hydra-files (global-map "C-c f")
   "Files"
-  ("f") 'find-file)
+  ("f" find-file))
 
 (defhydra hydra-buffers (global-map "C-c b")
   "Buffers"
-  ("b" 'switch-to-buffer))
+  ("b" switch-to-buffer))
 
 (defhydra hydra-windows (global-map "C-c w")
   "Windows"
-  ("j" 'other-window)
-  ("k" (lambda () (other-window -1)))
-  ("d" 'delete-window)
-  ("D" 'delete-other-windows)
-  ("v" 'split-window-vertically)
-  ("h" 'split-window-horizontally))
+  ("j" other-window)
+  ("k" other-window -1)
+  ("d" delete-window)
+  ("D" delete-other-windows)
+  ("v" split-window-vertically)
+  ("h" split-window-horizontally))
 
 ;; Special non-hydra binds
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-(evil-define-key 'normal "x" 'smex)
+(global-set-key (kbd "C-c x") 'smex)
+
+;;; Theme
+(load-theme 'solarized-light)
 
 (provide 'init)
 ;;; init.el ends here
-
