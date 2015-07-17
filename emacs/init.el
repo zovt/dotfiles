@@ -85,6 +85,19 @@
       kept-old-versions 6
       version-control t)
 
+;; Save Emacs session when quitting
+(desktop-save-mode 1)
+
+;; Kill old buffers automatically
+(require 'midnight)
+(midnight-delay-set 'midnight-delay "12:00am")
+(setq midnight-period 10800)
+(setq midnight-mode t)
+
+;; Make buffer names unique
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)
+
 ;;;; Packages
 ;; Set up Packaging
 (require 'package)
@@ -119,7 +132,8 @@
 	;; Utilities
 	smex helm helm-gtags tern rainbow-delimiters
 	powerline aggressive-indent undo-tree magit
-	ace-jump-mode hydra helm-swoop yasnippet
+	ace-jump-mode hydra helm-swoop yasnippet projectile
+	grizzl helm-projectile
 	(rainbow-mode :url
 		      "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/rainbow-mode/rainbow-mode.el"
 		      :fetcher url)
@@ -202,6 +216,8 @@
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'java-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
+;; Helm swoop
+(setq helm-swoop-split-direction 'split-window-horizontally)
 
 ;;; Semantic
 (require 'cc-mode)
@@ -340,16 +356,28 @@
 ;;; Yasnippet
 (yas-global-mode 1)
 
+;;; Projectile
+(require 'projectile)
+(projectile-global-mode)
+(when (eq system-type 'windows-nt)
+  (setq projectile-indexing-method 'alien))
+(setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
+(setq projectile-completion-system 'grizzl)
+(require 'helm-projectile)
+(helm-projectile-on)
+
 ;;;; Keybindings
 (defhydra hydra-code (global-map "C-c c")
   "Code"
   ("=" indent-whole-buffer)
   ("i" imenu))
 
-(defhydra hydra-movement (global-map "C-c m")
-  "Movement"
-  ("j" ace-jump-mode)
-  ("s" helm-swoop))
+(defhydra hydra-swoop (global-map "C-c s")
+  "Swoop"
+  ("s" helm-swoop)
+  ("b" helm-swoop-back-to-last-point)
+  ("S" helm-multi-swoop))
 
 (defhydra hydra-editing (global-map "C-c e")
   "Editing"
@@ -373,7 +401,8 @@
 
 (defhydra hydra-buffers (global-map "C-c b")
   "Buffers"
-  ("b" switch-to-buffer))
+  ("b" switch-to-buffer)
+  ("C-k" desktop-clear))
 
 (defhydra hydra-windows (global-map "C-c w")
   "Windows"
@@ -383,6 +412,44 @@
   ("D" delete-other-windows)
   ("v" split-window-vertically)
   ("h" split-window-horizontally))
+
+(defhydra hydra-projectile (global-map "C-c p")
+  "
+Projectile
+^Files^                        ^Project^                   ^Other^
+^--------------------------------------------------------------------------------
+_f_: find file                 _r_: replace in project     _!_: run shell command
+_F_: find file in known        _k_: kill project buffers       ^in project root
+^    projects                  _i_: invalidate project     _&_: same as ! but
+_T_: find test files               ^cache                      ^async
+_t_: switch between test and   _S_: save all project       _c_: compile project
+^    implementation                 buffers
+_d_: find project dir          _b_: switch project
+_D_: open project root in          ^buffers
+^    Dired
+_l_: find file in directory
+^    (not project)
+_a_: find matching file
+_e_: recent files
+"
+  ("f" helm-projectile-find-file)
+  ("F" helm-projectile-find-file-in-known-projects)
+  ("T" projectile-find-test-file)
+  ("d" helm-projectile-find-dir)
+  ("l" projectile-find-file-in-directory)
+  ("a" projectile-find-other-file)
+  ("r" projectile-replace)
+  ("k" projectile-kill-buffers)
+  ("i" projectile-invalidate-cache)
+  ("D" projectile-dired)
+  ("e" helm-projectile-recentf)
+  ("!" projectile-run-shell-command-in-root)
+  ("&" projectile-run-async-shell-command-in-root)
+  ("t" projectile-toggle-between-implementation-and-test)
+  ("S" projectile-save-project-buffers)
+  ("b" helm-projectile-switch-to-buffer)
+  ("c" projectile-compile-project))
+(define-key projectile-mode-map (kbd "C-c p") 'hydra-projectile/body)
 
 ;; Special non-hydra binds
 (global-set-key (kbd "M-x") 'smex)
