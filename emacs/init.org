@@ -31,6 +31,7 @@
          material-theme
          ;; Modes
          flycheck
+         flymake-hlint
          org
          cmake-mode
          semantic
@@ -66,6 +67,7 @@
          company
          company-c-headers
          company-tern
+         company-ghc
          slime-company
          ;; Evil
          evil))
@@ -247,6 +249,7 @@
      #+BEGIN_SRC emacs-lisp
        (add-hook 'after-init-hook 'global-company-mode)
        (defvar company-backends '(company-clang
+                                  company-ghc
                                   company-semantic
                                   company-gtags
                                   company-c-headers
@@ -458,38 +461,18 @@
 *** Haskell Mode
     #+BEGIN_SRC emacs-lisp
       (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-      (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
       (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
         (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
         (add-to-list 'exec-path my-cabal-path))
       (custom-set-variables '(haskell-tags-on-save t))
 
-      (custom-set-variables
-        '(haskell-process-suggest-remove-import-lines t)
-        '(haskell-process-auto-import-loaded-modules t)
-        '(haskell-process-log t))
-      (eval-after-load 'haskell-mode '(progn
-        (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-        (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-        (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-        (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-        (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-        (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-        (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
-      (eval-after-load 'haskell-cabal '(progn
-                                         (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-                                         (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-                                         (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-                                         (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+      (add-hook 'haskell-mode-hook (lambda ()
+                                     (interactive)
+                                     (ghc-init)
+                                     (turn-on-haskell-indentation)
+                                     (aggressive-indent-mode -1)))
 
-      (custom-set-variables '(haskell-process-type 'cabal-repl))
-
-      (add-hook 'interactive-haskell-mode-hook
-                (lambda ()
-                  (aggressive-indent-mode -1)
-                  (electric-indent-mode -1)
-                  (flycheck-mode -1)))
     #+END_SRC
 *** Evil
 **** Evil Mode
@@ -533,17 +516,25 @@
      ;; Movement-related binds
      (global-set-key (kbd "C->") 'end-of-buffer)
      (global-set-key (kbd "C-<") 'beginning-of-buffer)
+     (global-set-key (kbd "C-c <SPC>") 'ace-jump-mode)
      (global-set-key (kbd "C-c j") 'ace-jump-mode)
-     (global-set-key (kbd "C-c o") 'next-window)
-     (global-set-key (kbd "C-c b") 'helm-buffer-list)
+     (global-set-key (kbd "C-c b") 'switch-to-buffer)
+
+     ;; Window binds
+     (global-set-key (kbd "C-c 0") 'delete-window)
+     (global-set-key (kbd "C-c 1") 'delete-other-windows)
+     (global-set-key (kbd "C-c 2") 'split-window-vertically)
+     (global-set-key (kbd "C-c 3") 'split-window-horizontally)
+     (global-set-key (kbd "C-c o") 'other-window)
+     (global-set-key (kbd "C-c O") (lambda () (interactive) (other-window -1)))
 
      ;; Editing-related binds
      (global-set-key (kbd "C-c r") 'align-regexp)
      (global-set-key (kbd "C-c M w") 'writing-mode)
 
      ;; Utility-related binds
-     (global-set-key (kbd "C-c n") 'neotree)
      (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+     (global-set-key (kbd "C-c x") 'smex)
 
      ;;; Magit
      (global-set-key (kbd "C-c m m") 'magit-status)

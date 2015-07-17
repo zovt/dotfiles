@@ -2,7 +2,7 @@ vim/bundle/*
 !vim/bundle/Vundle
 
 emacs/*
-!emacs/init.org
+!emacs/init.el
 !emacs/.gnus
 !emacs/org
 !emacs/org/*
@@ -12,6 +12,8 @@ emacs/*
 *.pdf
 *.aux
 *.out
+
+init-done
 
 *~
 
