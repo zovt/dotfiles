@@ -49,6 +49,8 @@
 
 ;; Set font based on what's available
 (cond
+ ((find-fond (font-spec :name "Monoid"))
+  (set-face-font 'default "Monoid 13"))
  ((find-font (font-spec :name "Meslo LG S"))
   (set-face-font 'default "Meslo LG S-11"))
  ((find-font (font-spec :name "Inconsolata"))
@@ -98,6 +100,10 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
+;; Autofill mode at 80 chars
+(setq auto-fill-function 'do-auto-fill)
+(setq fill-column 80)
+
 ;;;; Packages
 ;; Set up Packaging
 (require 'package)
@@ -128,7 +134,7 @@
 	solarized-theme
 	;; Modes
 	flycheck flymake-hlint org cmake-mode js2-mode
-	auctex web-mode haskell-mode arduino-mode evil ghc-mod
+	auctex web-mode haskell-mode arduino-mode evil ghc
 	;; Utilities
 	smex helm helm-gtags tern rainbow-delimiters
 	powerline aggressive-indent undo-tree magit
@@ -182,6 +188,8 @@
 ;; Set up time tracking
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+;; Turn on visual line mode
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 ;;; Smex
 (require 'smex)
@@ -318,14 +326,15 @@
 
 ;;; Haskell Mode
 ;; Enable indentation
-(add-hook 'haskell-mode-hook (lambda () 'turn-on-haskell-indentation))
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; Cabal settings
 (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-cabal-path))
 (setq haskell-tags-on-save t)
 ;; Ghc-mod
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; DISABLED until updated to work with 7.10.1
+;;(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;;; Evil
 (evil-mode 1)
