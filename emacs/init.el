@@ -49,7 +49,7 @@
 
 ;; Set font based on what's available
 (cond
- ((find-fond (font-spec :name "Monoid"))
+ ((find-font (font-spec :name "Monoid"))
   (set-face-font 'default "Monoid 13"))
  ((find-font (font-spec :name "Meslo LG S"))
   (set-face-font 'default "Meslo LG S-11"))
