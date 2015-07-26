@@ -49,12 +49,10 @@
 
 ;; Set font based on what's available
 (cond
- ((find-font (font-spec :name "Monoid"))
-  (set-face-font 'default "Monoid 13"))
- ((find-font (font-spec :name "Meslo LG S"))
-  (set-face-font 'default "Meslo LG S-11"))
  ((find-font (font-spec :name "Inconsolata"))
   (set-face-font 'default "Inconsolata-13"))
+ ((find-font (font-spec :name "Meslo LG S"))
+  (set-face-font 'default "Meslo LG S-11"))
  ((find-font (font-spec :name "Fira Code"))
   (set-face-font 'default "Fira Code-12"))
  ((find-font (font-spec :name "courier"))
@@ -100,9 +98,10 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
-;; Autofill mode at 80 chars
-(setq auto-fill-function 'do-auto-fill)
-(setq fill-column 80)
+;; Highlight lines over 80 chars
+(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;;;; Packages
 ;; Set up Packaging
@@ -129,17 +128,18 @@
 ;; My package list for quelpa
 (setq zovt-packages
       '(;; Themes
-	material-theme
 	monokai-theme
-	solarized-theme
+	ample-theme
+	soothe-theme
+	material-theme
+	base16-theme
 	;; Modes
-	flycheck flymake-hlint org cmake-mode js2-mode
-	auctex web-mode haskell-mode arduino-mode evil ghc
+	flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
+	haskell-mode arduino-mode evil ghc go flymake-go
 	;; Utilities
-	smex helm helm-gtags tern rainbow-delimiters
-	powerline aggressive-indent undo-tree magit
-	ace-jump-mode hydra helm-swoop yasnippet projectile
-	grizzl helm-projectile
+	smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
+	undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
+	grizzl helm-projectile hlinum exec-path-from-shell
 	(rainbow-mode :url
 		      "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/rainbow-mode/rainbow-mode.el"
 		      :fetcher url)
@@ -153,7 +153,30 @@
 
 
 ;;;; Theme
-(load-theme 'solarized-light)
+(load-theme 'base16-atelierlakeside-dark t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe ((t (:background "#213d4b"))))
+ '(linum-highlight-face ((t (:inherit default :background "#d22d72" :foreground "black"))))
+ '(mode-line ((t (:background "#213d4b" :foreground "#7195a8" :box nil))))
+ '(mode-line-buffer-id ((t (:foreground "#000"))))
+ '(window-divider ((t (:foreground "#213d4b"))))
+ '(window-divider-first-pixel ((t (:foreground "#213d4b"))))
+ '(window-divider-last-pixel ((t (:foreground "#213d4b"))))
+ '(vertical-border ((t (:foreground "#213d4b"))))
+ '(company-tooltip ((t (:background "#213d4b"))))
+ '(company-tooltip-selection ((t (:background "#7ea2b4" :foreground "black"))))
+ '(company-tooltip-common ((t (:foreground "#7ea2b4"))))
+ '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
+ '(company-scrollbar-fg ((t (:background "#d22d72"))))
+ '(company-scrollbar-bg ((t (:background "#7ea2b4")))))
+
+;;;; Exec Path
+(exec-path-from-shell-initialize)
+(exec-path-from-shell-copy-env "GOPATH")
 
 ;;;; Plugins and modes
 ;;; Electric pair mode
@@ -167,6 +190,9 @@
 	  (lambda () (setq electric-pair-pairs
 			   (assq-delete-all '?\' electric-pair-pairs))))
 (add-hook 'web-mode-hook
+	  (lambda () (setq electric-pair-pairs
+			   (assq-delete-all '?\< electric-pair-pairs))))
+(add-hook 'haskell-mode-hook
 	  (lambda () (setq electric-pair-pairs
 			   (assq-delete-all '?\< electric-pair-pairs))))
 
@@ -238,7 +264,7 @@
 ;; initialize company
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Set up backends
-(setq company-backends '(company-clang company-ghc company-semantic
+(setq company-backends '(company-clang company-ghc company-go company-semantic
 				       company-gtags company-c-headers
 				       company-cmake company-files company-elisp
 				       company-auctex company-tern company-css
@@ -248,6 +274,8 @@
 
 ;;; JS2 Mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(setq js2-basic-offset 2
+      js2-bounce-indent-p t)
 
 ;;; Tern
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
@@ -376,6 +404,21 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 
+;;; HLinum Mode
+(require 'hlinum)
+(hlinum-activate)
+
+;;; CSS Mode
+(setq css-indent-offset 2) ;; Change default css mode offset
+
+;;; Go Mode
+(require 'go-mode)
+(add-hook 'go-mode-hook (lambda ()
+			  (add-hook (make-local-variable 'before-save-hook)
+				    'gofmt-before-save)
+			  (setq tab-width 2)
+			  (require 'flymake-go)))
+
 ;;;; Keybindings
 (defhydra hydra-code (global-map "C-c c")
   "Code"
@@ -425,16 +468,16 @@
 (defhydra hydra-projectile (global-map "C-c p")
   "
 Projectile
-^Files^                        ^Project^                   ^Other^
-^--------------------------------------------------------------------------------
-_f_: find file                 _r_: replace in project     _!_: run shell command
-_F_: find file in known        _k_: kill project buffers       ^in project root
-^    projects                  _i_: invalidate project     _&_: same as ! but
-_T_: find test files               ^cache                      ^async
-_t_: switch between test and   _S_: save all project       _c_: compile project
-^    implementation                 buffers
-_d_: find project dir          _b_: switch project
-_D_: open project root in          ^buffers
+^Files^                       ^Project^                   ^Other^
+^-------------------------------------------------------------------------------
+_f_: find file                _r_: replace in project     _!_: run shell command
+_F_: find file in known       _k_: kill project buffers       ^in project root
+^    projects                 _i_: invalidate project     _&_: same as ! but
+_T_: find test files              ^cache                      ^async
+_t_: switch between test and  _S_: save all project       _c_: compile project
+^    implementation                buffers
+_d_: find project dir         _b_: switch project
+_D_: open project root in         ^buffers
 ^    Dired
 _l_: find file in directory
 ^    (not project)
@@ -460,14 +503,20 @@ _e_: recent files
   ("c" projectile-compile-project))
 (define-key projectile-mode-map (kbd "C-c p") 'hydra-projectile/body)
 
+
+;;; Go-specific keybinds
+(defhydra hydra-go ()
+  ("i" go-goto-imports)
+  ("I" go-remove-unused-imports)
+  ("d" godoc)
+  ("f" gofmt))
+(define-key go-mode-map (kbd "C-c G") 'hydra-go/body)
+
 ;; Special non-hydra binds
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C-c x") 'smex)
-
-;;; Theme
-(load-theme 'solarized-light)
 
 (provide 'init)
 ;;; init.el ends here
@@ -479,9 +528,3 @@ _e_: recent files
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
