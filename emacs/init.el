@@ -21,7 +21,7 @@
   "Install packages."
   (interactive)
   (dolist (p zovt-packages)
-    (quelpa p)))
+    (package-install p)))
 
 (defun indent-whole-buffer ()
   "Indent the whole buffer."
@@ -49,6 +49,8 @@
 
 ;; Set font based on what's available
 (cond
+ ((find-font (font-spec :name "Roboto Mono"))
+  (set-face-font 'default "Roboto Mono-12"))
  ((find-font (font-spec :name "Inconsolata"))
   (set-face-font 'default "Inconsolata-13"))
  ((find-font (font-spec :name "Meslo LG S"))
@@ -111,38 +113,25 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("marmalade"
 				 . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
+
 ;; Check if hg is installed
 (check-executable "hg")
 
-;; Install quelpa
-(package-initialize)
-(if (require 'quelpa nil t)
-    (quelpa-self-upgrade)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)
-    (package-refresh-contents)
-    (setq package-check-signature nil)
-    (package-install 'let-alist)))
-
-;; My package list for quelpa
+;; My package list
 (setq zovt-packages
       '(;; Themes
-	monokai-theme
 	ample-theme
 	soothe-theme
 	material-theme
 	base16-theme
 	;; Modes
 	flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
-	haskell-mode arduino-mode evil ghc go flymake-go
+	haskell-mode arduino-mode evil ghc go-mode flymake-go
 	;; Utilities
 	smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
 	undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
 	grizzl helm-projectile hlinum exec-path-from-shell
-	(rainbow-mode :url
-		      "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/rainbow-mode/rainbow-mode.el"
-		      :fetcher url)
 	;; Company
 	company company-c-headers company-tern company-ghc))
 
@@ -173,10 +162,6 @@
  '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
  '(company-scrollbar-fg ((t (:background "#d22d72"))))
  '(company-scrollbar-bg ((t (:background "#7ea2b4")))))
-
-;;;; Exec Path
-(exec-path-from-shell-initialize)
-(exec-path-from-shell-copy-env "GOPATH")
 
 ;;;; Plugins and modes
 ;;; Electric pair mode
@@ -219,6 +204,17 @@
 
 ;;; Smex
 (require 'smex)
+
+;;; Projectile
+(require 'projectile)
+(projectile-global-mode)
+(when (eq system-type 'windows-nt)
+  (setq projectile-indexing-method 'alien))
+(setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
+(setq projectile-completion-system 'grizzl)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;;; Helm
 (require 'helm)
@@ -392,17 +388,6 @@
 
 ;;; Yasnippet
 (yas-global-mode 1)
-
-;;; Projectile
-(require 'projectile)
-(projectile-global-mode)
-(when (eq system-type 'windows-nt)
-  (setq projectile-indexing-method 'alien))
-(setq projectile-enable-caching t)
-(setq projectile-require-project-root nil)
-(setq projectile-completion-system 'grizzl)
-(require 'helm-projectile)
-(helm-projectile-on)
 
 ;;; HLinum Mode
 (require 'hlinum)
