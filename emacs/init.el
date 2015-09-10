@@ -21,7 +21,8 @@
   "Install packages."
   (interactive)
   (dolist (p zovt-packages)
-    (package-install p)))
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 (defun indent-whole-buffer ()
   "Indent the whole buffer."
@@ -114,14 +115,11 @@
 (add-to-list 'package-archives '("marmalade"
 				 . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
-
-;; Check if hg is installed
-(check-executable "hg")
+(package-refresh-contents)
 
 ;; My package list
-(setq zovt-packages
-      '(;; Themes
-	ample-theme
+(defvar zovt-packages
+      '(ample-theme
 	soothe-theme
 	material-theme
 	base16-theme
@@ -136,10 +134,7 @@
 	company company-c-headers company-tern company-ghc))
 
 ;; Install packages
-(unless (file-exists-p "~/.emacs.d/init-done")
-  (zovt-install-packages)
-  (shell-command "touch ~/.emacs.d/init-done"))
-
+(zovt-install-packages)
 
 ;;;; Theme
 (load-theme 'base16-atelierlakeside-dark t)
