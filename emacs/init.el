@@ -119,19 +119,20 @@
 
 ;; My package list
 (defvar zovt-packages
-      '(ample-theme
-	soothe-theme
-	material-theme
-	base16-theme
-	;; Modes
-	flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
-	haskell-mode arduino-mode evil ghc go-mode flymake-go
-	;; Utilities
-	smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
-	undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
-	grizzl helm-projectile hlinum exec-path-from-shell
-	;; Company
-	company company-c-headers company-tern company-ghc))
+  '(ample-theme
+    soothe-theme
+    material-theme
+    base16-theme
+    ;; Modes
+    flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
+    haskell-mode arduino-mode evil ghc go-mode flymake-go
+    geiser quack
+    ;; Utilities
+    smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
+    undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
+    grizzl helm-projectile hlinum exec-path-from-shell
+    ;; Company
+    company company-c-headers company-tern company-ghc))
 
 ;; Install packages
 (zovt-install-packages)
@@ -143,20 +144,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-scrollbar-bg ((t (:background "#7ea2b4"))))
+ '(company-scrollbar-fg ((t (:background "#d22d72"))))
+ '(company-tooltip ((t (:background "#213d4b"))))
+ '(company-tooltip-common ((t (:foreground "#7ea2b4"))))
+ '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
+ '(company-tooltip-selection ((t (:background "#7ea2b4" :foreground "black"))))
  '(fringe ((t (:background "#213d4b"))))
  '(linum-highlight-face ((t (:inherit default :background "#d22d72" :foreground "black"))))
  '(mode-line ((t (:background "#213d4b" :foreground "#7195a8" :box nil))))
  '(mode-line-buffer-id ((t (:foreground "#000"))))
+ '(vertical-border ((t (:foreground "#213d4b"))))
  '(window-divider ((t (:foreground "#213d4b"))))
  '(window-divider-first-pixel ((t (:foreground "#213d4b"))))
- '(window-divider-last-pixel ((t (:foreground "#213d4b"))))
- '(vertical-border ((t (:foreground "#213d4b"))))
- '(company-tooltip ((t (:background "#213d4b"))))
- '(company-tooltip-selection ((t (:background "#7ea2b4" :foreground "black"))))
- '(company-tooltip-common ((t (:foreground "#7ea2b4"))))
- '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
- '(company-scrollbar-fg ((t (:background "#d22d72"))))
- '(company-scrollbar-bg ((t (:background "#7ea2b4")))))
+ '(window-divider-last-pixel ((t (:foreground "#213d4b")))))
 
 ;;;; Plugins and modes
 ;;; Electric pair mode
@@ -300,6 +301,7 @@
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode-enable)
 
 ;;; Powerline
 (require 'powerline-themes)
@@ -398,6 +400,9 @@
 				    'gofmt-before-save)
 			  (setq tab-width 2)
 			  (require 'flymake-go)))
+
+;;; Geiser
+(setq geiser-active-implementations '(racket))
 
 ;;;; Keybindings
 (defhydra hydra-code (global-map "C-c c")
@@ -507,4 +512,7 @@ _e_: recent files
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(package-selected-packages
+   (quote
+    (quack geiser company-ghc company-tern company-c-headers company exec-path-from-shell hlinum helm-projectile grizzl projectile yasnippet helm-swoop hydra ace-jump-mode magit aggressive-indent powerline rainbow-delimiters tern helm-gtags helm smex flymake-go go-mode ghc evil arduino-mode haskell-mode web-mode auctex js2-mode cmake-mode flymake-hlint flycheck base16-theme material-theme soothe-theme ample-theme))))
