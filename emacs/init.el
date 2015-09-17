@@ -21,7 +21,8 @@
   "Install packages."
   (interactive)
   (dolist (p zovt-packages)
-    (package-install p)))
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 (defun indent-whole-buffer ()
   "Indent the whole buffer."
@@ -114,32 +115,27 @@
 (add-to-list 'package-archives '("marmalade"
 				 . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
-
-;; Check if hg is installed
-(check-executable "hg")
+(package-refresh-contents)
 
 ;; My package list
-(setq zovt-packages
-      '(;; Themes
-	ample-theme
-	soothe-theme
-	material-theme
-	base16-theme
-	;; Modes
-	flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
-	haskell-mode arduino-mode evil ghc go-mode flymake-go
-	;; Utilities
-	smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
-	undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
-	grizzl helm-projectile hlinum exec-path-from-shell
-	;; Company
-	company company-c-headers company-tern company-ghc))
+(defvar zovt-packages
+  '(ample-theme
+    soothe-theme
+    material-theme
+    base16-theme
+    ;; Modes
+    flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
+    haskell-mode arduino-mode evil ghc go-mode flymake-go
+    geiser quack
+    ;; Utilities
+    smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
+    undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
+    grizzl helm-projectile hlinum exec-path-from-shell
+    ;; Company
+    company company-c-headers company-tern company-ghc))
 
 ;; Install packages
-(unless (file-exists-p "~/.emacs.d/init-done")
-  (zovt-install-packages)
-  (shell-command "touch ~/.emacs.d/init-done"))
-
+(zovt-install-packages)
 
 ;;;; Theme
 (load-theme 'base16-atelierlakeside-dark t)
@@ -148,20 +144,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-scrollbar-bg ((t (:background "#7ea2b4"))))
+ '(company-scrollbar-fg ((t (:background "#d22d72"))))
+ '(company-tooltip ((t (:background "#213d4b"))))
+ '(company-tooltip-common ((t (:foreground "#7ea2b4"))))
+ '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
+ '(company-tooltip-selection ((t (:background "#7ea2b4" :foreground "black"))))
  '(fringe ((t (:background "#213d4b"))))
  '(linum-highlight-face ((t (:inherit default :background "#d22d72" :foreground "black"))))
  '(mode-line ((t (:background "#213d4b" :foreground "#7195a8" :box nil))))
  '(mode-line-buffer-id ((t (:foreground "#000"))))
+ '(vertical-border ((t (:foreground "#213d4b"))))
  '(window-divider ((t (:foreground "#213d4b"))))
  '(window-divider-first-pixel ((t (:foreground "#213d4b"))))
- '(window-divider-last-pixel ((t (:foreground "#213d4b"))))
- '(vertical-border ((t (:foreground "#213d4b"))))
- '(company-tooltip ((t (:background "#213d4b"))))
- '(company-tooltip-selection ((t (:background "#7ea2b4" :foreground "black"))))
- '(company-tooltip-common ((t (:foreground "#7ea2b4"))))
- '(company-tooltip-common-selection ((t (:foreground "#d22d72"))))
- '(company-scrollbar-fg ((t (:background "#d22d72"))))
- '(company-scrollbar-bg ((t (:background "#7ea2b4")))))
+ '(window-divider-last-pixel ((t (:foreground "#213d4b")))))
 
 ;;;; Plugins and modes
 ;;; Electric pair mode
@@ -305,6 +301,7 @@
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode-enable)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode-enable)
 
 ;;; Powerline
 (require 'powerline-themes)
@@ -403,6 +400,9 @@
 				    'gofmt-before-save)
 			  (setq tab-width 2)
 			  (require 'flymake-go)))
+
+;;; Geiser
+(setq geiser-active-implementations '(racket))
 
 ;;;; Keybindings
 (defhydra hydra-code (global-map "C-c c")
@@ -505,12 +505,3 @@ _e_: recent files
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))))
-(put 'downcase-region 'disabled nil)
