@@ -1,0 +1,42 @@
+<openbox_menu>
+  <menu id="desktop-menu" label="Hello">
+    <item label="firefox">
+      <action name="Execute">
+	<command>firefox-developer</command>
+      </action>
+    </item>
+    <item label="emacs">
+      <action name="Execute">
+	<command>emacs</command>
+      </action>
+    </item>
+    <item label="term">
+      <action name="Execute">
+	<command>gnome-terminal</command>
+      </action>
+    </item>
+    <menu id="places" label="places">
+      <item label="downloads">
+	<action name="Execute">
+	  <command>thunar ~/Downloads/</command>
+	</action>
+      </item>
+      <item label="pictures">
+	<action name="Execute">
+	  <command>thunar ~/Pictures/</command>
+	</action>
+      </item>
+      <item label="owncloud">
+	<action name="Execute">
+	  <command>thunar ~/ownCloud/</command>
+	</action>
+      </item>
+    </menu>
+    <separator />
+    <item label="reconf">
+      <action name="Execute">
+	<command>openbox --reconfigure</command>
+      </action>
+    </item>
+  </menu>
+</openbox_menu>
