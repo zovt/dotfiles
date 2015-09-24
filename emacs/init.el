@@ -50,6 +50,8 @@
 
 ;; Set font based on what's available
 (cond
+ ((find-font (font-spec :name "Hack"))
+  (set-face-font 'default "Hack-11"))
  ((find-font (font-spec :name "Roboto Mono"))
   (set-face-font 'default "Roboto Mono-12"))
  ((find-font (font-spec :name "Inconsolata"))
@@ -266,8 +268,7 @@
 
 ;;; JS2 Mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(setq js2-basic-offset 2
-      js2-bounce-indent-p t)
+(setq js2-basic-offset 2)
 
 ;;; Tern
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
