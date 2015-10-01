@@ -63,9 +63,6 @@
  ((find-font (font-spec :name "courier"))
   (set-face-font 'default "courier-12")))
 
-;; Enable line numbering
-(global-linum-mode)
-
 ;; Change tramp settings if on windows
 (if (eq system-type 'windows-nt)
     (setq tramp-default-method "plink"))
@@ -132,7 +129,7 @@
     ;; Utilities
     smex helm helm-gtags tern rainbow-delimiters powerline aggressive-indent
     undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
-    grizzl helm-projectile hlinum exec-path-from-shell
+    grizzl helm-projectile exec-path-from-shell
     ;; Company
     company company-c-headers company-tern company-ghc))
 
@@ -386,10 +383,6 @@
 
 ;;; Yasnippet
 (yas-global-mode 1)
-
-;;; HLinum Mode
-(require 'hlinum)
-(hlinum-activate)
 
 ;;; CSS Mode
 (setq css-indent-offset 2) ;; Change default css mode offset
