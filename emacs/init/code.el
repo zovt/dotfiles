@@ -14,3 +14,6 @@
 
 ;;; C Indentation Mode
 (setq c-default-style "user")
+
+(provide 'code)
+;;; code.el ends here

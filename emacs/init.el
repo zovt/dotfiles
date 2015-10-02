@@ -7,8 +7,8 @@
 (require 'packaging)
 (require 'visual)
 (require 'code)
-(require 'keybindings)
 (require 'plugins)
+(require 'keybindings)
 
 
 (provide 'init)

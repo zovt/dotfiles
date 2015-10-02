@@ -34,7 +34,7 @@
   (set-face-font 'default "courier-12")))
 
 ;;;; Theme
-(load-theme 'soothe t)
+(load-theme 'molokai t)
 
 ;;; Modeline
 (setq powerline-default-separator 'chamfer)

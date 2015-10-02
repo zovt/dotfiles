@@ -15,7 +15,7 @@
     geiser quack
     ;; Utilities
     smex helm helm-gtags rainbow-delimiters powerline aggressive-indent
-    undo-tree magit ace-jump-mode hydra helm-swoop yasnippet projectile
+    undo-tree magit ace-jump-mode hydra helm-swoop projectile
     grizzl helm-projectile exec-path-from-shell spaceline fancy-battery
     ;; Company
     company company-c-headers company-tern company-ghc))

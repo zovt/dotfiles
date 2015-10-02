@@ -132,9 +132,6 @@
 (add-hook 'web-mode-hook 'rainbow-mode)
 (add-hook 'js2-mode-hook 'rainbow-mode)
 
-;;; Yasnippet
-(yas-global-mode 1)
-
 ;;;; Modes
 ;;; JS2 Mode
 (autoload 'js2-mode "js2-mode" "JS2 Mode" t)
@@ -182,7 +179,7 @@
 (setq css-indent-offset 2) ;; Change default css mode offset
 
 ;;; Go Mode
-(autoload 'go-mode "go-mode" "Go Mode" t)
+(require 'go-mode)
 (add-hook 'go-mode-hook (lambda ()
 			  (add-hook (make-local-variable 'before-save-hook)
 				    'gofmt-before-save)
