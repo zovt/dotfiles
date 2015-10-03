@@ -33,5 +33,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
+;; Change where customizations are stored
+(setq custom-file "~/.emacs.d/custom.el")
+
 (provide 'system)
 ;;; system.el ends here
