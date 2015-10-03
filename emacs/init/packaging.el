@@ -38,8 +38,9 @@
 (package-initialize)
 
 (if (not (package-installed-p 'ample-theme))
-    (progn (package-refresh-contents)
-	   (zovt-install-packages)))
+    (progn (package-refresh-contents)))
+
+(zovt-install-packages)
 
 (provide 'packaging)
 ;;; packaging.el ends here
