@@ -9,6 +9,7 @@
 (require 'code)
 (require 'plugins)
 (require 'keybindings)
-
+(load custom-file)
 
 (provide 'init)
+;;; init.el ends here

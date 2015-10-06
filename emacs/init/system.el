@@ -34,7 +34,7 @@
 (setq uniquify-buffer-name-style 'post-forward)
 
 ;; Change where customizations are stored
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/init/custom.el")
 
 (provide 'system)
 ;;; system.el ends here
