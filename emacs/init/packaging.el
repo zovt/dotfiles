@@ -12,7 +12,7 @@
     ;; Modes
     flycheck flymake-hlint org cmake-mode js2-mode auctex web-mode
     haskell-mode arduino-mode evil ghc go-mode flymake-go
-    geiser quack
+    geiser quack markdown-mode
     ;; Utilities
     smex helm helm-gtags rainbow-delimiters powerline aggressive-indent
     undo-tree magit ace-jump-mode hydra helm-swoop projectile
