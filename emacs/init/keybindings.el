@@ -94,6 +94,17 @@ _e_: recent files
   ("f" gofmt))
 (define-key go-mode-map (kbd "C-c G") 'hydra-go/body)
 
+;;; Origami Mode
+(defhydra hydra-origami (origami-mode-map "C-c TAB")
+  ("TAB" origami-recursively-toggle-node)
+  ("O" origami-open-node-recursively)
+  ("c" origami-close-node)
+  ("C" origami-close-node-recursively)
+  ("t" origami-open-node)
+  ("G" origami-toggle-all-nodes)
+  ("f" origami-show-only-node)
+  ("r" origami-reset))
+
 ;; Special non-hydra binds
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)

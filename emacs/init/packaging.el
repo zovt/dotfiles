@@ -17,6 +17,7 @@
     smex helm helm-gtags rainbow-delimiters powerline aggressive-indent
     undo-tree magit ace-jump-mode hydra helm-swoop projectile
     grizzl helm-projectile exec-path-from-shell spaceline fancy-battery
+    origami evil-mc
     ;; Company
     company company-c-headers company-tern company-ghc))
 

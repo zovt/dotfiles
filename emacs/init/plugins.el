@@ -214,6 +214,11 @@
 			  (type "|" "CANCELED(c@)")
 			  (type "TODO" "IN-PROGRESS" "WAITING" "|"
 				"DONE(d!)")))
+
+;;;; Origami Mode
+(autoload 'origami-mode "origami" "Folding mode" t)
+(global-origami-mode)
+
 ;; Set export backends
 (setq org-export-backends '(ascii md html odt org latex man))
 ;; Set up time tracking
