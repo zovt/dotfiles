@@ -20,8 +20,10 @@
 
 ;; Set font based on what's available
 (cond
+ ((find-font (font-spec :name "Roboto"))
+  (set-face-font 'default "Roboto-12"))
  ((find-font (font-spec :name "Hack"))
-  (set-face-font 'default "Hack-11"))
+  (set-face-font 'default "Hack-12"))
  ((find-font (font-spec :name "Roboto Mono"))
   (set-face-font 'default "Roboto Mono-12"))
  ((find-font (font-spec :name "Inconsolata"))
@@ -32,6 +34,11 @@
   (set-face-font 'default "Fira Code-12"))
  ((find-font (font-spec :name "courier"))
   (set-face-font 'default "courier-12")))
+
+;; Set monospace fonts
+(set-face-font 'org-table "Roboto Mono-11")
+(set-face-font 'company-tooltip-common "Roboto Mono-11")
+(set-face-font 'company-tooltip "Roboto Mono-11")
 
 ;;;; Theme
 (load-theme 'molokai t)

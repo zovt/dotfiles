@@ -5,7 +5,8 @@
 
 ;; Use heretical tabs for indent
 (setq indent-tabs-mode t)
-(setq tab-width 2)
+(setq c-basic-offset 6)
+(setq tab-width 6)
 
 ;; Highlight lines over 80 chars
 (setq whitespace-line-column 80) ;; limit line length
