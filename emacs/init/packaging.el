@@ -25,6 +25,7 @@
 (defun zovt-install-packages ()
   "Install packages."
   (interactive)
+  (package-refresh-contents)
   (dolist (p zovt-packages)
     (when (not (package-installed-p p))
       (package-install p))))
