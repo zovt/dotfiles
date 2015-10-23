@@ -79,7 +79,7 @@
 
 ;;; Company
 ;; initialize company
-(autoload 'global-company-mode "company" "Company mode" t)
+(require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Set up backends
 (setq company-backends '(company-clang company-ghc company-go company-semantic
