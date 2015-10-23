@@ -9,6 +9,7 @@
 (require 'code)
 (require 'plugins)
 (require 'keybindings)
+(require 'mono)
 (load custom-file)
 
 (provide 'init)
