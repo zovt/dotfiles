@@ -41,7 +41,7 @@
 ;;; Modeline
 (setq powerline-default-separator 'chamfer)
 (require 'spaceline-config)
-(spaceline-spacemacs-theme)
+(spaceline-emacs-theme)
 
 (provide 'visual)
-;; visual.el ends here 
+;;; visual.el ends here

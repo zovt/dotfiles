@@ -24,6 +24,9 @@
 (evil-global-set-key 'normal ";" 'evil-ex)
 (evil-global-set-key 'normal "U" 'undo-tree-visualize)
 
+;;; Evil MC
+(global-evil-mc-mode)
+
 ;;; Smex
 (autoload 'smex "smex" "Nice M-x replacement" t)
 
@@ -80,6 +83,8 @@
 ;;; Company
 ;; initialize company
 (require 'company)
+(require 'company-go)
+(require 'company-auctex)
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Set up backends
 (setq company-backends '(company-clang company-ghc company-go company-semantic
