@@ -20,8 +20,6 @@
 
 ;; Set font based on what's available
 (cond
- ((find-font (font-spec :name "Roboto"))
-  (set-face-font 'default "Roboto-13"))
  ((find-font (font-spec :name "Hack"))
   (set-face-font 'default "Hack-12"))
  ((find-font (font-spec :name "Roboto Mono"))
