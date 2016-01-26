@@ -19,7 +19,7 @@
     grizzl helm-projectile exec-path-from-shell spaceline fancy-battery
     origami evil-mc
     ;; Company
-    company company-c-headers company-tern company-ghc company-go company-auctex))
+    company company-c-headers company-tern company-ghc company-go))
 
 ;; Install packages function
 (defun zovt-install-packages ()

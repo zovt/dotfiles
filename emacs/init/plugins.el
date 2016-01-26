@@ -84,14 +84,12 @@
 ;; initialize company
 (require 'company)
 (require 'company-go)
-(require 'company-auctex)
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Set up backends
 (setq company-backends '(company-clang company-ghc company-go company-semantic
 				       company-gtags company-c-headers
 				       company-cmake company-files company-elisp
-				       company-auctex company-tern company-css
-				       company))
+				       company-tern company-css company))
 
 ;;; Flycheck
 (autoload 'global-flycheck-mode "flycheck" "Flycheck mode" t)
