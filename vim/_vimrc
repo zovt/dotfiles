@@ -1,255 +1,204 @@
-" Basic configuration {{{
+" vim: set foldmethod=marker foldlevel=0:
+" basics {{{
+" default
 set nocompatible
-filetype off
-" }}}
-" Include Vundle {{{
-set rtp+=~/.vim/bundle/Vundle
-" }}}
-" Plugins {{{
-call vundle#begin()
-Plugin 'gmarik/Vundle'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'edkolev/promptline.vim'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'jamessan/vim-gnupg'
-Plugin 'tpope/vim-speeddating'
-Plugin 'vim-scripts/SyntaxRange'
-Plugin 'mattn/calendar-vim'
-Plugin 'vim-scripts/utl.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'jceb/vim-orgmode'
-Plugin 'zovt/syntact'
-Plugin 'zovt/mysnippets'
-Plugin 'oblitum/rainbow'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/csapprox'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'mhinz/vim-startify'
-Plugin 'sjl/gundo.vim'
-Plugin 'fatih/vim-go'
-call vundle#end()
-" }}}
-" My options {{{
-"" General Options {{{
-filetype plugin indent on
-set langmenu=en_US.UTF-8
-let $LANG = 'en'
-set autoindent
-set rnu
-set nu
-set hidden
-syntax on
-set ignorecase
-set smartcase
-set hls
-set lbr
-set encoding=utf-8
-set foldmethod=marker
-set conceallevel=2
-"" }}}
-"" Change tab to four spaces {{{
-set tabstop=4
-set shiftwidth=4
-set expandtab
-"" }}}
-"" Visual bell and cursorline {{{
-set visualbell
+
+" change tab width
+set tabstop=2
+set shiftwidth=2
+
+" show line numbers
+set number
+
+" show most recent command in bottom bar
+set showcmd
+
+" highlight current line
 set cursorline
-"" }}}
-"" Leader {{{
-let mapleader = " "
-nnoremap <Space> <nop>
-"" }}}
-"" other stuff {{{
-set showmode
-set backup
-set backupdir=~/.vimbackups//
-set dir=~/.vimbackups//
-"" }}}
-"" Disable cursor blink {{{
-set guicursor+=a:blinkon0
-"" }}}
-"" change default shell on linux {{{
-if has("unix")
-    set shell=/usr/bin/bash
-endif
-"" }}}
+
+" indent based on filetype
+filetype indent on
+
+" set wildmenu
+set wildmenu
+
+" only redraw when needed
+set lazyredraw
+
+" show matching parens
+set showmatch
+
+" incremental searching with highlights
+set incsearch
+set hlsearch
+
+" enable modeline
+set modelines=1
+
+" turn on folding
+set foldenable
+set foldmethod=indent
+
+" show all folds by default
+set foldlevelstart=10
+
+" set maximum fold number
+set foldnestmax=10
+
+" visual bell
+set visualbell
+
+" make backspace good
+set backspace=indent,eol,start
+
+" change backups
+set backupdir=~/vimfiles/backups//
+set directory=.,~/vimfiles/backups//
+
+" keep files open even when to shown on screen
+set hidden
 " }}}
-" Visual Options {{{
-"" Font {{{
-if has("unix")
-    set guifont=Input\ Mono\ 10
-else
-    set guifont=InputMono:h10:cANSI
-endif
-"" }}}
-"" Colorscheme {{{
-colorscheme syntact
-"" }}}
-"" remove gui stuff {{{
-set guioptions-=m
+" plugins {{{
+set runtimepath^=~\vimfiles\plug
+call plug#begin('~/vimfiles/plugged')
+
+" Apprentice colorscheme
+Plug 'romainl/Apprentice'
+
+" Ctrl-P
+Plug 'ctrlpvim/ctrlp.vim'
+
+" NerdTREE
+Plug 'scrooloose/nerdtree'
+
+" rust highlighting
+Plug 'rust-lang/rust.vim'
+
+" racer
+Plug 'racer-rust/vim-racer'
+
+" delimitMate
+Plug 'Raimondi/delimitMate'
+
+" Rainbow
+Plug 'luochen1990/rainbow'
+
+" Syntastic
+Plug 'scrooloose/syntastic'
+
+" Gundo.vim
+Plug 'sjl/gundo.vim'
+
+" vim-buftabline
+Plug 'ap/vim-buftabline'
+
+" tabular
+Plug 'godlygeek/tabular'
+
+" vim-markdown
+Plug 'plasticboy/vim-markdown'
+
+call plug#end()
+
+" Plugin Options {{{
+" vim-racer
+let $RUST_SRC_PATH = "C:/Program Files/Rust stable GNU 1.6/src/src"
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_include_dirs = [ "C:\tools\mingw64\x86_64-w64-mingw32\include" ]
+let g:syntastic_cpp_compiler_options = ' -std=c++14'
+
+" Gundo
+let g:gundo_width = 40
+let g:gundo_preview_height = 40
+let g_gundo_right = 1
+
+" }}}
+" }}}
+" Visual {{{
+set guifont=Hack:h12:cANSI
 set guioptions-=T
+set guioptions-=m
 set guioptions-=r
-"" }}}
+set guioptions-=L
+set ruler
+colorscheme apprentice
+
+" syntax highlighting
+syntax enable
+syntax on
+
+" set colorcolumn
+set colorcolumn=80
+
+" soft wrapping
+set wrap
+set linebreak
+set nolist
+
+" show tabline
+set showtabline=2
 " }}}
-" Windows {{{
-"" Auto resize windows {{{
-au VimResized * exe "normal! \<c-w>="
-"" }}}
-"" Window movement binds {{{
-nnoremap <silent> <Leader>wl <c-w>l
-nnoremap <silent> <Leader>wh <c-w>h
-nnoremap <silent> <Leader>wj <c-w>j
-nnoremap <silent> <Leader>wk <c-w>k
-"" }}}
-"" Window creation binds {{{
-nnoremap <silent> <Leader>wv :vsplit<CR>
-nnoremap <silent> <Leader>ws :split<CR>
-nnoremap <silent> <Leader>wq :hide<CR>
-nnoremap <silent> <Leader>wx :only<CR>
-"" }}}
-" }}}
-" Auto-Resume line {{{
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") <= line("$") |
-        \       execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-" }}}
-" Highlight character if line length is greater than 80 {{{
-match ColorColumn /\%81v.\+/
-" }}}
-" Custom conceal charaters {{{
-augroup custom_conceals
-    au!
-    autocmd BufReadPost,BufNewFile *
-                \ if &filetype =~ "conf" || &filetype =~ "notes" |
-                \      syntax match noteChar "->" conceal cchar=➞ |
-                \ endif |
-                \ set cole=2
-augroup END
-" }}}
-" Plugin Specific options {{{
-"" Neocomplete options {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 4
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"" }}}
-"" Tab completion {{{
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patters = {}
-endif
-"" }}}
-"" GitGutter {{{
-highlight clear SignColumn
-"" }}}
-"" Airline {{{
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#show_tab_type = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
- let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-set laststatus=2
-"" }}}
-"" DelimitMate {{{
-let delimitMate_autoclose = 1
-let delimitMate_expand_cr = 1
-let delimitMate_matchpairs = "{:},[:],(:),<:>"
-let delimitMate_jump_expansion = 1
-set backspace=2
-"" }}}
-"" Tagbar {{{
-let g:tagbar_autoclose = 1
-nnoremap <silent> <Leader>t :TagbarToggle<CR>
-"" }}}
-"" Syntastic {{{
-let g:syntastic_enable_signs = 1
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_mode_map = { "mode": "active", "active_filetypes": [], "passive_filetypes": []}
-"" }}}
-"" Rainbow Parens {{{
-let g:rainbow_active = 1
-"" }}}
-"" Vim Notes {{{
-let g:notes_directories = ['~/dotfiles/documents/notes/']
-"" }}}
-"" NERDTree {{{
-nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-""}}}
-"" UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<s-enter>"
-let g:UltiSnipsListSnippets="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<s-enter>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"" }}}
-"" EasyAlign {{{
-vmap <enter> :EasyAlign
-"" }}}
-"" Go Vim {{{
-if has("unix")
-    let $GOPATH=
-else
-    let $GOPATH="C:/Go/"
-end
-"" }}}
-" }}}
-" Custom mappings {{{
-"" Sourcing vimrc {{{
-noremap <F9> :e ~/.vimrc<CR>
-noremap <F6> :so ~/.vimrc<CR>
-"" }}}
-"" Switch ; to : {{{
+" Keybinds {{{
+" leader
+let mapleader="\<Space>"
+nmap <space> <nop>
+
+" leader space open/closes folds
+nnoremap <TAB> za
+nnoremap <S-Tab> zMzv
+
+" turn off highlights
+nnoremap <leader>z :nohlsearch<CR>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to end of line with CTRL-E in insert mode, and the front with CTRL-A
+inoremap <C-a> <esc>0i
+inoremap <C-e> <esc>$a
+
+" map jk to esc
+inoremap jk <esc>
+
+" make ; :
 nnoremap ; :
-"" }}}
-"" Hard left and right {{{
-nnoremap L $
-nnoremap H ^
-"" }}}
-"" Folding {{{
-nnoremap <silent> <Leader>z zMzvzz
-nnoremap <silent> <Leader><Space> za
-"" }}}
-"" Quickfix current search {{{
-nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-"" }}}
-"" Remove all trailing whitespace {{{
-nnoremap <silent> <Leader>w :%s/\s\+$//<CR>
-"" }}}
-"" Buffer manipulation {{{
-nnoremap <silent> <Leader>l :bnext<CR>
-nnoremap <silent> <Leader>h :bprev<CR>
-nnoremap <silent> <Leader>d :bdel<CR>
-"" }}}
-"" Misc {{{
-nnoremap <silent> <C-s> :w <CR>
-nnoremap <silent> <leader>cd :cd %:p:h<CR>
-nnoremap <silent> <leader>gg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-"" }}}
+
+" load vimrc
+nnoremap <leader>lv :source ~/_vimrc<CR>
+
+" edit vimrc
+nnoremap <leader>ev :e ~/_vimrc<CR>
+
+" move between windows
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wq <C-w>q
+
+" open new splits
+nnoremap <leader>wH <C-W>S
+nnoremap <leader>wV <C-W>v
+
+" buffers
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+
+" change to current directory
+nnoremap <leader>cd :lcd %:p:h<CR>
+
+" NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Gundo
+nnoremap U :GundoToggle<CR>
 " }}}
