@@ -112,8 +112,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_include_dirs = [ "C:\tools\mingw64\x86_64-w64-mingw32\include" ]
+let g:syntastic_cpp_include_dirs = [ 'C:/Users/nicho/dev/tftf/include' ]
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
+let g:syntastic_cpp_compiler = 'clang++'
 
 " Gundo
 let g:gundo_width = 40
@@ -142,6 +143,8 @@ set colorcolumn=80
 set wrap
 set linebreak
 set nolist
+set textwidth=0
+set wrapmargin=0
 
 " show tabline
 set showtabline=2
