@@ -18,6 +18,9 @@
 							tab-width 2
 							indent-tabs-mode t)
 
+;; change backup file location
+(setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
+
 ;; set up packages
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
@@ -71,6 +74,9 @@
 	(add-hook 'c++-mode-hook 'irony-mode)
 	(if (string-equal system-type "windows-nt")
 			(setq w32-pipe-read-delay 0)))
+
+;; c++-mode
+(add-to-list 'auto-mode-alist '("\\.tt\\'" . c++-mode))
 
 ;; cpputils-cmake
 (use-package cpputils-cmake
@@ -148,6 +154,10 @@
 	(diminish 'aggressive-indent-mode)
 	(diminish 'company-mode)
 	(diminish 'undo-tree-mode))
+
+;; glsl-mode
+(use-package glsl-mode
+	:ensure t)
 
 ;; keybinds
 ;; fix escape

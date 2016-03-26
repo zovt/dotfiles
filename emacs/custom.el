@@ -6,6 +6,9 @@
  '(custom-safe-themes
 	 (quote
 		("0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "98a619757483dc6614c266107ab6b19d315f93267e535ec89b7af3d62fb83cad" "9b402e9e8f62024b2e7f516465b63a4927028a7055392290600b776e4a5b9905" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" default)))
+ '(package-selected-packages
+	 (quote
+		(evil glsl-mode use-package web-mode spaceline soothe-theme smex rainbow-delimiters quack origami molokai-theme material-theme markdown-mode magit js2-mode hydra helm-swoop helm-projectile helm-gtags grizzl geiser flymake-hlint flymake-go flycheck fancy-battery exec-path-from-shell evil-mc company-tern company-go company-ghc company-c-headers company-auctex cmake-mode arduino-mode ample-theme aggressive-indent ace-jump-mode)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(safe-local-variable-values
