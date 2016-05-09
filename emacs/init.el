@@ -149,7 +149,26 @@
 	(diminish 'company-mode)
 	(diminish 'undo-tree-mode))
 
+;; sr-speedbar
+(use-package sr-speedbar
+	:ensure t
+	:config
+	(setq speedbar-use-images nil)
+	(add-to-list 'evil-emacs-state-modes 'speedbar-mode)
+	(add-hook 'speedbar-reconfigure-keymaps-hook
+						(lambda ()
+							(define-key speedbar-mode-map (kbd "h") 'windmove-left))))
+
+;; ocaml
+(use-package tuareg
+	:ensure t)
+
+;; haskell
+(use-package haskell-mode
+	:ensure t)
+
 ;; keybinds
+
 ;; fix escape
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -175,6 +194,9 @@
 
 ;; fiplr
 (global-set-key (kbd "C-c f") 'fiplr-find-file)
+
+;; neotree
+(global-set-key (kbd "C-c n") 'sr-speedbar-toggle)
 
 ;; customizing the modeline
 (setq-default mode-line-format
