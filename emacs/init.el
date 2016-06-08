@@ -1,5 +1,5 @@
 ;; visual
-(set-face-font 'default "Envy Code R-12")
+(set-face-font 'default "M+ 1m-14")
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 (setq visible-bell t)
@@ -38,11 +38,11 @@
 (electric-pair-mode)
 
 ;; begin packages
-;; noctilux theme
-(use-package noctilux-theme
+;; dracula theme
+(use-package dracula-theme
 	:ensure t
 	:config
-	(load-theme 'noctilux))
+	(load-theme 'dracula))
 
 ;; evil
 (use-package evil
@@ -172,10 +172,14 @@
 ;; haskell
 (use-package haskell-mode
 	:ensure t)
-	
+
 ;; glsl-mode
-	(use-package glsl-mode
-		:ensure t)
+(use-package glsl-mode
+	:ensure t)
+
+;; cmake-mode
+(use-package cmake-mode
+	:ensure t)
 
 ;; keybinds
 
