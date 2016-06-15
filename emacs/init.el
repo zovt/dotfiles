@@ -183,7 +183,9 @@
 
 ;; web-mode
 (use-package web-mode
-	:ensure t)
+	:ensure t
+	:config
+	(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode)))
 
 ;; keybinds
 
