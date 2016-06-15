@@ -208,6 +208,13 @@
 	(add-hook 'rust-mode-hook 'racer-mode)
 	(add-hook 'racer-mode-hook 'eldoc-mode))
 
+;; web-mode
+(use-package web-mode
+	:ensure t
+	:config
+	(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
+
 ;; keybinds
 
 ;; fix escape
