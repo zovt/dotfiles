@@ -113,12 +113,13 @@
 	(setq-default flycheck-clang-language-standard "c++14")
 	(global-flycheck-mode))
 
-	;; rainbow-delimiters-mode
-	(use-package rainbow-delimiters
-		:ensure t
-		:config
-		(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
-		(add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable))
+;; rainbow-delimiters-mode
+(use-package rainbow-delimiters
+	:ensure t
+	:config
+	(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode-enable)
+	(add-hook 'c++-mode-hook 'rainbow-delimiters-mode-enable)
+	(add-hook 'rust-mode-hook 'rainbow-delimiters-mode-enable))
 
 ;; org-mode
 (setq org-log-done 'time)
@@ -180,6 +181,32 @@
 ;; cmake-mode
 (use-package cmake-mode
 	:ensure t)
+
+;; Rust
+;; rust-mode
+(use-package rust-mode
+	:ensure t)
+
+;; cargo
+(use-package cargo
+	:ensure t
+	:config
+	(add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+;; company-racer
+(use-package company-racer
+	:ensure t
+	:config
+	(add-to-list 'company-backends 'company-racer))
+
+;; racer-emacs
+(use-package racer
+	:ensure t
+	:config
+	(setq racer-cmd "~/.cargo/bin/racer.exe")
+	(setq racer-rust-src-path "C:/Program Files/Rust stable GNU 1.9/src")
+	(add-hook 'rust-mode-hook 'racer-mode)
+	(add-hook 'racer-mode-hook 'eldoc-mode))
 
 ;; keybinds
 
