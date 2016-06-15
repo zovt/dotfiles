@@ -181,6 +181,10 @@
 (use-package cmake-mode
 	:ensure t)
 
+;; web-mode
+(use-package web-mode
+	:ensure t)
+
 ;; keybinds
 
 ;; fix escape
