@@ -106,13 +106,6 @@
 	:config
 	(smart-tabs-insinuate 'c++ 'c 'java 'javascript))
 
-;; flycheck
-(use-package flycheck
-	:ensure t
-	:config
-	(setq-default flycheck-clang-language-standard "c++14")
-	(global-flycheck-mode))
-
 ;; rainbow-delimiters-mode
 (use-package rainbow-delimiters
 	:ensure t
@@ -220,6 +213,22 @@
 	:ensure t
 	:config
 	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+;; flycheck
+(use-package flycheck
+	:ensure t
+	:config
+	(setq-default flycheck-clang-language-standard "c++14")
+	(add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
+	(add-to-list 'flycheck-disabled-checkers 'javascript-jslint)
+	(add-to-list 'flycheck-disabled-checkers 'javascript-jscs)
+	(add-to-list 'flycheck-disabled-checkers 'json-jsonlist)
+	(add-to-list 'flycheck-checkers 'javascript-eslint)
+	(flycheck-add-mode 'javascript-eslint 'js2-mode)
+	(global-flycheck-mode))
+
+(setq-default flycheck-disabled-checkers flycheck-disabled-checkers)
+(setq-default flycheck-checkers flycheck-checkers)
 
 ;; keybinds
 
