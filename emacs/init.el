@@ -7,6 +7,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
+(hl-line-mode 1)
 
 ;; change the custom file
 (setq custom-file "~/.emacs.d/custom.el")
