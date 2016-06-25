@@ -227,8 +227,9 @@
 	(flycheck-add-mode 'javascript-eslint 'js2-mode)
 	(global-flycheck-mode))
 
-(setq-default flycheck-disabled-checkers flycheck-disabled-checkers)
-(setq-default flycheck-checkers flycheck-checkers)
+;; fish-mode
+(use-package fish-mode
+	:ensure t)
 
 ;; keybinds
 
