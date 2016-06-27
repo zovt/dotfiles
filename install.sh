@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 
-ln -s ~/dotfiles/emacs/ ~/.emacs.d
-ln -s ~/dotfiles/fish/ ~/.config/fish
+ln -sfn ~/dotfiles/emacs/ ~/.emacs.d
+ln -sfn ~/dotfiles/fish/ ~/.config/fish
