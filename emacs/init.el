@@ -7,7 +7,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
-(hl-line-mode 1)
+(global-hl-line-mode 1)
 
 ;; change the custom file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -153,7 +153,7 @@
 (use-package sr-speedbar
 	:ensure t
 	:config
-	(setq speedbar-use-images nil)
+	(setq speedbar-use-images nil)	
 	(add-to-list 'evil-emacs-state-modes 'speedbar-mode)
 	(add-hook 'speedbar-reconfigure-keymaps-hook
 						(lambda ()
@@ -227,6 +227,12 @@
 	(flycheck-add-mode 'javascript-eslint 'js2-mode)
 	(global-flycheck-mode))
 
+;; undo-tree
+(use-package undo-tree
+	:ensure t
+	:config
+	(global-undo-tree-mode))
+
 ;; fish-mode
 (use-package fish-mode
 	:ensure t)
@@ -261,6 +267,10 @@
 
 ;; neotree
 (global-set-key (kbd "C-c n") 'sr-speedbar-toggle)
+
+;; swap ctrl-t and ctrl-x
+(keyboard-translate ?\C-t ?\C-x)
+(keyboard-translate ?\C-x ?\C-t)
 
 ;; customizing the modeline
 (setq-default mode-line-format

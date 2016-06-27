@@ -1,3 +1,8 @@
+# fix fish on emacs
+function fish_title
+	true
+end
+
 # git
 function gl
 	git log --pretty=oneline
