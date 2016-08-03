@@ -1,3 +1,7 @@
+# env
+set -gx CC clang
+set -gx CXX clang++
+
 # fix fish on emacs
 function fish_title
 	true

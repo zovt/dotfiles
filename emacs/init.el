@@ -160,10 +160,6 @@
 						(lambda ()
 							(define-key speedbar-mode-map (kbd "h") 'windmove-left))))
 
-;; ocaml
-(use-package tuareg
-	:ensure t)
-
 ;; haskell
 (use-package haskell-mode
 	:ensure t)
@@ -214,13 +210,20 @@
 (use-package js2-mode
 	:ensure t
 	:config
-	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode)))
 
 ;; flycheck
 (use-package flycheck
 	:ensure t
 	:config
-	(setq-default flycheck-clang-language-standard "c++14")
+	(add-hook 'c++-mode-hook (lambda ()
+														 (interactive)
+														 (setq-default flycheck-clang-language-standard "c++14")))
+	(add-hook 'c-mode-hook (lambda ()
+													 (interactive)
+													 (setq-default flycheck-clang-language-standard "c11")
+													 (setq flycheck-clang-include-path (list (expand-file-name "~/local/include")))))
 	(add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
 	(add-to-list 'flycheck-disabled-checkers 'javascript-jslint)
 	(add-to-list 'flycheck-disabled-checkers 'javascript-jscs)
@@ -237,6 +240,10 @@
 
 ;; fish-mode
 (use-package fish-mode
+	:ensure t)
+
+;; tuareg mode
+(use-package tuareg
 	:ensure t)
 
 ;; keybinds
