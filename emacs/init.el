@@ -38,6 +38,7 @@
 (electric-pair-mode)
 
 ;; begin packages
+
 ;; dracula theme
 (use-package dracula-theme
 	:ensure t
@@ -73,7 +74,7 @@
 	:config
 	(add-hook 'c++-mode-hook 'irony-mode)
 	(if (string-equal system-type "windows-nt")
-			(setq w32-pipe-read-delay 0)))
+			(setq-default w32-pipe-read-delay 0)))
 
 ;; c++-mode
 (add-to-list 'auto-mode-alist '("\\.tt\\'" . c++-mode))
@@ -97,7 +98,7 @@
 (use-package company
 	:ensure t
 	:config
-	(setq company-backends '(company-irony company-irony-c-headers company-c-headers company-clang company-elisp company-dabbrev company-dabbrev-code))
+	(setq-default company-backends '(company-irony company-irony-c-headers company-c-headers company-clang company-elisp company-dabbrev company-dabbrev-code))
 	(global-company-mode))
 
 ;; smart-tabs
@@ -115,15 +116,15 @@
 	(add-hook 'rust-mode-hook 'rainbow-delimiters-mode-enable))
 
 ;; org-mode
-(setq org-log-done 'time)
-(setq org-clock-persist 'history)
+(setq-default org-log-done 'time)
+(setq-default org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
 ;; minimap
 (use-package minimap
 	:ensure t
 	:config
-	(setq minimap-window-location 'right))
+	(setq-default minimap-window-location 'right))
 
 ;; smooth-scrolling
 (use-package smooth-scrolling
@@ -153,7 +154,7 @@
 (use-package sr-speedbar
 	:ensure t
 	:config
-	(setq speedbar-use-images nil)	
+	(setq-default speedbar-use-images nil)	
 	(add-to-list 'evil-emacs-state-modes 'speedbar-mode)
 	(add-hook 'speedbar-reconfigure-keymaps-hook
 						(lambda ()
@@ -186,20 +187,21 @@
 	:config
 	(add-hook 'rust-mode-hook 'cargo-minor-mode))
 
+;; racer-emacs
+(use-package racer
+	:ensure t
+	:config
+	(setq-default racer-cmd "~/.cargo/bin/racer.exe")
+	(setq-default racer-rust-src-path "~/rust-src/")
+	(add-hook 'rust-mode-hook 'racer-mode)
+	(add-hook 'racer-mode-hook 'eldoc-mode))
+
 ;; company-racer
 (use-package company-racer
 	:ensure t
 	:config
 	(add-to-list 'company-backends 'company-racer))
 
-;; racer-emacs
-(use-package racer
-	:ensure t
-	:config
-	(setq racer-cmd "~/.cargo/bin/racer.exe")
-	(setq racer-rust-src-path "C:/Program Files/Rust stable GNU 1.9/src")
-	(add-hook 'rust-mode-hook 'racer-mode)
-	(add-hook 'racer-mode-hook 'eldoc-mode))
 
 ;; web-mode
 (use-package web-mode
