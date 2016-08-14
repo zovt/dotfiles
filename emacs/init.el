@@ -98,7 +98,9 @@
 (use-package company
 	:ensure t
 	:config
-	(setq-default company-backends '(company-irony company-irony-c-headers company-c-headers company-clang company-elisp company-dabbrev company-dabbrev-code))
+	(setq-default company-backends '(company-irony company-irony-c-headers company-c-headers company-clang company-elisp company-dabbrev-code company-dabbrev))
+	(setq-default company-idle-delay 0.1)
+	(setq-default company-minimum-prefix-length 1)
 	(global-company-mode))
 
 ;; smart-tabs
@@ -211,7 +213,8 @@
 	:ensure t
 	:config
 	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-	(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode)))
+	(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+	(setq-default js2-basic-offset 2))
 
 ;; flycheck
 (use-package flycheck
@@ -245,6 +248,12 @@
 ;; tuareg mode
 (use-package tuareg
 	:ensure t)
+
+;; nlinum mode
+(use-package nlinum
+	:ensure t
+	:config
+	(global-nlinum-mode))
 
 ;; keybinds
 
@@ -283,12 +292,11 @@
 
 ;; customizing the modeline
 (setq-default mode-line-format
-							(list '(:eval (propertize "  %b" 'help-echo (buffer-file-name)))
-										'(:eval (if (buffer-modified-p)
-																(propertize "%*%* ")
-															(propertize "   ")))
-										'(:eval (propertize "(%l:%c)  "))
-										'(:eval (propertize "[%m]  "))
-										'(:eval (propertize "{"))
+							(list '(:eval (propertize "%b"))
+										'(:eval (if (buffer-modified-p) "*" " "))
+										'(:eval (propertize " ["))
+										mode-name
+										'(:eval (propertize "] "))
+										'(:eval (propertize " {"))
 										minor-mode-alist
-										'(:eval (propertize " } "))))
+										'(:eval (propertize "} "))))

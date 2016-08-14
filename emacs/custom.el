@@ -5,10 +5,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
 	 (quote
-		("d1abda58eedee72fbe28bbb7a5ff1953e1b7d2fa80913bcea9cb3cf12cf751f4" "222113f148cd70d99c44d84bf4e3a76795f001bd6cfd449b7ff27aeda65ffd78" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "98a619757483dc6614c266107ab6b19d315f93267e535ec89b7af3d62fb83cad" "9b402e9e8f62024b2e7f516465b63a4927028a7055392290600b776e4a5b9905" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" default)))
+		("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "d1abda58eedee72fbe28bbb7a5ff1953e1b7d2fa80913bcea9cb3cf12cf751f4" "222113f148cd70d99c44d84bf4e3a76795f001bd6cfd449b7ff27aeda65ffd78" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "98a619757483dc6614c266107ab6b19d315f93267e535ec89b7af3d62fb83cad" "9b402e9e8f62024b2e7f516465b63a4927028a7055392290600b776e4a5b9905" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" default)))
  '(package-selected-packages
 	 (quote
-		(fish-mode company-racer racer rust-mode haskell-mode tuareg sr-speedbar fiplr smooth-scrolling minimap smart-tabs-mode company-irony-c-headers company-irony cpputils-cmake irony cargo evil glsl-mode use-package web-mode spaceline soothe-theme smex rainbow-delimiters quack origami molokai-theme material-theme markdown-mode magit js2-mode hydra helm-swoop helm-projectile helm-gtags grizzl geiser flymake-hlint flymake-go flycheck fancy-battery exec-path-from-shell evil-mc company-tern company-go company-ghc company-c-headers company-auctex cmake-mode arduino-mode ample-theme aggressive-indent ace-jump-mode)))
+		(nlinum powerline fish-mode company-racer racer rust-mode haskell-mode tuareg sr-speedbar fiplr smooth-scrolling minimap smart-tabs-mode company-irony-c-headers company-irony cpputils-cmake irony cargo evil glsl-mode use-package web-mode spaceline soothe-theme smex rainbow-delimiters quack origami molokai-theme material-theme markdown-mode magit js2-mode hydra helm-swoop helm-projectile helm-gtags grizzl geiser flymake-hlint flymake-go flycheck fancy-battery exec-path-from-shell evil-mc company-tern company-go company-ghc company-c-headers company-auctex cmake-mode arduino-mode ample-theme aggressive-indent ace-jump-mode)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(safe-local-variable-values
