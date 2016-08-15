@@ -39,11 +39,8 @@
 
 ;; begin packages
 
-;; dracula theme
-(use-package dracula-theme
-	:ensure t
-	:config
-	(load-theme 'dracula))
+;; my theme
+(add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory "~/.emacs.d/")))
 
 ;; evil
 (use-package evil
@@ -292,7 +289,7 @@
 
 ;; customizing the modeline
 (setq-default mode-line-format
-							(list '(:eval (propertize "%b"))
+							(list '(:eval (propertize " %b"))
 										'(:eval (if (buffer-modified-p) "*" " "))
 										'(:eval (propertize " ["))
 										mode-name
