@@ -292,8 +292,8 @@
 							(list '(:eval (propertize " %b"))
 										'(:eval (if (buffer-modified-p) "*" " "))
 										'(:eval (propertize " ["))
-										mode-name
+										'(:eval mode-name)
 										'(:eval (propertize "] "))
 										'(:eval (propertize " {"))
-										minor-mode-alist
+										'(:eval minor-mode-alist)
 										'(:eval (propertize "} "))))

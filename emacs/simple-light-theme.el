@@ -1,21 +1,21 @@
-(deftheme simple-dark
-	"Simple, dark theme")
+(deftheme simple-light
+	"Simple, light theme")
 
-(let ((foreground "#FFF6E7")
-			(dark-foreground "#DFD6C7")
-			(background "#252533")
-			(light-background "#454553")
-			(doc-background "#353543")
+(let ((background "#FFF6E7")
+			(light-background "#DFD6C7")
+			(foreground "#252533")
+			(dark-foreground "#454553")
+			(doc-background "#EFE6D5")
 			(light-rose "#FFABCB"))
 	(custom-theme-set-faces
-	 'simple-dark
+	 'simple-light
 
 	 ;; generic
 	 `(default ((t (:background ,background :foreground ,foreground))))
 	 `(cursor ((t (:background ,foreground :foreground ,background))))
 	 `(button ((t (:background ,background :foreground ,foreground :underline t))))
 	 `(region ((t (:background ,foreground :foreground ,background))))
-	 `(linum ((t (:background ,background :foreground ,foreground))))
+	 `(linum ((t (:background ,background :foreground ,foreground :weight normal))))
 	 `(font-lock-comment-face ((t (:background ,background :foreground ,light-rose :weight bold))))
 	 `(font-lock-comment-delimiter-face ((t (:background ,background :foreground ,light-rose))))
 	 `(font-lock-builtin-face ((t (:background ,background :foreground ,foreground))))
@@ -58,4 +58,4 @@
 	 )
 	)
 
-(provide-theme 'simple-dark)
+(provide-theme 'simple-light)

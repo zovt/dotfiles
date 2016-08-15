@@ -5,6 +5,7 @@ emacs/*
 !emacs/init.el
 !emacs/custom.el
 !emacs/simple-dark-theme.el
+!emacs/simple-light-theme.el
 !emacs/init
 !emacs/init/*
 !emacs/.gnus
