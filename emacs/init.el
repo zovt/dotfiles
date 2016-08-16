@@ -41,6 +41,7 @@
 
 ;; my theme
 (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory "~/.emacs.d/")))
+(load-theme 'simple-light)
 
 ;; evil
 (use-package evil
