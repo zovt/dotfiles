@@ -1,12 +1,12 @@
 (deftheme simple-light
 	"Simple, light theme")
 
-(let ((background "#FFF6E7")
-			(light-background "#DFD6C7")
+(let ((background "#FFFDFD")
+			(light-background "#DFDDDD")
 			(foreground "#252533")
 			(dark-foreground "#454553")
-			(doc-background "#EFE6D5")
-			(light-rose "#FFABCB"))
+			(doc-background "#EFEDED")
+			(brick "#e81c4f"))
 	(custom-theme-set-faces
 	 'simple-light
 
@@ -16,8 +16,8 @@
 	 `(button ((t (:background ,background :foreground ,foreground :underline t))))
 	 `(region ((t (:background ,foreground :foreground ,background))))
 	 `(linum ((t (:background ,background :foreground ,foreground :weight normal))))
-	 `(font-lock-comment-face ((t (:background ,background :foreground ,light-rose :weight bold))))
-	 `(font-lock-comment-delimiter-face ((t (:background ,background :foreground ,light-rose))))
+	 `(font-lock-comment-face ((t (:background ,background :foreground ,brick :weight bold))))
+	 `(font-lock-comment-delimiter-face ((t (:background ,background :foreground ,brick))))
 	 `(font-lock-builtin-face ((t (:background ,background :foreground ,foreground))))
 	 `(font-lock-keyword-face ((t (:background ,background :foreground ,foreground))))
 	 `(font-lock-string-face ((t (:background ,background :foreground ,foreground :underline t))))
@@ -37,7 +37,7 @@
 	 `(mode-line-inactive ((t (:background ,background :foreground ,dark-foreground))))
 
 	 ;; line highlight
-	 `(hl-line ((t (:background ,light-background :foreground ,foreground))))
+	 `(hl-line ((t (:background ,light-background))))
 
 	 ;; fringe
 	 `(fringe ((t (:background ,background :foreground ,foreground))))
@@ -49,9 +49,9 @@
 	 ;; company
 	 `(company-tooltip ((t (:background ,light-background :foreground ,foreground))))
 	 `(company-tooltip-common ((t (:background ,light-background :foreground ,foreground))))
-	 `(company-tooltip-selection ((t (:background ,light-rose :foreground ,foreground))))
-	 `(company-tooltip-common-selection ((t (:background ,light-rose :foreground ,foreground))))
-	 `(company-scrollbar-fg ((t (:background ,light-rose :foreground ,light-rose))))
+	 `(company-tooltip-selection ((t (:background ,brick :foreground ,foreground))))
+	 `(company-tooltip-common-selection ((t (:background ,brick :foreground ,foreground))))
+	 `(company-scrollbar-fg ((t (:background ,brick :foreground ,brick))))
 	 `(company-scrollbar-bg ((t (:background ,dark-foreground :foreground ,dark-foreground))))
 	 `(company-preview ((t (:background ,background :foreground ,foreground))))
 	 `(company-preview-common ((t (:background ,background :foreground ,foreground))))
