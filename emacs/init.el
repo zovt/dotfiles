@@ -1,5 +1,5 @@
 ;; visual
-(set-face-font 'default "M+ 1m-14")
+(set-face-font 'default "Iosevka-15")
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 (setq visible-bell t)
