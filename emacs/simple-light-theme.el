@@ -55,6 +55,10 @@
 	 `(company-scrollbar-bg ((t (:background ,dark-foreground :foreground ,dark-foreground))))
 	 `(company-preview ((t (:background ,background :foreground ,foreground))))
 	 `(company-preview-common ((t (:background ,background :foreground ,foreground))))
+
+	 ;; web-mode
+	 `(web-mode-html-tag-face ((t (:foreground ,foreground))))
+	 `(web-mode-html-attr-name-face ((t (:foreground ,foreground))))
 	 )
 	)
 

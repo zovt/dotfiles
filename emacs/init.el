@@ -297,4 +297,4 @@
 										'(:eval (propertize "] "))
 										'(:eval (propertize " {"))
 										'(:eval minor-mode-alist)
-										'(:eval (propertize "} "))))
+										'(:eval (propertize " } "))))
