@@ -93,10 +93,13 @@
 (use-package company-c-headers
 	:ensure t)
 
+(use-package company-jedi
+	:ensure t)
+
 (use-package company
 	:ensure t
 	:config
-	(setq-default company-backends '(company-irony company-irony-c-headers company-c-headers company-clang company-elisp company-dabbrev-code company-dabbrev))
+	(setq-default company-backends '(company-irony company-irony-c-headers company-c-headers company-jedi company-clang company-elisp company-dabbrev-code company-dabbrev))
 	(setq-default company-idle-delay 0.1)
 	(setq-default company-minimum-prefix-length 1)
 	(global-company-mode))
@@ -105,7 +108,7 @@
 (use-package smart-tabs-mode
 	:ensure t
 	:config
-	(smart-tabs-insinuate 'c++ 'c 'java 'javascript))
+	(smart-tabs-insinuate 'c++ 'c 'java 'javascript 'lisp))
 
 ;; rainbow-delimiters-mode
 (use-package rainbow-delimiters
@@ -252,6 +255,12 @@
 	:ensure t
 	:config
 	(global-nlinum-mode))
+
+;; python
+(add-hook 'python-mode-hook (lambda ()
+															(interactive)
+															(setq-local indent-tabs-mode nil)
+															(setq-local python-indent-offset 4)))
 
 ;; keybinds
 

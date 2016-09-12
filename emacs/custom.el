@@ -11,7 +11,7 @@
  '(fci-rule-color "#161616")
  '(package-selected-packages
 	 (quote
-		(rainbow-mode tao-theme nlinum powerline fish-mode company-racer racer rust-mode haskell-mode tuareg sr-speedbar fiplr smooth-scrolling minimap smart-tabs-mode company-irony-c-headers company-irony cpputils-cmake irony cargo evil glsl-mode use-package web-mode spaceline soothe-theme smex rainbow-delimiters quack origami molokai-theme material-theme markdown-mode magit js2-mode hydra helm-swoop helm-projectile helm-gtags grizzl geiser flymake-hlint flymake-go flycheck fancy-battery exec-path-from-shell evil-mc company-tern company-go company-ghc company-c-headers company-auctex cmake-mode arduino-mode ample-theme aggressive-indent ace-jump-mode)))
+		(company-jedi rainbow-mode tao-theme nlinum powerline fish-mode company-racer racer rust-mode haskell-mode tuareg sr-speedbar fiplr smooth-scrolling minimap smart-tabs-mode company-irony-c-headers company-irony cpputils-cmake irony cargo evil glsl-mode use-package web-mode spaceline soothe-theme smex rainbow-delimiters quack origami molokai-theme material-theme markdown-mode magit js2-mode hydra helm-swoop helm-projectile helm-gtags grizzl geiser flymake-hlint flymake-go flycheck fancy-battery exec-path-from-shell evil-mc company-tern company-go company-ghc company-c-headers company-auctex cmake-mode arduino-mode ample-theme aggressive-indent ace-jump-mode)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(safe-local-variable-values

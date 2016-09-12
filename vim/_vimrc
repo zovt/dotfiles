@@ -22,6 +22,9 @@ filetype indent on
 " set wildmenu
 set wildmenu
 
+" make at least 1 line visible when scrolling
+set scrolloff=5
+
 " only redraw when needed
 set lazyredraw
 
@@ -53,17 +56,17 @@ set backspace=indent,eol,start
 
 " change backups
 set backupdir=~/vimfiles/backups//
-set directory=.,~/vimfiles/backups//
+set directory=~/vimfiles/backups//,.
 
 " keep files open even when to shown on screen
 set hidden
 " }}}
 " plugins {{{
-set runtimepath^=~\vimfiles\plug
+set runtimepath^=~/vimfiles/plug
 call plug#begin('~/vimfiles/plugged')
 
-" Apprentice colorscheme
-Plug 'romainl/Apprentice'
+" Colorscheme
+Plug 'zovt/simple-colorschemes'
 
 " Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'
@@ -92,9 +95,6 @@ Plug 'sjl/gundo.vim'
 " vim-buftabline
 Plug 'ap/vim-buftabline'
 
-" tabular
-Plug 'godlygeek/tabular'
-
 " vim-markdown
 Plug 'plasticboy/vim-markdown'
 
@@ -112,9 +112,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_include_dirs = [ 'C:/Users/nicho/dev/tftf/include' ]
+let g:syntastic_cpp_include_dirs = [ "C:\tools\mingw64\x86_64-w64-mingw32\include" ]
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
-let g:syntastic_cpp_compiler = 'clang++'
 
 " Gundo
 let g:gundo_width = 40
@@ -124,13 +123,14 @@ let g_gundo_right = 1
 " }}}
 " }}}
 " Visual {{{
-set guifont=Hack:h12:cANSI
+set guifont=Iosevka:h14:cANSI:qDRAFT
+set guicursor+=a:blinkon0
 set guioptions-=T
 set guioptions-=m
 set guioptions-=r
 set guioptions-=L
 set ruler
-colorscheme apprentice
+colorscheme simple-light
 
 " syntax highlighting
 syntax enable
@@ -143,8 +143,6 @@ set colorcolumn=80
 set wrap
 set linebreak
 set nolist
-set textwidth=0
-set wrapmargin=0
 
 " show tabline
 set showtabline=2
