@@ -123,7 +123,11 @@ let g_gundo_right = 1
 " }}}
 " }}}
 " Visual {{{
-set guifont=Iosevka:h14:cANSI:qDRAFT
+if has("win32")
+	set guifont=Iosevka:h14:cANSI:qDRAFT
+else
+	set guifont=Iosevka\ 14
+endif
 set guicursor+=a:blinkon0
 set guioptions-=T
 set guioptions-=m
