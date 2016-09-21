@@ -154,4 +154,7 @@ nnoremap <leader>bp :bprev<CR>
 
 " change to current directory
 nnoremap <leader>cd :lcd %:p:h<CR>
+
+" Deoplete tab completion
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " }}}
