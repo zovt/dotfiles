@@ -61,8 +61,13 @@ set directory=~/vimfiles/backups//,.
 set hidden
 " }}}
 " plugins {{{
-set runtimepath^=~/.config/nvim/files/
-call plug#begin('~/.config/nvim/files/plugged/')
+if has("win32") 
+	set runtimepath^=~/AppData/Local/nvim/files
+	call plug#begin('~/AppData/Local/nvim/files')
+else
+	set runtimepath^=~/.config/nvim/files/
+	call plug#begin('~/.config/nvim/files/plugged/')
+endif
 
 Plug 'zovt/simple-colorschemes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -154,4 +159,14 @@ nnoremap <leader>bp :bprev<CR>
 
 " change to current directory
 nnoremap <leader>cd :lcd %:p:h<CR>
+" }}}
+" Windows {{{
+if has("win32") 
+	set runtimepath^=C:/Program\ Files/Neovim/share/nvim-qt/runtime
+	let g:python3_host_prog = 'C:\Python35\python.exe'
+	let g:python2_host_prog = 'C:\Python27\python.exe'
+	source C:\Users\nicho\AppData\Local\nvim\ginit.vim
+	set backupdir=~/AppData/Local/nvim/files/backups//
+	set directory=~/AppData/Local/nvim/files/backups//,.
+endif
 " }}}
