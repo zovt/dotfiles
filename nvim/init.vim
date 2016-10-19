@@ -74,6 +74,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neomake/neomake'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -159,6 +160,9 @@ nnoremap <leader>bp :bprev<CR>
 
 " change to current directory
 nnoremap <leader>cd :lcd %:p:h<CR>
+
+"
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " }}}
 " Windows {{{
 if has("win32") 
