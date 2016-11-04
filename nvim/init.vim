@@ -75,11 +75,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neomake/neomake'
 Plug 'lervag/vimtex'
+Plug 'dpc/vim-smarttabs'
 
 call plug#end()
 
 " Plugin Options {{{
 " NeoMake
+let g:neomake_cpp_clangcheck_args = ["-std=c++14", "-Wextra", "-Wall"]
 autocmd! BufWritePost * Neomake
 
 " Deoplete
@@ -161,7 +163,7 @@ nnoremap <leader>bp :bprev<CR>
 " change to current directory
 nnoremap <leader>cd :lcd %:p:h<CR>
 
-"
+" enter to autocomplete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " }}}
 " Windows {{{
