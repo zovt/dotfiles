@@ -8,6 +8,7 @@ set shiftwidth=2
 
 " show line numbers
 set number
+set relativenumber
 
 " show most recent command in bottom bar
 set showcmd
@@ -78,6 +79,9 @@ Plug 'lervag/vimtex'
 Plug 'dpc/vim-smarttabs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'ap/vim-buftabline'
 
 call plug#end()
 
@@ -89,6 +93,22 @@ autocmd! BufWritePost * Neomake
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Goyo
+function! s:goyo_enter()
+	set number
+	set relativenumber
+	Limelight
+endfunction
+
+function! s:goyo_leave()
+	set number
+	set relativenumber
+	Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " }}}
 " }}}
