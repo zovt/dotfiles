@@ -21,6 +21,10 @@ alias gch='git checkout'
 # FZF
 alias fzcd='cd $(find . | fzf)'
 alias fznv='nvim $(fzf)'
+alias fzc='c $(fzf)'
+
+# Colorized cat
+alias c='highlight -O ansi'
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
