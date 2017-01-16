@@ -82,6 +82,8 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ap/vim-buftabline'
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go'
 
 call plug#end()
 
@@ -109,6 +111,9 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" vim-go
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 " }}}
 " }}}
@@ -179,15 +184,20 @@ nnoremap <leader>wq <C-w>q
 nnoremap <leader>wH <C-W>S
 nnoremap <leader>wV <C-W>v
 
-" buffers
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
-
 " change to current directory
 nnoremap <leader>cd :lcd %:p:h<CR>
 
 " enter to autocomplete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" FZF
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fm :Marks<CR>
+nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader><leader> :BLines<CR>
+
 " }}}
 " Windows {{{
 if has("win32") 

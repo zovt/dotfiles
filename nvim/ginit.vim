@@ -1,1 +1,1 @@
-GuiFont! Iosevka:h16
+GuiFont! Iosevka:h18
