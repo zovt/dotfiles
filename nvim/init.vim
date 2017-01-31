@@ -71,6 +71,8 @@ else
 endif
 
 Plug 'zovt/simple-colorschemes'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'dracula/vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -124,7 +126,10 @@ set guioptions-=m
 set guioptions-=r
 set guioptions-=L
 set ruler
-colorscheme simple-light
+
+set t_Co=256
+set background=dark
+colorscheme dracula
 
 " syntax highlighting
 syntax enable
