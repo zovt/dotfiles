@@ -27,7 +27,7 @@ alias gb='git branch'
 alias gch='git checkout'
 
 # FZF
-alias fzcd='cdz $(find . | fzf)'
+alias cdz='cd $(find . | fzf)'
 alias cz='c $(fzf)'
 alias clz='c $(fzf) | less'
 
