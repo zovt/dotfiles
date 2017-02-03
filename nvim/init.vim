@@ -60,6 +60,9 @@ set directory=~/vimfiles/backups//,.
 
 " keep files open even when to shown on screen
 set hidden
+
+" enable mouse
+set mouse=a
 " }}}
 " plugins {{{
 if has("win32") 
