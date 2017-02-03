@@ -38,6 +38,10 @@ alias c='highlight -O ansi'
 alias e='nvim'
 alias ez='nvim $(fzf)'
 
+# Tree
+alias t='tree'
+alias tl='tree | less'
+
 ## Other (probably autoappended) ##
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
