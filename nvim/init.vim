@@ -76,6 +76,7 @@ endif
 Plug 'zovt/simple-colorschemes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -89,6 +90,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'ap/vim-buftabline'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -120,6 +122,13 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " vim-go
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
+" lightline
+let g:lightline = {
+			\ 'colorscheme': 'nord',
+			\ }
+
+set laststatus=2
+
 " }}}
 " }}}
 " Visual {{{
@@ -132,7 +141,7 @@ set ruler
 
 set t_Co=256
 set background=dark
-colorscheme dracula
+colorscheme nord
 
 " syntax highlighting
 syntax enable
