@@ -88,6 +88,7 @@ Plug 'ap/vim-buftabline'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 Plug 'w0rp/ale'
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 
