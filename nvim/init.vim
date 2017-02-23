@@ -13,9 +13,6 @@ set relativenumber
 " show most recent command in bottom bar
 set showcmd
 
-" highlight current line
-set cursorline
-
 " indent based on filetype
 filetype indent on
 
@@ -90,7 +87,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'ap/vim-buftabline'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
-Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -154,6 +151,9 @@ set colorcolumn=80
 set wrap
 set linebreak
 set nolist
+
+" statusline
+set statusline=%y\ %P\ %f\ %m
 
 " show tabline
 set showtabline=2
