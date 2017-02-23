@@ -84,7 +84,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'ap/vim-buftabline'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 Plug 'w0rp/ale'
@@ -156,8 +155,8 @@ set nolist
 " statusline
 set statusline=%y\ %P\ %f\ %m
 
-" show tabline
-set showtabline=2
+" split
+set fillchars=""
 " }}}
 " Keybinds {{{
 " leader
