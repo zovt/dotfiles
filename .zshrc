@@ -7,6 +7,9 @@ zstyle ':completion:*' menu select
 setopt COMPLETE_ALIASES
 
 # History
+export HISTFILE=~/.history
+export HISTSIZE=100000000
+export SAVEHIST=$HISTSIZE
 setopt inc_append_history
 setopt hist_ignore_dups
 setopt hist_ignore_space
