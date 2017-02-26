@@ -89,6 +89,8 @@ Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 Plug 'w0rp/ale'
 Plug 'mhinz/vim-signify'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -117,15 +119,10 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" vim-go
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" Racer
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 
-" lightline
-let g:lightline = {
-			\ 'colorscheme': 'nord',
-			\ }
-
-set laststatus=2
 
 " }}}
 " }}}
