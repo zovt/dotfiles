@@ -77,7 +77,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neomake/neomake'
 Plug 'lervag/vimtex'
 Plug 'dpc/vim-smarttabs'
 Plug 'terryma/vim-multiple-cursors'
@@ -94,11 +93,6 @@ Plug 'racer-rust/vim-racer'
 call plug#end()
 
 " Plugin Options {{{
-" NeoMake
-let g:neomake_cpp_clangcheck_args = ["-std=c++14", "-Wextra", "-Wall"]
-let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall"]
-autocmd! BufWritePost * Neomake
-
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
