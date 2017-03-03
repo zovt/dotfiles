@@ -45,6 +45,9 @@ alias ez='nvim $(fzf)'
 alias t='tree'
 alias tl='tree | less'
 
+# Ripgrep FZF
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 ## Other (probably autoappended) ##
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
