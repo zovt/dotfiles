@@ -1,10 +1,10 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 16,
+    fontSize: 18,
 
     // font family with optional fallbacks
-    fontFamily: 'Iosevka',
+    fontFamily: '"Iosevka"',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -25,7 +25,11 @@ module.exports = {
     css: '',
 
     // custom css to embed in the terminal window
-    termCSS: '',
+	  termCSS: `
+	  	x-screen x-row {
+				font-variant-ligatures: initial;
+			}
+	  `,
 
     // custom padding (css format, i.e.: `top right bottom left`)
     padding: '20px 20px',
