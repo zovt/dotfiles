@@ -48,6 +48,9 @@ alias tl='tree | less'
 # Ripgrep FZF
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+# NVIM as Editor
+export EDITOR=nvim
+
 ## Other (probably autoappended) ##
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
