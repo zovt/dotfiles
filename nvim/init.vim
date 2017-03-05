@@ -85,7 +85,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
-Plug 'w0rp/ale'
+Plug 'neomake/neomake'
 Plug 'mhinz/vim-signify'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -93,6 +93,10 @@ Plug 'racer-rust/vim-racer'
 call plug#end()
 
 " Plugin Options {{{
+" Neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_rust_enabled_makers = []
+
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
