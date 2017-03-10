@@ -29,6 +29,9 @@ module.exports = {
 	  x-screen x-row {
 		  font-variant-ligatures: initial;
 	  }
+	  x-row > span {
+		  line-height: 1.3em;
+		}
 	  `,
 
     // custom padding (css format, i.e.: `top right bottom left`)
