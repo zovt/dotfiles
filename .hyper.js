@@ -26,9 +26,9 @@ module.exports = {
 
     // custom css to embed in the terminal window
 	  termCSS: `
-	  	x-screen x-row {
-				font-variant-ligatures: initial;
-			}
+	  x-screen x-row {
+		  font-variant-ligatures: initial;
+	  }
 	  `,
 
     // custom padding (css format, i.e.: `top right bottom left`)
@@ -71,7 +71,11 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
+
+		nordHyper: {
+			cursorBlink: false,
+		},
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
