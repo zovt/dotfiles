@@ -51,6 +51,9 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 # NVIM as Editor
 export EDITOR=nvim
 
+# Source zshenv
+source ~/.zshenv
+
 ## Other (probably autoappended) ##
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -128,6 +128,7 @@ set guioptions-=r
 set guioptions-=L
 set ruler
 
+set t_Co=256
 colorscheme nova
 
 " syntax highlighting
