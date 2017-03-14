@@ -70,10 +70,6 @@ else
 	call plug#begin('~/.config/nvim/files/plugged/')
 endif
 
-Plug 'zovt/simple-colorschemes'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'dracula/vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -89,6 +85,7 @@ Plug 'neomake/neomake'
 Plug 'mhinz/vim-signify'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
+Plug 'trevordmiller/nova-vim'
 
 call plug#end()
 
@@ -131,9 +128,7 @@ set guioptions-=r
 set guioptions-=L
 set ruler
 
-set t_Co=256
-set background=dark
-colorscheme nord
+colorscheme nova
 
 " syntax highlighting
 syntax enable
