@@ -58,4 +58,3 @@ source ~/.zshenv
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH=$PATH:$HOME/.cargo/bin/
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
