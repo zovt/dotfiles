@@ -2,6 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 [core]
+	excludesfile = ~/.gitignore_global
 [rebase]
 	autosquash = true
 [alias]

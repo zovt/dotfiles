@@ -22,6 +22,7 @@ prompt suse
 ## Aliases ##
 # Git
 alias g='git'
+compdef g='git'
 
 # FZF
 alias cdz='cd $(find . | fzf)'
