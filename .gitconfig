@@ -9,6 +9,8 @@
 	c = commit
 	cp = commit --patch
 	ca = commit -a
+	cm = commit --amend
+	cam = commit -a --amend
 	ch = checkout
 	chb = checkout -b
 	b = branch
