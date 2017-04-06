@@ -1,0 +1,26 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+[core]
+[rebase]
+	autosquash = true
+[alias]
+	st = status
+	c = commit
+	cp = commit --patch
+	ca = commit -a
+	ch = checkout
+	chb = checkout -b
+	b = branch
+	r = rebase
+	ri = rebase --interactive
+	a = add
+	aa = add -A
+	ai = add --interactive
+	ap = add --patch
+	pl = pull
+	plo = pull origin
+	p = push
+	po = push origin
+	f = fetch
+	fo = fetch origin

@@ -21,13 +21,7 @@ prompt suse
 
 ## Aliases ##
 # Git
-alias gs='git status'
-alias gc='git commit -a'
-alias gcm='git commit -am'
-alias gp='git push'
-alias gpl='git pull'
-alias gb='git branch'
-alias gch='git checkout'
+alias g='git'
 
 # FZF
 alias cdz='cd $(find . | fzf)'
