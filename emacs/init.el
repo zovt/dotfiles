@@ -1,5 +1,5 @@
 ;; basic visual
-(set-face-font 'default "Iosevka-18")
+(set-face-font 'default "Iosevka-15")
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 (setq visible-bell t)
@@ -7,6 +7,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
+(setq-default truncate-lines t)
 
 ;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -23,7 +24,8 @@
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
 (package-initialize)
-(if (not (package-installed-p 'use-package)) (progn (package-refresh-contents) (package-install 'use-package)))
+(if (not (package-installed-p 'use-package))
+		(progn (package-refresh-contents) (package-install 'use-package)))
 
 ;; modes and plugins
 
@@ -45,6 +47,16 @@
   (evil-global-set-key 'normal ";" 'evil-ex)
   (evil-global-set-key 'normal "U" 'undo-tree-visualize))
 
+;; company
+(use-package company :ensure t
+	:config
+	(setq-default company-idle-delay 0.1)
+	(setq-default company-minimum-prefix-length 2)
+	(add-hook 'after-init-hook 'global-company-mode))
+
+;; flycheck
+(use-package flycheck :ensure t :init (global-flycheck-mode))
+
 ;; smex
 (use-package smex :ensure t :config (global-set-key (kbd "M-x")  'smex))
 
@@ -54,6 +66,21 @@
 ;; smooth scrolling
 (use-package smooth-scrolling :ensure t :config (smooth-scrolling-mode 1))
 
+;; ivy
+(use-package ivy :ensure t :init (ivy-mode))
+
+;; swiper
+(use-package swiper :ensure t)
+
+;; counsel
+(use-package counsel :ensure t)
+
+;; ripgrep
+(use-package ripgrep :ensure t)
+
+;; theme
+(use-package leuven-theme :ensure t :config (load-theme 'leuven))
+
 ;; prog langs
 
 ;; lisp
@@ -61,6 +88,48 @@
 
 ;; go
 (use-package go-mode :ensure t)
+(use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
+
+;; rust
+(use-package rust-mode :ensure t)
 
 ;; code visuals
 (setq-default tab-width 2)
+
+;; keybinds
+
+;; fix escape
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; window management
+(global-set-key (kbd "C-c w j") 'windmove-down)
+(global-set-key (kbd "C-c w k") 'windmove-up)
+(global-set-key (kbd "C-c w l") 'windmove-right)
+(global-set-key (kbd "C-c w h") 'windmove-left)
+(global-set-key (kbd "C-c w q") 'delete-window)
+(global-set-key (kbd "C-c w H") 'split-window-horizontally)
+(global-set-key (kbd "C-c w V") 'split-window-vertically)
+
+;; file finding
+(global-set-key (kbd "C-c f") 'counsel-find-file)
+(global-set-key (kbd "C-c F") 'counsel-git)
+
+;; buffers
+(global-set-key (kbd "C-c b") 'switch-to-buffer)
+
+;; swiper
+(global-set-key (kbd "C-c <SPC>") 'swiper)
+
+;; ripgrep
+(global-set-key (kbd "C-c r") 'counsel-rg)
+(global-set-key (kbd "C-c R") 'ripgrep-regexp)
+
+;; modeline
+(setq-default mode-line-format (list '(:eval (propertize " %b"))
+																		 '(:eval (if (buffer-modified-p) "*" " "))
+																		 '(:eval (propertize " ["))
+																		 '(:eval mode-name)
+																		 '(:eval (propertize "] "))
+																		 '(:eval (propertize " {"))
+																		 '(:eval minor-modo-alist)
+																		 '(:eval (propertize "} "))))
