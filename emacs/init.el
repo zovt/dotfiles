@@ -1,5 +1,6 @@
 ;; basic visual
 (set-face-font 'default "Iosevka-15")
+(global-prettify-symbols-mode)
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 (setq visible-bell t)
@@ -26,6 +27,9 @@
 (package-initialize)
 (if (not (package-installed-p 'use-package))
 		(progn (package-refresh-contents) (package-install 'use-package)))
+
+;; start server
+(add-hook 'after-init-hook 'server-start)
 
 ;; modes and plugins
 
@@ -87,11 +91,17 @@
 (add-hook 'lisp-mode-hook (lambda () (setq-local indent-tabs-mode nil)))
 
 ;; go
-(use-package go-mode :ensure t)
+(use-package go-mode :ensure t
+	:config
+	(setq-default gofmt-command "goimports")
+	(add-hook 'go-mode-hook (lambda () (add-hook 'before-save-hook 'gofmt-before-save))))
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
 
 ;; rust
 (use-package rust-mode :ensure t)
+
+;; exec path from shell
+(use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
 
 ;; code visuals
 (setq-default tab-width 2)
