@@ -82,6 +82,9 @@
 ;; ripgrep
 (use-package ripgrep :ensure t)
 
+;; magit
+(use-package magit :ensure t)
+
 ;; theme
 (use-package leuven-theme :ensure t :config (load-theme 'leuven))
 
