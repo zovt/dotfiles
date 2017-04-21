@@ -106,7 +106,7 @@
   (define-key go-mode-map (kbd "C-c t D") 'godef-jump-other-window)
   (define-key go-mode-map (kbd "C-c C")
     (lambda () (interactive)
-      (start-process-shell-command "go integration test" "integration-test"
+      (start-process-shell-command "*go integration test*" "*go integration test*"
                                    (concat "cd " (locate-dominating-file default-directory ".git") " && noti make integration-test;"))
       (switch-to-buffer-other-window "integration-test"))))
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
