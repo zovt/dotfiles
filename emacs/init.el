@@ -26,7 +26,7 @@
 
 (package-initialize)
 (if (not (package-installed-p 'use-package))
-		(progn (package-refresh-contents) (package-install 'use-package)))
+    (progn (package-refresh-contents) (package-install 'use-package)))
 
 ;; start server
 (add-hook 'after-init-hook 'server-start)
@@ -42,8 +42,8 @@
 ;; evil
 (use-package evil :ensure t
   :config
-	(evil-mode)
-	(evil-global-set-key 'normal (kbd "<SPC>")
+  (evil-mode)
+  (evil-global-set-key 'normal (kbd "<SPC>")
                        (lambda ()
                          (interactive)
                          (setq unread-command-events
@@ -53,10 +53,10 @@
 
 ;; company
 (use-package company :ensure t
-	:config
-	(setq-default company-idle-delay 0.1)
-	(setq-default company-minimum-prefix-length 2)
-	(add-hook 'after-init-hook 'global-company-mode))
+  :config
+  (setq-default company-idle-delay 0.1)
+  (setq-default company-minimum-prefix-length 2)
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;; flycheck
 (use-package flycheck :ensure t :init (global-flycheck-mode))
@@ -97,9 +97,9 @@
 
 ;; go
 (use-package go-mode :ensure t
-	:config
-	(setq-default gofmt-command "goimports")
-	(add-hook 'go-mode-hook (lambda ()
+  :config
+  (setq-default gofmt-command "goimports")
+  (add-hook 'go-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'gofmt-before-save)
                             (setq-local compile-command "noti go test -v")))
   (define-key go-mode-map (kbd "C-c t d") 'godef-jump)
@@ -108,7 +108,11 @@
     (lambda () (interactive)
       (start-process-shell-command "*go integration test*" "*go integration test*"
                                    (concat "cd " (locate-dominating-file default-directory ".git") " && noti make integration-test;"))
-      (switch-to-buffer-other-window "integration-test"))))
+      (with-current-buffer "*go integration test*"
+        (local-set-key (kbd "C-c C-c") (lambda () (interactive)
+                                         (delete-process "*go integration test*")
+                                         (kill-buffer "*go integration test*"))))
+      (switch-to-buffer-other-window "*go integration test*"))))
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
 
 ;; rust
@@ -156,10 +160,10 @@
 
 ;; modeline
 (setq-default mode-line-format (list '(:eval (propertize " %b"))
-																		 '(:eval (if (buffer-modified-p) "*" " "))
-																		 '(:eval (propertize " ["))
-																		 '(:eval mode-name)
-																		 '(:eval (propertize "] "))
-																		 '(:eval (propertize " {"))
-																		 '(:eval minor-modo-alist)
-																		 '(:eval (propertize "} "))))
+                                     '(:eval (if (buffer-modified-p) "*" " "))
+                                     '(:eval (propertize " ["))
+                                     '(:eval mode-name)
+                                     '(:eval (propertize "] "))
+                                     '(:eval (propertize " {"))
+                                     '(:eval minor-modo-alist)
+                                     '(:eval (propertize "} "))))
