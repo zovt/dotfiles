@@ -85,6 +85,9 @@
 ;; magit
 (use-package magit :ensure t)
 
+;; rest client
+(use-package restclient :ensure t)
+
 ;; theme
 (use-package leuven-theme :ensure t :config (load-theme 'leuven))
 
