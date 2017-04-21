@@ -90,14 +90,25 @@
 
 ;; prog langs
 
-;; lisp
-(add-hook 'lisp-mode-hook (lambda () (setq-local indent-tabs-mode nil)))
+;; lisp and emacs-lisp
+(defun disable-tabs () "Disable tabs locally in a buffer." (setq-local indent-tabs-mode nil))
+(add-hook 'lisp-mode-hook 'disable-tabs)
+(add-hook 'emacs-lisp-mode-hook 'disable-tabs)
 
 ;; go
 (use-package go-mode :ensure t
 	:config
 	(setq-default gofmt-command "goimports")
-	(add-hook 'go-mode-hook (lambda () (add-hook 'before-save-hook 'gofmt-before-save))))
+	(add-hook 'go-mode-hook (lambda ()
+                            (add-hook 'before-save-hook 'gofmt-before-save)
+                            (setq-local compile-command "noti go test -v")))
+  (define-key go-mode-map (kbd "C-c t d") 'godef-jump)
+  (define-key go-mode-map (kbd "C-c t D") 'godef-jump-other-window)
+  (define-key go-mode-map (kbd "C-c C")
+    (lambda () (interactive)
+      (start-process-shell-command "go integration test" "integration-test"
+                                   (concat "cd " (locate-dominating-file default-directory ".git") " && noti make integration-test;"))
+      (switch-to-buffer-other-window "integration-test"))))
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
 
 ;; rust
@@ -136,6 +147,12 @@
 ;; ripgrep
 (global-set-key (kbd "C-c r") 'counsel-rg)
 (global-set-key (kbd "C-c R") 'ripgrep-regexp)
+
+;; magit
+(global-set-key (kbd "C-c g") 'magit-status)
+
+;; compile
+(global-set-key (kbd "C-c c") 'compile)
 
 ;; modeline
 (setq-default mode-line-format (list '(:eval (propertize " %b"))
