@@ -54,8 +54,8 @@
 ;; company
 (use-package company :ensure t
   :config
-  (setq-default company-idle-delay 0.1)
-  (setq-default company-minimum-prefix-length 2)
+  (setq-default company-idle-delay 1.0)
+  (setq-default company-minimum-prefix-length 4)
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; flycheck
