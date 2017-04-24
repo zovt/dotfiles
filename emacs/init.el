@@ -88,6 +88,12 @@
 ;; rest client
 (use-package restclient :ensure t)
 
+;; diff-hl
+(use-package diff-hl :ensure t
+  :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (global-diff-hl-mode))
+
 ;; theme
 (use-package leuven-theme :ensure t :config (load-theme 'leuven))
 
