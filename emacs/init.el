@@ -153,6 +153,7 @@
 
 ;; buffers
 (global-set-key (kbd "C-c b") 'switch-to-buffer)
+(global-set-key (kbd "C-c k") 'kill-buffer)
 
 ;; swiper
 (global-set-key (kbd "C-c <SPC>") 'swiper)
