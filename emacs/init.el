@@ -94,6 +94,11 @@
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (global-diff-hl-mode))
 
+;; rainbow parens
+(use-package rainbow-delimiters :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+
 ;; theme
 (use-package leuven-theme :ensure t :config (load-theme 'leuven))
 
@@ -132,6 +137,7 @@
 
 ;; code visuals
 (setq-default tab-width 2)
+(add-hook 'prog-mode-hook 'show-paren-mode)
 
 ;; useful functions
 ;; editing
