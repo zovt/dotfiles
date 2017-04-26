@@ -133,6 +133,13 @@
 ;; code visuals
 (setq-default tab-width 2)
 
+;; useful functions
+;; editing
+(defun scratch () "Create a new scratch buffer."
+       (interactive)
+       (switch-to-buffer "*scratch*")
+       (lisp-interaction-mode))
+
 ;; keybinds
 
 ;; fix escape
