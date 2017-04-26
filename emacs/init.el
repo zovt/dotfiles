@@ -130,7 +130,13 @@
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
 
 ;; rust
-(use-package rust-mode :ensure t)
+(use-package racer :ensure t)
+(use-package rust-mode :ensure t
+  :config
+  (add-hook 'rust-mode-hook 'racer-mode)
+  (add-hook 'racer-mode-hook 'eldoc-mode)
+	(define-key racer-mode-map (kbd "C-c t d") 'racer-find-definition)
+	(define-key racer-mode-map (kbd "C-c t D") 'racer-describe))
 
 ;; exec path from shell
 (use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
