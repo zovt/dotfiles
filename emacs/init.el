@@ -194,5 +194,5 @@
                                      '(:eval mode-name)
                                      '(:eval (propertize "] "))
                                      '(:eval (propertize " {"))
-                                     '(:eval minor-modo-alist)
+                                     '(:eval minor-mode-alist)
                                      '(:eval (propertize "} "))))
