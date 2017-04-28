@@ -180,6 +180,11 @@
 (global-set-key (kbd "C-c w q") 'delete-window)
 (global-set-key (kbd "C-c w H") 'split-window-horizontally)
 (global-set-key (kbd "C-c w V") 'split-window-vertically)
+(global-set-key (kbd "C-c w f") 'new-frame)
+(global-set-key (kbd "C-c w x") 'delete-frame)
+(if (display-graphic-p)
+		(cond ((eq system-type 'darwin) (progn (global-set-key (kbd "C-c w n") 'ns-next-frame)
+																					 (global-set-key (kbd "C-c w p") 'ns-prev-frame)))))
 
 ;; file finding
 (global-set-key (kbd "C-c f") 'counsel-find-file)
