@@ -99,6 +99,21 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 
+;; circe
+(use-package circe :ensure t
+	:config
+	(setq-default circe-network-options
+							 '(("Mozilla"
+									:use-tls t
+									:nick "zovt"
+									:host "irc.mozilla.org"
+									:port 6697)
+								 ("Snoonet"
+									:use-tls t
+									:nick "zovt"
+									:host "irc.snoonet.org"
+									:port 6697))))
+
 ;; theme
 (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 
