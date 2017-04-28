@@ -100,7 +100,7 @@
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 
 ;; theme
-(use-package leuven-theme :ensure t :config (load-theme 'leuven))
+(use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 
 ;; prog langs
 
