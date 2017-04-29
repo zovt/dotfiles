@@ -39,18 +39,6 @@
 ;; undo tree
 (use-package undo-tree :ensure t)
 
-;; evil
-(use-package evil :ensure t
-  :config
-  (evil-mode)
-  (evil-global-set-key 'normal (kbd "<SPC>")
-                       (lambda ()
-                         (interactive)
-                         (setq unread-command-events
-                               (listify-key-sequence "\C-c"))))
-  (evil-global-set-key 'normal ";" 'evil-ex)
-  (evil-global-set-key 'normal "U" 'undo-tree-visualize))
-
 ;; company
 (use-package company :ensure t
   :config
@@ -62,7 +50,7 @@
 (use-package flycheck :ensure t :init (global-flycheck-mode))
 
 ;; smex
-(use-package smex :ensure t :config (global-set-key (kbd "M-x")  'smex))
+(use-package smex :ensure t :config (global-set-key (kbd "C-c x")  'smex))
 
 ;; smart-tabs
 (use-package smart-tabs-mode :ensure t :config (smart-tabs-insinuate 'c 'c++ 'javascript))
@@ -168,23 +156,32 @@
        (lisp-interaction-mode))
 
 ;; keybinds
+;; nicer ergonomics
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(global-set-key (kbd "C-c h") 'help)
+
+(defun kill-region-or-backward-kill-word (&optional arg region)
+  "`kill-region' if the region is active, otherwise `backward-kill-word'."
+  (interactive (list (prefix-numeric-value current-prefix-arg) (use-region-p)))
+  (if region (kill-region (region-beginning) (region-end))
+    (backward-kill-word arg)))
+(global-set-key (kbd "C-w") 'kill-region-or-backward-kill-word)
+
 
 ;; fix escape
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; window management
-(global-set-key (kbd "C-c w j") 'windmove-down)
-(global-set-key (kbd "C-c w k") 'windmove-up)
-(global-set-key (kbd "C-c w l") 'windmove-right)
-(global-set-key (kbd "C-c w h") 'windmove-left)
-(global-set-key (kbd "C-c w q") 'delete-window)
+(global-set-key (kbd "C-c w n") 'windmove-down)
+(global-set-key (kbd "C-c w p") 'windmove-up)
+(global-set-key (kbd "C-c w f") 'windmove-right)
+(global-set-key (kbd "C-c w b") 'windmove-left)
+(global-set-key (kbd "C-c w d") 'delete-window)
 (global-set-key (kbd "C-c w H") 'split-window-horizontally)
 (global-set-key (kbd "C-c w V") 'split-window-vertically)
-(global-set-key (kbd "C-c w f") 'new-frame)
+(global-set-key (kbd "C-c w f") 'make-frame)
 (global-set-key (kbd "C-c w x") 'delete-frame)
-(if (display-graphic-p)
-		(cond ((eq system-type 'darwin) (progn (global-set-key (kbd "C-c w n") 'ns-next-frame)
-																					 (global-set-key (kbd "C-c w p") 'ns-prev-frame)))))
+(global-set-key (kbd "C-c w o") 'other-frame)
 
 ;; file finding
 (global-set-key (kbd "C-c f") 'counsel-find-file)
@@ -195,7 +192,7 @@
 (global-set-key (kbd "C-c k") 'kill-buffer)
 
 ;; swiper
-(global-set-key (kbd "C-c <SPC>") 'swiper)
+(global-set-key (kbd "C-c C-c") 'swiper)
 
 ;; ripgrep
 (global-set-key (kbd "C-c r") 'counsel-rg)
