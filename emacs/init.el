@@ -105,6 +105,11 @@
 ;; theme
 (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 
+;; org mode
+(add-hook 'org-mode-hook (lambda ()
+                           (auto-fill-mode)
+                           (setq-local fill-column 80)))
+
 ;; prog langs
 
 ;; lisp and emacs-lisp
