@@ -179,7 +179,7 @@
 (global-set-key (kbd "C-c w d") 'delete-window)
 (global-set-key (kbd "C-c w H") 'split-window-horizontally)
 (global-set-key (kbd "C-c w V") 'split-window-vertically)
-(global-set-key (kbd "C-c w f") 'make-frame)
+(global-set-key (kbd "C-c w F") 'make-frame)
 (global-set-key (kbd "C-c w x") 'delete-frame)
 (global-set-key (kbd "C-c w o") 'other-frame)
 
