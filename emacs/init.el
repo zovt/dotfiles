@@ -167,7 +167,6 @@
     (backward-kill-word arg)))
 (global-set-key (kbd "C-w") 'kill-region-or-backward-kill-word)
 
-
 ;; fix escape
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -184,12 +183,8 @@
 (global-set-key (kbd "C-c w o") 'other-frame)
 
 ;; file finding
-(global-set-key (kbd "C-c f") 'counsel-find-file)
-(global-set-key (kbd "C-c F") 'counsel-git)
-
-;; buffers
-(global-set-key (kbd "C-c b") 'switch-to-buffer)
-(global-set-key (kbd "C-c k") 'kill-buffer)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c f") 'counsel-git)
 
 ;; swiper
 (global-set-key (kbd "C-c C-c") 'swiper)
