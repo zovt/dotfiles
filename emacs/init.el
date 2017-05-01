@@ -25,6 +25,15 @@
 ;; backups
 (setq-default backup-directory-alist '(("" . "~/.emacs.d/backups")))
 
+;; start server
+(add-hook 'after-init-hook 'server-start)
+
+;; confirm kill emacs
+(setq-default confirm-kill-emacs 'yes-or-no-p)
+
+;; repeat mark command pop
+(setq-default set-mark-command-repeat-pop t)
+
 ;; packaging
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
@@ -35,12 +44,6 @@
 (package-initialize)
 (if (not (package-installed-p 'use-package))
     (progn (package-refresh-contents) (package-install 'use-package)))
-
-;; start server
-(add-hook 'after-init-hook 'server-start)
-
-;; confirm kill emacs
-(setq-default confirm-kill-emacs 'yes-or-no-p)
 
 ;; modes and plugins
 ;; electric pair mode
