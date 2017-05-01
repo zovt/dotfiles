@@ -174,9 +174,6 @@
        (lisp-interaction-mode))
 
 ;; keybinds
-;; fix escape
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
 ;; window management
 (global-set-key (kbd "C-c w n") 'windmove-down)
 (global-set-key (kbd "C-c w p") 'windmove-up)
