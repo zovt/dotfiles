@@ -1,3 +1,11 @@
+;;; init.el -- My init.el
+;;; Commentary:
+;; This is my `init.el'.  I try to keep it lean and useful, and
+;;; use defaults by... default.  This file will change when I feel it necessary.
+;;; It is NOT indicative of Emacs best practice, but it works for me.
+
+;;; Code:
+
 ;; basic visual
 (set-face-font 'default "Iosevka-15")
 (global-prettify-symbols-mode)
@@ -219,3 +227,6 @@
 
 ;; load local customizations
 (if (file-exists-p "local.el") (load-file "local.el"))
+
+(provide 'init)
+;;; init.el ends here
