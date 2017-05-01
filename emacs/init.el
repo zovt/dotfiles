@@ -216,3 +216,6 @@
                                      '(:eval (propertize " {"))
                                      '(:eval minor-mode-alist)
                                      '(:eval (propertize "} "))))
+
+;; load local customizations
+(if (file-exists-p "local.el") (load-file "local.el"))
