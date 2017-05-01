@@ -204,6 +204,9 @@
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
 
+;; editing
+(global-set-key (kbd "C-K") 'kill-whole-line)
+
 ;; modeline
 (setq-default mode-line-format (list '(:eval (propertize " %b"))
                                      '(:eval (if (buffer-modified-p) "*" " "))
