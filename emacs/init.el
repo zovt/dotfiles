@@ -39,8 +39,10 @@
 ;; start server
 (add-hook 'after-init-hook 'server-start)
 
-;; modes and plugins
+;; confirm kill emacs
+(setq-default confirm-kill-emacs 'yes-or-no-p)
 
+;; modes and plugins
 ;; electric pair mode
 (electric-pair-mode)
 
