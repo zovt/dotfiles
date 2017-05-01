@@ -169,17 +169,6 @@
        (lisp-interaction-mode))
 
 ;; keybinds
-;; nicer ergonomics
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
-(global-set-key (kbd "C-c h") 'help)
-
-(defun kill-region-or-backward-kill-word (&optional arg region)
-  "`kill-region' if the region is active, otherwise `backward-kill-word'."
-  (interactive (list (prefix-numeric-value current-prefix-arg) (use-region-p)))
-  (if region (kill-region (region-beginning) (region-end))
-    (backward-kill-word arg)))
-(global-set-key (kbd "C-w") 'kill-region-or-backward-kill-word)
-
 ;; fix escape
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -214,6 +203,17 @@
 
 ;; editing
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
+;; nicer ergonomics
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(global-set-key (kbd "C-c h") 'help)
+(global-set-key (kbd "M-g") 'goto-line)
+
+(defun kill-region-or-backward-kill-word (&optional arg region)
+  "`kill-region' if the region is active, otherwise `backward-kill-word'."
+  (interactive (list (prefix-numeric-value current-prefix-arg) (use-region-p)))
+  (if region (kill-region (region-beginning) (region-end))
+    (backward-kill-word arg)))
+(global-set-key (kbd "C-w") 'kill-region-or-backward-kill-word)
 
 ;; modeline
 (setq-default mode-line-format (list '(:eval (propertize " %b"))
