@@ -9,9 +9,9 @@
 ;; basic visual
 (set-face-font 'default "Iosevka-15")
 (global-prettify-symbols-mode)
-(setq initial-scratch-message "")
-(setq inhibit-startup-message t)
-(setq visible-bell t)
+(setq-default initial-scratch-message "")
+(setq-default inhibit-startup-message t)
+(setq-default visible-bell t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -19,11 +19,11 @@
 (setq-default truncate-lines t)
 
 ;; custom file
-(setq custom-file "~/.emacs.d/custom.el")
+(setq-default custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
 ;; backups
-(setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
+(setq-default backup-directory-alist '(("" . "~/.emacs.d/backups")))
 
 ;; packaging
 (require 'package)
