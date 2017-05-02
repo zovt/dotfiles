@@ -137,7 +137,7 @@
   (setq-default gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'gofmt-before-save)
-                            (setq-local compile-command "noti go test -v")))
+                            (setq-local compile-command "noti go test")))
   (define-key go-mode-map (kbd "C-c t d") 'godef-jump)
   (define-key go-mode-map (kbd "C-c t D") 'godef-jump-other-window)
   (define-key go-mode-map (kbd "C-c C")
