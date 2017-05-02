@@ -152,6 +152,9 @@
 (use-package company-go :ensure t :config (add-to-list 'company-backends 'company-go))
 
 ;; rust
+(use-package flycheck-rust :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
 (use-package racer :ensure t)
 (use-package rust-mode :ensure t
   :config
