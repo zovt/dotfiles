@@ -57,6 +57,7 @@
   :config
   (setq-default company-idle-delay 0.3)
   (setq-default company-minimum-prefix-length 4)
+  (define-key company-active-map (kbd "C-w") 'kill-region-or-backward-kill-word)
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; flycheck
