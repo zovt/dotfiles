@@ -213,11 +213,11 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (define-key key-translation-map (kbd "C-'") (kbd "C-c"))
 (define-key key-translation-map (kbd "C-t") (kbd "C-x"))
-(define-key key-translation-map (kbd "C-x") (kbd "C-t"))
 
 (global-set-key (kbd "C-c h") 'help)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-;") 'save-buffer)
+(global-set-key (kbd "C-,") 'transpose-chars)
 
 (defun kill-region-or-backward-kill-word (&optional arg region)
   "`kill-region' if the region is active, otherwise `backward-kill-word'."
