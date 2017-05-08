@@ -116,6 +116,12 @@
 									:host "irc.snoonet.org"
 									:port 6697))))
 
+;; Multiple cursors
+(use-package multiple-cursors :ensure t
+  :config
+  (global-set-key (kbd "C-S-t") 'mc/mark-next-like-this-symbol)
+  (global-set-key (kbd "C-<") 'mc/mark-all-symbols-like-this))
+
 ;; theme
 (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 
