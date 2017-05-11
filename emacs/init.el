@@ -167,6 +167,11 @@
   :config
   (add-hook 'rust-mode-hook 'racer-mode)
   (add-hook 'racer-mode-hook 'eldoc-mode)
+  (add-hook 'rust-mode-hook (lambda ()
+                              (setq-local indent-tabs-mode t)
+                              (setq-local tab-width 2)
+                              (setq-local rust-indent-offset 2)))
+  (setq-default rust-format-on-save t)
 	(define-key racer-mode-map (kbd "C-c t d") 'racer-find-definition)
 	(define-key racer-mode-map (kbd "C-c t D") 'racer-describe))
 
