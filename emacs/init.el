@@ -249,7 +249,7 @@
                                      '(:eval (propertize "} "))))
 
 ;; load local customizations
-(if (file-exists-p "local.el") (load-file "local.el"))
+(if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
 
 (provide 'init)
 ;;; init.el ends here
