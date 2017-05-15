@@ -175,6 +175,25 @@
 	(define-key racer-mode-map (kbd "C-c t d") 'racer-find-definition)
 	(define-key racer-mode-map (kbd "C-c t D") 'racer-describe))
 
+;; prose (the written word)
+;; ghetto shims until these plugins are packaged properly
+(setq-default vendor-dir "~/.emacs.d/vendor")
+(defun vendor-and-load-remote-file (remote local-name)
+  "Automatically save REMOTE to LOCAL-NAME under `vendor-dir'."
+  (if (not (file-exists-p vendor-dir))
+      (make-directory vendor-dir))
+  (let ((local-file (expand-file-name local-name vendor-dir)))
+    (if (not (file-exists-p local-file))
+        (url-copy-file remote local-file))
+    (load-file local-file)))
+
+(vendor-and-load-remote-file "https://raw.githubusercontent.com/amperser/proselint/master/plugins/flycheck/flycheck-proselint.el"
+                             "flycheck-proselint.el")
+
+(vendor-and-load-remote-file "https://raw.githubusercontent.com/abingham/flycheck-vale/master/flycheck-vale.el"
+                             "flycheck-vale.el")
+(add-to-list 'flycheck-checkers 'vale)
+
 ;; exec path from shell
 (use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
 
