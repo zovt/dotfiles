@@ -123,7 +123,9 @@
   (global-set-key (kbd "C-<") 'mc/mark-all-symbols-like-this))
 
 ;; theme
-(use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
+;; (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
+;; (use-package espresso-theme :ensure t :init (load-theme 'espresso t))
+(use-package plan9-theme :ensure t :init (load-theme 'plan9 t))
 
 ;; org mode
 (add-hook 'org-mode-hook (lambda ()
