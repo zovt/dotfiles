@@ -136,7 +136,7 @@
 (use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
 
 ;; ledger
-(use-package ledger-mode :ensure t)
+(use-package hledger-mode :ensure t)
 
 ;; prog langs
 
