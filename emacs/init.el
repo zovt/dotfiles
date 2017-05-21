@@ -132,6 +132,12 @@
                            (auto-fill-mode)
                            (setq-local fill-column 80)))
 
+;; exec path from shell
+(use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
+
+;; ledger
+(use-package ledger-mode :ensure t)
+
 ;; prog langs
 
 ;; lisp and emacs-lisp
@@ -195,9 +201,6 @@
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/abingham/flycheck-vale/master/flycheck-vale.el"
                              "flycheck-vale.el")
 (add-to-list 'flycheck-checkers 'vale)
-
-;; exec path from shell
-(use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
 
 ;; code visuals
 (setq-default tab-width 2)
