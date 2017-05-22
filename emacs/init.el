@@ -142,6 +142,9 @@
                 ledger-report-links-in-register nil
                 ledger-binary-path "hledger"))
 
+;; ace-window
+(use-package ace-window :ensure t :config (setq-default aw-dispatch-always t))
+
 ;; prog langs
 
 ;; lisp and emacs-lisp
@@ -219,13 +222,7 @@
 
 ;; keybinds
 ;; window management
-(global-set-key (kbd "C-c w n") 'windmove-down)
-(global-set-key (kbd "C-c w p") 'windmove-up)
-(global-set-key (kbd "C-c w f") 'windmove-right)
-(global-set-key (kbd "C-c w b") 'windmove-left)
-(global-set-key (kbd "C-c w d") 'delete-window)
-(global-set-key (kbd "C-c w H") 'split-window-horizontally)
-(global-set-key (kbd "C-c w V") 'split-window-vertically)
+(global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c w F") 'make-frame)
 (global-set-key (kbd "C-c w x") 'delete-frame)
 (global-set-key (kbd "C-c w o") 'other-frame)
