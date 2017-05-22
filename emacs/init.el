@@ -1,6 +1,6 @@
 ;;; init.el -- My init.el
 ;;; Commentary:
-;; This is my `init.el'.  I try to keep it lean and useful, and
+;;; This is my `init.el'.  I try to keep it lean and useful, and
 ;;; use defaults by... default.  This file will change when I feel it necessary.
 ;;; It is NOT indicative of Emacs best practice, but it works for me.
 
