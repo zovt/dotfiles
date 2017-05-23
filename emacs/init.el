@@ -126,9 +126,11 @@
 ;; (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 ;; (use-package espresso-theme :ensure t :init (load-theme 'espresso t))
 ;; (use-package plan9-theme :ensure t :init (load-theme 'plan9 t))
-(use-package color-theme-solarized :ensure t
-  :init (load-theme 'solarized t)
-  :config (setq-default frame-background-mode 'light))
+;; (use-package color-theme-solarized :ensure t
+;;   :init (load-theme 'solarized t)
+;;   :config (setq-default frame-background-mode 'light))
+(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/simple.el/master/simple.el" "simple.el")
+(enable-theme 'simple)
 
 ;; org mode
 (add-hook 'org-mode-hook (lambda ()
