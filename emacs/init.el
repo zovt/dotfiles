@@ -45,6 +45,17 @@
 (if (not (package-installed-p 'use-package))
     (progn (package-refresh-contents) (package-install 'use-package)))
 
+;; ghetto shim for loading code which is on github but not melpa
+(setq-default vendor-dir "~/.emacs.d/vendor")
+(defun vendor-and-load-remote-file (remote local-name)
+  "Automatically save REMOTE to LOCAL-NAME under `vendor-dir'."
+  (if (not (file-exists-p vendor-dir))
+      (make-directory vendor-dir))
+  (let ((local-file (expand-file-name local-name vendor-dir)))
+    (if (not (file-exists-p local-file))
+        (url-copy-file remote local-file))
+    (load-file local-file)))
+
 ;; modes and plugins
 ;; electric pair mode
 (electric-pair-mode)
@@ -196,17 +207,6 @@
 	(define-key racer-mode-map (kbd "C-c t D") 'racer-describe))
 
 ;; prose (the written word)
-;; ghetto shims until these plugins are packaged properly
-(setq-default vendor-dir "~/.emacs.d/vendor")
-(defun vendor-and-load-remote-file (remote local-name)
-  "Automatically save REMOTE to LOCAL-NAME under `vendor-dir'."
-  (if (not (file-exists-p vendor-dir))
-      (make-directory vendor-dir))
-  (let ((local-file (expand-file-name local-name vendor-dir)))
-    (if (not (file-exists-p local-file))
-        (url-copy-file remote local-file))
-    (load-file local-file)))
-
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/amperser/proselint/master/plugins/flycheck/flycheck-proselint.el"
                              "flycheck-proselint.el")
 
