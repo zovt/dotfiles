@@ -144,9 +144,19 @@
 (enable-theme 'simple)
 
 ;; org mode
+(require 'org nil t)
 (add-hook 'org-mode-hook (lambda ()
                            (auto-fill-mode)
                            (setq-local fill-column 80)))
+(setq-default org-todo-keywords '((sequence
+                                   "TODO(t!)"
+                                   "IN-PROGRESS(i!)"
+                                   "BLOCKED(b@)"
+                                   "REVIEW(r@)"
+                                   "DONE(d!)"
+                                   "CANCELED(c@)"
+                                   )))
+(bind-key (kbd "C-c C-,") 'org-todo org-mode-map)
 
 ;; exec path from shell
 (use-package exec-path-from-shell :ensure t :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
