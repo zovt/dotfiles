@@ -81,7 +81,10 @@
 (use-package smooth-scrolling :ensure t :config (smooth-scrolling-mode 1))
 
 ;; ivy
-(use-package ivy :ensure t :init (ivy-mode))
+(use-package ivy :ensure t :init (ivy-mode)
+  :config
+  (setq-default ivy-use-virtual-buffers t
+                ivy-count-format "%d/%d"))
 
 ;; swiper
 (use-package swiper :ensure t)
