@@ -171,6 +171,12 @@
 ;; ace-window
 (use-package ace-window :ensure t :config (setq-default aw-dispatch-always t))
 
+;; telephone-line
+(use-package telephone-line :ensure t
+  :config
+  (setq-default telephone-line-height 30)
+  (telephone-line-mode t))
+
 ;; prog langs
 
 ;; lisp and emacs-lisp
@@ -281,16 +287,6 @@
   (if region (kill-region (region-beginning) (region-end))
     (backward-kill-word arg)))
 (global-set-key (kbd "C-w") 'kill-region-or-backward-kill-word)
-
-;; modeline
-(setq-default mode-line-format (list '(:eval (propertize " %b"))
-                                     '(:eval (if (buffer-modified-p) "*" " "))
-                                     '(:eval (propertize " ["))
-                                     '(:eval mode-name)
-                                     '(:eval (propertize "] "))
-                                     '(:eval (propertize " {"))
-                                     '(:eval minor-mode-alist)
-                                     '(:eval (propertize "} "))))
 
 ;; load local customizations
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
