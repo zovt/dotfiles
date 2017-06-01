@@ -74,9 +74,6 @@
 ;; flycheck
 (use-package flycheck :ensure t :init (global-flycheck-mode))
 
-;; smex
-(use-package smex :ensure t :config (global-set-key (kbd "C-c x")  'smex))
-
 ;; smart-tabs
 (use-package smart-tabs-mode :ensure t :config (smart-tabs-insinuate 'c 'c++ 'javascript))
 
@@ -236,6 +233,10 @@
        (lisp-interaction-mode))
 
 ;; keybinds
+;; M-x replacement
+(global-set-key (kbd "C-c x") 'counsel-M-x)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+
 ;; window management
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c w F") 'make-frame)
