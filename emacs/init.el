@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; basic visual
-(set-face-font 'default "Iosevka-15")
+(set-face-font 'default "DejaVu Sans Mono-15")
 (global-prettify-symbols-mode)
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
