@@ -57,6 +57,12 @@
     (load-file local-file)))
 
 ;; modes and plugins
+;; whitespace-mode
+(require 'whitespace)
+(setq-default whitespace-line-column 80
+              whitespace-style '(face lines-tail))
+(global-whitespace-mode 1)
+
 ;; electric pair mode
 (electric-pair-mode)
 
