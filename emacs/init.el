@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; basic visual
-(set-face-font 'default "DejaVu Sans Mono-15")
+(set-face-font 'default "DejaVu Sans Mono-14")
 (global-prettify-symbols-mode)
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
@@ -62,6 +62,12 @@
                             (interactive)
                             (auto-fill-mode 1)
                             (setq comment-auto-fill-only-comments t)))
+
+;; whitespace-mode
+(require 'whitespace)
+(setq-default whitespace-line-column 80
+              whitespace-style '(face lines-tail))
+(global-whitespace-mode 1)
 
 ;; electric pair mode
 (electric-pair-mode)
