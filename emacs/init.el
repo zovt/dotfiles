@@ -145,6 +145,18 @@
   (global-set-key (kbd "C-S-t") 'mc/mark-next-like-this-symbol)
   (global-set-key (kbd "C-<") 'mc/mark-all-symbols-like-this))
 
+;; evil
+(use-package evil :ensure t
+  :config
+  (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
+  (evil-mode 1))
+
+;; relative line numbers
+(use-package nlinum-relative :ensure t
+  :config
+  (nlinum-relative-setup-evil)
+  (add-hook 'prog-mode-hook 'nlinum-relative-mode))
+
 ;; theme
 ;; (use-package challenger-deep-theme :ensure t :init (load-theme 'challenger-deep t))
 ;; (use-package espresso-theme :ensure t :init (load-theme 'espresso t))
