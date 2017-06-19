@@ -288,6 +288,9 @@
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
 
+;; undo-tree
+(evil-global-set-key 'normal (kbd "U") 'undo-tree-visualize)
+
 ;; editing
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
 ;; nicer ergonomics
