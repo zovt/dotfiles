@@ -164,7 +164,7 @@
 ;; (use-package color-theme-solarized :ensure t
 ;;   :init (load-theme 'solarized t)
 ;;   :config (setq-default frame-background-mode 'light))
-(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/simple.el/master/simple.el" "simple.el")
+(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/emacs-simple-theme/master/simple-theme.el" "simple-theme.el")
 (enable-theme 'simple)
 
 ;; org mode
