@@ -57,6 +57,12 @@
     (load-file local-file)))
 
 ;; modes and plugins
+;; auto-fill-mode for comments
+(add-hook 'prog-mode-hook (lambda ()
+                            (interactive)
+                            (auto-fill-mode 1)
+                            (setq comment-auto-fill-only-comments t)))
+
 ;; electric pair mode
 (electric-pair-mode)
 
