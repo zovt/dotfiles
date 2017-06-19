@@ -266,14 +266,14 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 
 ;; window management
-(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-c w o") 'ace-window)
 (global-set-key (kbd "C-c w F") 'make-frame)
 (global-set-key (kbd "C-c w x") 'delete-frame)
-(global-set-key (kbd "C-c w o") 'other-frame)
+(global-set-key (kbd "C-c w f") 'other-frame)
 
 ;; file finding
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-c f") 'counsel-git)
+(global-set-key (kbd "C-c f f") 'counsel-find-file)
+(global-set-key (kbd "C-c f g") 'counsel-git)
 
 ;; swiper
 (global-set-key (kbd "C-c C-c") 'swiper)
