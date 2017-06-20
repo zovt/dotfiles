@@ -283,7 +283,7 @@
 (global-set-key (kbd "C-c R") 'ripgrep-regexp)
 
 ;; magit
-(global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c G") 'magit-status)
 
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
