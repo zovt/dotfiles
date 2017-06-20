@@ -211,8 +211,8 @@
                             (add-hook 'before-save-hook 'gofmt-before-save)
                             (subword-mode 1)
                             (setq-local compile-command "noti go test")))
-  (define-key go-mode-map (kbd "C-c t d") 'godef-jump)
-  (define-key go-mode-map (kbd "C-c t D") 'godef-jump-other-window)
+  (define-key go-mode-map (kbd "C-c g d") 'godef-jump)
+  (define-key go-mode-map (kbd "C-c g D") 'godef-jump-other-window)
   (define-key go-mode-map (kbd "C-c C")
     (lambda () (interactive)
       (start-process-shell-command "*go integration test*" "*go integration test*"
@@ -290,6 +290,10 @@
 
 ;; undo-tree
 (evil-global-set-key 'normal (kbd "U") 'undo-tree-visualize)
+
+;; buffers
+(global-set-key (kbd "C-c b b") 'ivy-switch-buffer)
+(global-set-key (kbd "C-c b k") 'kill-buffer)
 
 ;; editing
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
