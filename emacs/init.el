@@ -197,6 +197,8 @@
 ;; ace-window
 (use-package ace-window :ensure t :config (setq-default aw-dispatch-always t))
 
+;; which-key
+(use-package which-key :ensure t :config (which-key-mode))
 
 ;; prog langs
 
