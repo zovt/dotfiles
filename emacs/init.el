@@ -151,6 +151,8 @@
   (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
   (evil-mode 1))
 
+(use-package evil-magit :ensure t)
+
 ;; relative line numbers
 (use-package nlinum-relative :ensure t
   :config

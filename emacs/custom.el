@@ -11,7 +11,7 @@
  '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")))
  '(package-selected-packages
    (quote
-    (nlinum-relative simple-theme package-lint smart-mode-line telephone-line org-mode plain-theme ledger-mode color-theme-solarized ace-window web-mode plan9-theme espresso-theme org-jira multiple-cursors flycheck-rust markdown-mode circe rainbow-delimiters racer diff-hl restclient magit exec-path-from-shell ripgrep counsel fzf swiper ivy flycheck company-go company leuven-theme rust-mode undo-tree go-mode smooth-scrolling smart-tabs-mode smex evil use-package)))
+    (evil-magit nlinum-relative simple-theme package-lint smart-mode-line telephone-line org-mode plain-theme ledger-mode color-theme-solarized ace-window web-mode plan9-theme espresso-theme org-jira multiple-cursors flycheck-rust markdown-mode circe rainbow-delimiters racer diff-hl restclient magit exec-path-from-shell ripgrep counsel fzf swiper ivy flycheck company-go company leuven-theme rust-mode undo-tree go-mode smooth-scrolling smart-tabs-mode smex evil use-package)))
  '(sml/active-background-color "#98ece8")
  '(sml/active-foreground-color "#424242")
  '(sml/inactive-background-color "#4fa8a8")
