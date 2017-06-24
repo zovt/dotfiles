@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; basic visual
-(set-face-font 'default "DejaVu Sans Mono-14")
+(set-face-font 'default "Fantasque Sans Mono-16")
 (global-prettify-symbols-mode)
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
@@ -148,8 +148,8 @@
 ;; evil
 (use-package evil :ensure t
   :config
-  (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c"))))
-  (evil-mode 1))
+	(evil-mode 1)
+  (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c")))))
 
 (use-package evil-magit :ensure t)
 
