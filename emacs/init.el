@@ -280,7 +280,7 @@
 (global-set-key (kbd "C-c f g") 'counsel-git)
 
 ;; swiper
-(global-set-key (kbd "C-c C-c") 'swiper)
+(global-set-key (kbd "C-c <SPC>") 'swiper)
 
 ;; ripgrep
 (global-set-key (kbd "C-c r") 'counsel-rg)
