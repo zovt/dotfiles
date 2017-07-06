@@ -2,6 +2,7 @@ vim/bundle/*
 !vim/bundle/Vundle
 
 emacs/*
+!emacs/README.org
 !emacs/init.el
 !emacs/custom.el
 !emacs/simple-dark-theme.el
