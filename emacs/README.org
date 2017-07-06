@@ -387,7 +387,9 @@
 
 ** Global Keybinds
 *** Quit
+#+BEGIN_SRC emacs-lisp :tangle yes
 (global-set-key (kbd "C-c q") 'save-buffers-kill-emacs)
+#+END_SRC
 
 *** M-x replacement
 #+BEGIN_SRC emacs-lisp :tangle yes
