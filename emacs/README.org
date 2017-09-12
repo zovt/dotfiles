@@ -354,6 +354,10 @@
 	(define-key racer-mode-map (kbd "C-c t D") 'racer-describe))
 #+END_SRC
 
+**** MIPS Assembly
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package mips-mode :ensure t)
+#+END_SRC
 **** Prose (the written word)
 #+BEGIN_SRC emacs-lisp :tangle yes
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/amperser/proselint/master/plugins/flycheck/flycheck-proselint.el"
