@@ -100,8 +100,9 @@
 ;; (use-package color-theme-solarized :ensure t
 ;;   :init (load-theme 'solarized t)
 ;;   :config (setq-default frame-background-mode 'light))
-(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/emacs-simple-theme/master/simple-theme.el" "simple-theme.el")
-(enable-theme 'simple)
+;;(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/emacs-simple-theme/master/simple-theme.el" "simple-theme.el")
+(use-package leuven-theme :ensure t)
+(load-theme 'leuven t)
 #+END_SRC
 
 ** Packages and Modes
@@ -238,7 +239,7 @@
 
 *** org mode
 #+BEGIN_SRC emacs-lisp :tangle yes
-(require 'org nil t)
+(use-package org-plus-contrib :ensure t)
 (add-hook 'org-mode-hook (lambda ()
                            (auto-fill-mode)
                            (setq-local fill-column 80)))
@@ -251,6 +252,10 @@
                                    "CANCELED(c@)"
                                    )))
 (bind-key (kbd "C-c C-,") 'org-todo org-mode-map)
+
+(require 'org-element nil t)
+(require 'ox-extra nil t)
+(ox-extras-activate '(ignore-headlines))
 #+END_SRC
 
 *** exec path from shell
