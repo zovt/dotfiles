@@ -370,9 +370,15 @@
 
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/abingham/flycheck-vale/master/flycheck-vale.el"
                              "flycheck-vale.el")
-(add-to-list 'flycheck-checkers 'vale)
+(add-to-list 'flycheck-checkers 'vale 'proselint)
 #+END_SRC
 
+**** C / C++ / CMake
+#+BEGIN_SRC emacs-lisp :tangle yes
+	(use-package cmake-mode :ensure t)
+	(use-package company-cmake :ensure t)
+	(use-package cmake-ide :ensure t :config (cmake-ide-setup))
+#+END_SRC
 *** Code Visuals
 #+BEGIN_SRC emacs-lisp :tangle yes
 (setq-default tab-width 2)
