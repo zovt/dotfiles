@@ -9,9 +9,10 @@
  '(fci-rule-color "#f8fce8")
  '(hl-paren-background-colors (quote ("#e8fce8" "#c1e7f8" "#f8e8e8")))
  '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")))
+ '(magit-commit-arguments (quote ("--gpg-sign=62E16BF6B9B05F07")))
  '(package-selected-packages
    (quote
-    (meghanada cmake-ide glsl-mode cpputils-cmake cmake-project company-cmake cmake-mode mips-mode which-key use-package smooth-scrolling smart-tabs-mode ripgrep restclient rainbow-delimiters racer org-plus-contrib nlinum-relative neotree multiple-cursors leuven-theme ledger-mode flycheck-rust exec-path-from-shell evil-magit diff-hl counsel company-go all-the-icons-dired ace-window)))
+    (markdown-mode org-plus-contrib which-key use-package smooth-scrolling smart-tabs-mode ripgrep restclient rainbow-delimiters racer nlinum-relative neotree multiple-cursors mips-mode leuven-theme ledger-mode flycheck-rust exec-path-from-shell evil-magit diff-hl counsel company-go all-the-icons-dired ace-window)))
  '(sml/active-background-color "#98ece8")
  '(sml/active-foreground-color "#424242")
  '(sml/inactive-background-color "#4fa8a8")
