@@ -373,6 +373,16 @@
 (add-to-list 'flycheck-checkers 'vale)
 #+END_SRC
 
+**** Markdown
+#+BEGIN_SRC emacs-lisp :tangle yes
+	(use-package markdown-mode
+		:ensure t
+		:commands (markdown-mode gfm-mode)
+		:mode (("README\\.md\\'" . gfm-mode)
+					 ("\\.md\\'" . markdown-mode)
+					 ("\\.markdown\\'" . markdown-mode))
+		:init (setq markdown-command "pandoc -f markdown_github -t html"))
+#+END_SRC
 *** Code Visuals
 #+BEGIN_SRC emacs-lisp :tangle yes
 (setq-default tab-width 2)
