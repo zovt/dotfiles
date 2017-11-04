@@ -2,7 +2,6 @@
 	This is my Emacs configuration. The main features are:
 	- Evil
 	- More ergonomic binds for Dvorak
-  - [[https://github.com/zovt/emacs-simple-theme][My own theme]]
 
 * Configuration
 ** Basics
@@ -101,8 +100,9 @@
 ;;   :init (load-theme 'solarized t)
 ;;   :config (setq-default frame-background-mode 'light))
 ;;(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/emacs-simple-theme/master/simple-theme.el" "simple-theme.el")
-(use-package leuven-theme :ensure t)
-(load-theme 'leuven t)
+;;(use-package leuven-theme :ensure t)
+(use-package kaolin-theme :ensure t)
+(load-theme 'kaolin t)
 #+END_SRC
 
 ** Packages and Modes
