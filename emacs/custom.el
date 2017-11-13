@@ -12,7 +12,7 @@
  '(magit-commit-arguments (quote ("--gpg-sign=62E16BF6B9B05F07")))
  '(package-selected-packages
    (quote
-    (kaolin-theme markdown-mode org-plus-contrib which-key use-package smooth-scrolling smart-tabs-mode ripgrep restclient rainbow-delimiters racer nlinum-relative neotree multiple-cursors mips-mode leuven-theme ledger-mode flycheck-rust exec-path-from-shell evil-magit diff-hl counsel company-go all-the-icons-dired ace-window)))
+    (tao-theme kaolin-theme markdown-mode org-plus-contrib which-key use-package smooth-scrolling smart-tabs-mode ripgrep restclient rainbow-delimiters racer nlinum-relative neotree multiple-cursors mips-mode leuven-theme ledger-mode flycheck-rust exec-path-from-shell evil-magit diff-hl counsel company-go all-the-icons-dired ace-window)))
  '(sml/active-background-color "#98ece8")
  '(sml/active-foreground-color "#424242")
  '(sml/inactive-background-color "#4fa8a8")

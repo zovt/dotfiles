@@ -101,8 +101,10 @@
 ;;   :config (setq-default frame-background-mode 'light))
 ;;(vendor-and-load-remote-file "https://raw.githubusercontent.com/zovt/emacs-simple-theme/master/simple-theme.el" "simple-theme.el")
 ;;(use-package leuven-theme :ensure t)
-(use-package kaolin-theme :ensure t)
-(load-theme 'kaolin t)
+;;(use-package kaolin-theme :ensure t)
+;;(load-theme 'kaolin t)
+(use-package tao-theme :ensure t)
+(load-theme 'tao-yang t)
 #+END_SRC
 
 ** Packages and Modes
