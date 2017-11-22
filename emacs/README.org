@@ -262,13 +262,18 @@
 (use-package which-key :ensure t :config (which-key-mode))
 #+END_SRC
 
+*** nlinum
+#+BEGIN_SRC emacs-lisp :tangle yes
+	(use-package nlinum :ensure t
+		:config
+		(global-nlinum-mode))
+#+END_SRC
 *** neotree
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package neotree :ensure t
   :config
-  (setq neo-theme 'icons)
+  (setq neo-theme 'icons))
 #+END_SRC
-
 *** all-the-icons
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package all-the-icons :ensure t
@@ -277,6 +282,9 @@
 #+END_SRC
 
 **** all-the-icons-dired
+		 
+**** 
+**** 
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package all-the-icons-dired :ensure t
   :config
@@ -366,7 +374,7 @@
 					 ("\\.markdown\\'" . markdown-mode))
 		:init (setq markdown-command "pandoc -f markdown_github -t html"))
 #+END_SRC
-*** Code Visuals
+**** Code Visuals
 #+BEGIN_SRC emacs-lisp :tangle yes
 (setq-default tab-width 2)
 (add-hook 'prog-mode-hook 'show-paren-mode)
