@@ -1,6 +1,5 @@
 * Introduction
 	This is my Emacs configuration. The main features are:
-	- Evil
 	- More ergonomic binds for Dvorak
 
 * Configuration
@@ -218,27 +217,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-all-symbols-like-this))
 #+END_SRC
 
-*** Evil
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package evil :ensure t
-  :config
-	(evil-mode 1)
-  (evil-global-set-key 'normal (kbd "<SPC>") (lambda () (interactive) (setq unread-command-events (listify-key-sequence "\C-c")))))
-#+END_SRC
-
-**** Evil-magit
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package evil-magit :ensure t)
-#+END_SRC
-
-*** nlinum-relative
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package nlinum-relative :ensure t
-  :config
-  (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode))
-#+END_SRC
-
 *** org mode
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package org-plus-contrib :ensure t)
@@ -289,10 +267,6 @@
 (use-package neotree :ensure t
   :config
   (setq neo-theme 'icons)
-  (evil-global-set-key 'normal (kbd "C-c n") 'neotree-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
 #+END_SRC
 
 *** all-the-icons
@@ -462,7 +436,7 @@
 
 *** undo-tree
 #+BEGIN_SRC emacs-lisp :tangle yes
-(evil-global-set-key 'normal (kbd "U") 'undo-tree-visualize)
+(global-set-key (kbd "C-c U") 'undo-tree-visualize)
 #+END_SRC
 
 *** Buffers
