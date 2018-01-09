@@ -1,0 +1,21 @@
+set autoindent
+set backupdir ~/.backups
+set backup
+set fill 9999
+set morespace
+set cut
+set multibuffer
+set smooth
+set softwrap
+set tabsize 2
+set linenumbers
+
+syntax "disabled" "."
+color black "."
+
+bind M-F nextword all
+bind M-B prevword all
+bind M-D cutwordright all
+bind M-I cutwordleft all
+bind M-. nextbuf all
+bind M-, prevbuf all
