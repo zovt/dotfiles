@@ -3,4 +3,4 @@
 spaces=""
 for i in $(seq 1 $1); do spaces="$spaces "; done;
 
-cat - | sed -e "s/^$spaces/$(printf '\t')/g"
+cat - | sed -e "s/$spaces/$(printf '\t')/g"
