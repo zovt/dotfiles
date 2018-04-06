@@ -102,12 +102,10 @@
 (defun add-header-button (name command)
   (interactive "sName: \nCCommand: ")
   (lexical-let ((command-b command))
-    (setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))
-    (setq-local header-line-format (create-header-line-format))))
+    (setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))))
 
 (defun delete-header-button (name)
-  (setq-local header-buttons (assq-delete-all name header-buttons))
-  (setq-local header-line-format (create-header-line-format)))
+  (setq-local header-buttons (assq-delete-all name header-buttons)))
 
 (defun create-header-line-format ()
   (mapcar (lambda (v)
@@ -116,12 +114,12 @@
 
 (setq-default header-buttons
               `(("Save" . save-buffer)
+                ("Del" . delete-window)
+                ("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
                 ("Open" . counsel-find-file)
                 ("Find" . fiplr-find-file)
                 ("Switch" . ivy-switch-buffer)
                 ("Undo" . undo)
-                ("Del" . delete-window)
-                ("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
                 ("Hori" . split-window-below)
                 ("Vert" . split-window-right)
                 ("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
