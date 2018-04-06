@@ -63,10 +63,45 @@
   :init (ivy-mode)
   :config (setq-default ivy-use-virtual-buffers t
 		        ivy-count-format "%d/%d"))
-(use-package counsel)
+(use-package counsel :ensure t)
+
+(use-package fiplr :ensure t)
 
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
+
+
+
+(defun make-header-line-mouse-map (mouse-button command)
+	`(keymap (header-line keymap (,mouse-button . ,command))))
+
+(defun header-button (name command)
+	(propertize name
+							'face 'button
+							'mouse-face 'mode-line-highlight
+							'local-map (make-header-line-mouse-map 'mouse-1 command)))
+
+(setq-default header-line-format
+							(list
+							 (header-button "Save" 'save-buffer)
+							 " "
+							 (header-button "Open" 'counsel-find-file)
+							 " "
+							 (header-button "Find" 'fiplr-find-file)
+							 " "
+							 (header-button "Switch" 'ivy-switch-buffer)
+							 " "
+							 (header-button "Undo" 'undo)
+							 " "
+							 (header-button "Del" 'delete-window)
+							 " "
+							 (header-button "Kill" (lambda () (interactive) (kill-this-buffer)))
+							 " "
+							 (header-button "Hori" 'split-window-below)
+							 " "
+							 (header-button "Vert" 'split-window-right)
+							 " "
+							 (header-button "Eval" 'eval-last-sexp)))
 
 
 
