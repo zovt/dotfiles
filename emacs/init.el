@@ -101,7 +101,9 @@
 							 " "
 							 (header-button "Vert" 'split-window-right)
 							 " "
-							 (header-button "Eval" 'eval-last-sexp)))
+							 (header-button "Eval" 'eval-last-sexp)
+							 " "
+							 (header-button "Grep" 'counsel-rg)))
 
 
 
