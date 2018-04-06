@@ -46,7 +46,7 @@
 
 (if (not (package-installed-p 'use-package))
     (progn (package-refresh-contents)
-					 (package-install 'use-package)))
+           (package-install 'use-package)))
 
 
 
@@ -62,14 +62,14 @@
   :ensure t
   :init (ivy-mode)
   :config (setq-default ivy-use-virtual-buffers t
-												ivy-count-format "%d/%d"))
+                        ivy-count-format "%d/%d"))
 (use-package counsel :ensure t)
 
 (use-package fiplr :ensure t)
 
 (use-package dtrt-indent
-	:ensure t
-	:config (dtrt-indent-global-mode))
+  :ensure t
+  :config (dtrt-indent-global-mode))
 
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
@@ -77,53 +77,56 @@
 
 
 (defun make-header-line-mouse-map (name command)
-	(lexical-let ((name-b name)
-								(command-b command)
-								(buffer-b (current-buffer))
-								(window-b (selected-window)))
-		`(keymap (header-line keymap
-													(mouse-1 . ,(lambda ()
-													  					  		(interactive)
-															  			 		(save-excursion
-																		    			(set-buffer buffer-b)
-																    					(select-window window-b)
-			  																  	  (funcall command-b))))
-			 					  			    		(mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
+  (lexical-let ((name-b name)
+                (command-b command)
+                (buffer-b (current-buffer))
+                (window-b (selected-window)))
+    `(keymap (header-line keymap
+                          (mouse-1 . ,(lambda ()
+                                        (interactive)
+                                        (save-excursion
+                                          (set-buffer buffer-b)
+                                          (select-window
+                                           (if (window-live-p window-b)
+                                               window-b
+                                             (get-buffer-window buffer-b)))
+                                          (funcall command-b))))
+                          (mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
 
 (defun header-button (name command)
-	(propertize name
-							'face 'button
-							'mouse-face 'mode-line-highlight
-							'local-map (make-header-line-mouse-map name command)))
+  (propertize name
+              'face 'button
+              'mouse-face 'mode-line-highlight
+              'local-map (make-header-line-mouse-map name command)))
 
 (defun add-header-button (name command)
-	(interactive "sName: \nCCommand: ")
-	(lexical-let ((command-b command))
-		(setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))
-		(setq-local header-line-format (create-header-line-format))))
+  (interactive "sName: \nCCommand: ")
+  (lexical-let ((command-b command))
+    (setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))
+    (setq-local header-line-format (create-header-line-format))))
 
 (defun delete-header-button (name)
-	(setq-local header-buttons (assq-delete-all name header-buttons))
-	(setq-local header-line-format (create-header-line-format)))
+  (setq-local header-buttons (assq-delete-all name header-buttons))
+  (setq-local header-line-format (create-header-line-format)))
 
 (defun create-header-line-format ()
-	(mapcar (lambda (v)
-						(concat (header-button (car v) (cdr v)) " "))
-					header-buttons))
+  (mapcar (lambda (v)
+            (concat (header-button (car v) (cdr v)) " "))
+          header-buttons))
 
 (setq-default header-buttons
-							`(("Save" . save-buffer)
-								("Open" . counsel-find-file)
-								("Find" . fiplr-find-file)
-								("Switch" . ivy-switch-buffer)
-								("Undo" . undo)
-								("Del" . delete-window)
-								("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
-								("Hori" . split-window-below)
-								("Vert" . split-window-right)
-								("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
-								("Grep" . counsel-rg)
-								("|" . ,(lambda () (interactive) (call-interactively 'add-header-button)))))
+              `(("Save" . save-buffer)
+                ("Open" . counsel-find-file)
+                ("Find" . fiplr-find-file)
+                ("Switch" . ivy-switch-buffer)
+                ("Undo" . undo)
+                ("Del" . delete-window)
+                ("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
+                ("Hori" . split-window-below)
+                ("Vert" . split-window-right)
+                ("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
+                ("Grep" . counsel-rg)
+                ("|" . ,(lambda () (interactive) (call-interactively 'add-header-button)))))
 
 (setq-default header-line-format '(:eval (create-header-line-format)))
 
