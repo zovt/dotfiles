@@ -46,7 +46,7 @@
 
 (if (not (package-installed-p 'use-package))
     (progn (package-refresh-contents)
-	   (package-install 'use-package)))
+					 (package-install 'use-package)))
 
 
 
@@ -62,7 +62,7 @@
   :ensure t
   :init (ivy-mode)
   :config (setq-default ivy-use-virtual-buffers t
-		        ivy-count-format "%d/%d"))
+												ivy-count-format "%d/%d"))
 (use-package counsel :ensure t)
 
 (use-package fiplr :ensure t)
@@ -72,38 +72,49 @@
 
 
 
-(defun make-header-line-mouse-map (mouse-button command)
-	`(keymap (header-line keymap (,mouse-button . ,command))))
+(defun make-header-line-mouse-map (name command)
+	(lexical-let ((name-b name))
+		`(keymap (header-line keymap
+													(mouse-1 . ,command)
+													(mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
 
 (defun header-button (name command)
 	(propertize name
 							'face 'button
 							'mouse-face 'mode-line-highlight
-							'local-map (make-header-line-mouse-map 'mouse-1 command)))
+							'local-map (make-header-line-mouse-map name command)))
 
-(setq-default header-line-format
-							(list
-							 (header-button "Save" 'save-buffer)
-							 " "
-							 (header-button "Open" 'counsel-find-file)
-							 " "
-							 (header-button "Find" 'fiplr-find-file)
-							 " "
-							 (header-button "Switch" 'ivy-switch-buffer)
-							 " "
-							 (header-button "Undo" 'undo)
-							 " "
-							 (header-button "Del" 'delete-window)
-							 " "
-							 (header-button "Kill" (lambda () (interactive) (kill-this-buffer)))
-							 " "
-							 (header-button "Hori" 'split-window-below)
-							 " "
-							 (header-button "Vert" 'split-window-right)
-							 " "
-							 (header-button "Eval" 'eval-last-sexp)
-							 " "
-							 (header-button "Grep" 'counsel-rg)))
+(defun add-header-button (name command)
+	(interactive "sName: \nCCommand: ")
+	(setq-local header-buttons (append header-buttons `((,name .  ,command))))
+	(setq-local header-line-format (create-header-line-format)))
+
+(defun delete-header-button (name)
+	(setq-local header-buttons (assq-delete-all name header-buttons))
+	(setq-local header-line-format (create-header-line-format)))
+
+(defun create-header-line-format ()
+	(mapcar (lambda (v)
+						(concat (header-button (car v) (cdr v)) " "))
+					header-buttons))
+
+(setq-default header-buttons
+							`(("Save" . save-buffer)
+								("Open" . counsel-find-file)
+								("Find" . fiplr-find-file)
+								("Switch" . ivy-switch-buffer)
+								("Undo" . undo)
+								("Del" . delete-window)
+								("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
+								("Hori" . split-window-below)
+								("Vert" . split-window-right)
+								("Eval" . eval-last-sexp)
+								("Grep" . counsel-rg)
+								("|" . add-header-button)))
+
+(create-header-line-format)
+
+(setq-default header-line-format (create-header-line-format))
 
 
 
