@@ -112,8 +112,6 @@
 								("Grep" . counsel-rg)
 								("|" . add-header-button)))
 
-(create-header-line-format)
-
 (setq-default header-line-format (create-header-line-format))
 
 
