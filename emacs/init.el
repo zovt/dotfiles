@@ -65,10 +65,6 @@
 		        ivy-count-format "%d/%d"))
 (use-package counsel)
 
-(use-package exec-path-from-shell
-  :ensure t
-  :init (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
-
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
 

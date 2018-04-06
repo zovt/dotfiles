@@ -3,9 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
+ '(package-selected-packages
 	 (quote
-		("0e0c37ee89f0213ce31205e9ae8bce1f93c9bcd81b1bcda0233061bb02c357a8" default))))
+		(esup which-key use-package undo-tree tao-theme smooth-scrolling smart-tabs-mode ripgrep restclient rainbow-delimiters racer org-plus-contrib nlinum neotree multiple-cursors mips-mode magit ledger-mode flycheck-rust exec-path-from-shell diff-hl counsel company-go all-the-icons-dired ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
