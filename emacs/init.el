@@ -67,15 +67,27 @@
 
 (use-package fiplr :ensure t)
 
+(use-package dtrt-indent
+	:ensure t
+	:config (dtrt-indent-global-mode))
+
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
 
 
 
 (defun make-header-line-mouse-map (name command)
-	(lexical-let ((name-b name))
+	(lexical-let ((name-b name)
+								(command-b command)
+								(buffer-b (current-buffer))
+								(window-b (selected-window)))
 		`(keymap (header-line keymap
-													(mouse-1 . ,command)
+													(mouse-1 . ,(lambda ()
+																				(interactive)
+																				(save-excursion
+																					(set-buffer buffer-b)
+																					(select-window window-b)
+																				  (funcall command-b))))
 													(mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
 
 (defun header-button (name command)
@@ -108,11 +120,11 @@
 								("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
 								("Hori" . split-window-below)
 								("Vert" . split-window-right)
-								("Eval" . eval-last-sexp)
+								("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
 								("Grep" . counsel-rg)
 								("|" . add-header-button)))
 
-(setq-default header-line-format (create-header-line-format))
+(setq-default header-line-format '(:eval (create-header-line-format)))
 
 
 
