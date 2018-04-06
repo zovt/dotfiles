@@ -83,12 +83,12 @@
 								(window-b (selected-window)))
 		`(keymap (header-line keymap
 													(mouse-1 . ,(lambda ()
-																				(interactive)
-																				(save-excursion
-																					(set-buffer buffer-b)
-																					(select-window window-b)
-																				  (funcall command-b))))
-													(mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
+													  					  		(interactive)
+															  			 		(save-excursion
+																		    			(set-buffer buffer-b)
+																    					(select-window window-b)
+			  																  	  (funcall command-b))))
+			 					  			    		(mouse-2 . ,(lambda () (interactive) (delete-header-button name-b)))))))
 
 (defun header-button (name command)
 	(propertize name
@@ -98,8 +98,9 @@
 
 (defun add-header-button (name command)
 	(interactive "sName: \nCCommand: ")
-	(setq-local header-buttons (append header-buttons `((,name .  ,command))))
-	(setq-local header-line-format (create-header-line-format)))
+	(lexical-let ((command-b command))
+		(setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))
+		(setq-local header-line-format (create-header-line-format))))
 
 (defun delete-header-button (name)
 	(setq-local header-buttons (assq-delete-all name header-buttons))
@@ -122,7 +123,7 @@
 								("Vert" . split-window-right)
 								("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
 								("Grep" . counsel-rg)
-								("|" . add-header-button)))
+								("|" . ,(lambda () (interactive) (call-interactively 'add-header-button)))))
 
 (setq-default header-line-format '(:eval (create-header-line-format)))
 
