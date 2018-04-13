@@ -71,8 +71,14 @@
   :ensure t
   :config (dtrt-indent-global-mode))
 
+(use-package smart-tabs-mode
+  :ensure t
+  :config (smart-tabs-insinuate 'c 'c++ 'java 'javascript))
+
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
+(setq-default rust-indent-offset 2)
+(add-hook 'rust-mode-hook (lambda () (setq-local indent-tabs-mode 't)))
 
 
 
