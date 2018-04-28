@@ -24,9 +24,14 @@
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (setq-default truncate-lines t)
+(scroll-bar-mode 1)
+(global-visual-line-mode 1)
 
-(set-face-font 'default "Fixedsys Excelsior-16")
-(setq-default tab-width 2)
+(set-face-font 'default "DejaVu Sans Mono-13:antialias=false:hint=false")
+(setq-default tab-width 2
+              c-indent-offset 2
+              c-default-style "k&r"
+              indent-tabs-mode t)
 
 (setq-default custom-file "~/.emacs.d/custom.el")
 (setq-default back-directory-alist '(("" . "~/.emacs.d/backups")))
@@ -53,6 +58,7 @@
 
 (use-package tao-theme :ensure t)
 (load-theme 'tao-yin t)
+(global-font-lock-mode -1)
 
 (electric-pair-mode)
 
