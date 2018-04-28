@@ -86,6 +86,8 @@
 (setq-default rust-indent-offset 2)
 (add-hook 'rust-mode-hook (lambda () (setq-local indent-tabs-mode 't)))
 
+(c-set-offset 'innamespace 0)
+
 
 
 (defun make-header-line-mouse-map (name command)
