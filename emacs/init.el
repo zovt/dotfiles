@@ -27,7 +27,7 @@
 (scroll-bar-mode 1)
 (global-visual-line-mode 1)
 
-(set-face-font 'default "DejaVu Sans Mono-13:antialias=false:hint=false")
+(set-face-font 'default "Ttyp0-18:antialias=false:hint=false")
 (setq-default tab-width 2
               c-indent-offset 2
               c-default-style "k&r"
