@@ -90,6 +90,19 @@
 
 
 
+
+(defun fd-get-matches (filename predicate t-catch &rest options)
+  (split-string
+   (shell-command-to-string (concat "fd " filename " " options))
+   "\n" t))
+
+(defun ivy-fd ()
+  (interactive)
+  (ivy-read "fd: " 'fd-get-matches
+            :action 'find-file))
+
+
+
 (defun make-header-line-mouse-map (name command)
   (lexical-let ((name-b name)
                 (command-b command)
@@ -126,12 +139,12 @@
             (concat (header-button (car v) (cdr v)) " "))
           header-buttons))
 
-(setq-default header-buttons
+(setq-default header-buttons-default
               `(("Save" . save-buffer)
                 ("Del" . delete-window)
                 ("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
                 ("Open" . counsel-find-file)
-                ("Find" . fiplr-find-file)
+                ("Find" . ivy-fd)
                 ("Switch" . ivy-switch-buffer)
                 ("Undo" . undo)
                 ("Hori" . split-window-below)
@@ -139,6 +152,16 @@
                 ("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
                 ("Grep" . counsel-rg)
                 ("|" . ,(lambda () (interactive) (call-interactively 'add-header-button)))))
+
+(defun reset-header-buttons ()
+  (interactive)
+  (setq-default header-buttons header-buttons-default))
+
+(defun localize-header-buttons ()
+  (interactive)
+  (setq-local header-buttons header-buttons))
+
+(reset-header-buttons)
 
 (setq-default header-line-format '(:eval (create-header-line-format)))
 
