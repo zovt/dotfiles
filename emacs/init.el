@@ -116,10 +116,10 @@
 (defun add-header-button (name command)
   (interactive "sName: \nCCommand: ")
   (lexical-let ((command-b command))
-    (setq-local header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))))
+    (setq-default header-buttons (append header-buttons `((,name .  ,(lambda () (interactive) (call-interactively command-b))))))))
 
 (defun delete-header-button (name)
-  (setq-local header-buttons (assq-delete-all name header-buttons)))
+  (setq-default header-buttons (assq-delete-all name header-buttons)))
 
 (defun create-header-line-format ()
   (mapcar (lambda (v)
