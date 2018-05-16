@@ -23,6 +23,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
+(setq-default cursor-type 'bar)
 (setq-default truncate-lines t)
 (scroll-bar-mode 1)
 (global-visual-line-mode 1)
@@ -34,7 +35,11 @@
               indent-tabs-mode t)
 
 (setq-default custom-file "~/.emacs.d/custom.el")
-(setq-default back-directory-alist '(("" . "~/.emacs.d/backups")))
+(setq-default backup-by-coping t
+              delete-old-versions t
+              kept-new-versions 6
+              kept-old-versions 2)
+(setq-default back-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (add-hook 'after-init-hook 'server-start)
 
@@ -91,14 +96,26 @@
 
 
 
-(defun fd-get-matches (filename predicate t-catch &rest options)
+(defun fd-get-matches (filename)
   (split-string
-   (shell-command-to-string (concat "fd " filename " " options))
+   (shell-command-to-string (concat "fd " filename))
    "\n" t))
 
-(defun ivy-fd ()
+(defun counsel-fd-func (str)
+  (if (< (length str) 3)
+      (counsel-more-chars 3)
+    (counsel--async-command
+     (concat "fd " str))
+    '("" "working...")))
+
+(defun counsel-fd (&optional initial-input)
   (interactive)
-  (ivy-read "fd: " 'fd-get-matches
+  (ivy-read "fd: " #'counsel-fd-func
+            :dynamic-collection t
+            :initial-input initial-input
+            :history 'counsel-fd-history
+            :unwind 'counsel-delete-process
+            :caller 'counsel-fd
             :action 'find-file))
 
 
@@ -144,7 +161,7 @@
                 ("Del" . delete-window)
                 ("Kill" . ,(lambda () (interactive) (kill-this-buffer)))
                 ("Open" . counsel-find-file)
-                ("Find" . ivy-fd)
+                ("Find" . counsel-fd)
                 ("Switch" . ivy-switch-buffer)
                 ("Undo" . undo)
                 ("Hori" . split-window-below)
