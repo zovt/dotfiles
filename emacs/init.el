@@ -105,7 +105,7 @@
   (if (< (length str) 3)
       (counsel-more-chars 3)
     (counsel--async-command
-     (concat "fd " str))
+     (concat "fd -c never " str))
     '("" "working...")))
 
 (defun counsel-fd (&optional initial-input)
