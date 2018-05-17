@@ -28,6 +28,24 @@
 (scroll-bar-mode 1)
 (global-visual-line-mode 1)
 
+(global-font-lock-mode -1)
+(deftheme zovt "My colors")
+(let ((class '((class color) (min-colors 256))))
+  (custom-theme-set-faces
+   'zovt
+   `(default ((,class (:foreground "white" :background "black"))))
+   `(mode-line ((,class (:foreground "white" :background "gray14"))))
+   `(mode-line-inactive ((,class (:foreground "white" :background "dim grey"))))
+   `(header-line ((,class (:foreground "white" :background "black"))))
+   `(button ((,class (:foreground "white" :background "black" :underline t))))
+   ))
+
+(provide-theme 'zovt)
+(provide 'zovt-theme)
+(load-theme 'zovt t)
+(enable-theme 'zovt)
+
+
 (set-face-font 'default "Ttyp0-18:antialias=false:hint=false")
 (setq-default tab-width 2
               c-indent-offset 2
@@ -58,15 +76,6 @@
     (progn (package-refresh-contents)
            (package-install 'use-package)))
 
-
-
-
-(use-package tao-theme :ensure t)
-(load-theme 'tao-yin t)
-(global-font-lock-mode -1)
-
-(electric-pair-mode)
-
 (use-package smooth-scrolling :ensure t :config (smooth-scrolling-mode 1))
 
 (use-package ivy
@@ -88,10 +97,14 @@
 
 (vendor-and-load-remote-file "https://raw.githubusercontent.com/akrito/acme-mouse/master/acme-mouse.el" "acme-mouse.el")
 
+
+
+
 (setq-default rust-indent-offset 2)
 (add-hook 'rust-mode-hook (lambda () (setq-local indent-tabs-mode 't)))
 
 (c-set-offset 'innamespace 0)
+(electric-pair-mode)
 
 
 
