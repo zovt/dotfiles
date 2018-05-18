@@ -27,6 +27,7 @@
 (setq-default truncate-lines t)
 (scroll-bar-mode 1)
 (global-visual-line-mode 1)
+(setq-default mode-line-format nil)
 
 (global-font-lock-mode -1)
 (deftheme zovt "My colors")
@@ -57,7 +58,7 @@
               delete-old-versions t
               kept-new-versions 6
               kept-old-versions 2)
-(setq-default back-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq-default backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (add-hook 'after-init-hook 'server-start)
 
@@ -176,7 +177,7 @@
                 ("Open" . counsel-find-file)
                 ("Find" . counsel-fd)
                 ("Switch" . ivy-switch-buffer)
-                ("Undo" . undo)
+                ("Undo" . undo-only)
                 ("Hori" . split-window-below)
                 ("Vert" . split-window-right)
                 ("Eval" . ,(lambda () (interactive) (call-interactively 'eval-last-sexp)))
