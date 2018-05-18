@@ -13,6 +13,8 @@
        (switch-to-buffer "*scratch*")
        (lisp-interaction-mode))
 
+(defun bufname () "Interactive buffer name" (interactive) (message (buffer-name)))
+
 
 
 
@@ -25,7 +27,6 @@
 (blink-cursor-mode 0)
 (setq-default cursor-type 'bar)
 (setq-default truncate-lines t)
-(scroll-bar-mode 1)
 (global-visual-line-mode 1)
 (setq-default mode-line-format nil)
 
@@ -35,10 +36,10 @@
   (custom-theme-set-faces
    'zovt
    `(default ((,class (:foreground "white" :background "black"))))
-   `(mode-line ((,class (:foreground "white" :background "gray14"))))
-   `(mode-line-inactive ((,class (:foreground "white" :background "dim grey"))))
-   `(header-line ((,class (:foreground "white" :background "black"))))
-   `(button ((,class (:foreground "white" :background "black" :underline t))))
+   `(header-line ((,class (:foreground "white" :background "black" :overline "gray24"))))
+   `(button ((,class (:foreground "deep sky blue"))))
+   `(fringe ((,class (:background "black"))))
+   `(region ((,class (:background "deep sky blue" :foreground "black"))))
    ))
 
 (provide-theme 'zovt)
@@ -194,14 +195,17 @@
 
 (reset-header-buttons)
 
-(setq-default header-line-format '(:eval (create-header-line-format)))
+(setq-default header-line-format
+              (list "%*"
+                    " "
+                    '(:eval (create-header-line-format))))
 
 
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c f") 'counsel-find-file)
 (global-set-key (kbd "C-c c") 'compile)
-
+(global-set-key (kbd "C-c n") 'bufname)
 
 
 
