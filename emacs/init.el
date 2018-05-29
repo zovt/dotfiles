@@ -36,9 +36,10 @@
   (custom-theme-set-faces
    'zovt
    `(default ((,class (:foreground "white" :background "black"))))
-   `(header-line ((,class (:foreground "white" :background "black" :overline "gray24"))))
+   `(header-line ((,class (:foreground "white" :background "black"))))
    `(button ((,class (:foreground "deep sky blue"))))
    `(fringe ((,class (:background "black"))))
+   `(vertical-border ((,class (:foreground "black"))))
    `(region ((,class (:background "deep sky blue" :foreground "black"))))
    ))
 
@@ -47,7 +48,7 @@
 (enable-theme 'zovt)
 
 
-(set-face-font 'default "Ttyp0-16:antialias=false:hint=false")
+(set-face-font 'default "Iosevka Term-17:weight=bold")
 (setq-default tab-width 2
               c-indent-offset 2
               c-default-style '((java-mode . "k&r")
