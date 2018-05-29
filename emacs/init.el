@@ -44,11 +44,10 @@
 
 (provide-theme 'zovt)
 (provide 'zovt-theme)
-(load-theme 'zovt t)
 (enable-theme 'zovt)
 
 
-(set-face-font 'default "Ttyp0-18:antialias=false:hint=false")
+(set-face-font 'default "Ttyp0-16:antialias=false:hint=false")
 (setq-default tab-width 2
               c-indent-offset 2
               c-default-style '((java-mode . "k&r")
