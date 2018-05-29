@@ -51,7 +51,8 @@
 (set-face-font 'default "Ttyp0-18:antialias=false:hint=false")
 (setq-default tab-width 2
               c-indent-offset 2
-              c-default-style "k&r"
+              c-default-style '((java-mode . "k&r")
+                                (other . "k&r"))
               indent-tabs-mode t)
 
 (setq-default custom-file "~/.emacs.d/custom.el")
@@ -107,6 +108,8 @@
 
 (c-set-offset 'innamespace 0)
 (electric-pair-mode)
+(electric-indent-mode 0)
+(add-hook 'before-save-hook #'whitespace-cleanup)
 
 
 
@@ -202,10 +205,15 @@
 
 
 
+(setq-default eww-search-prefix "https://startpage.com/do/search?q=")
+
+
+
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c f") 'counsel-find-file)
 (global-set-key (kbd "C-c c") 'compile)
 (global-set-key (kbd "C-c n") 'bufname)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 
 
