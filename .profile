@@ -1,4 +1,4 @@
-vc()
+vc_command()
 {
 		if [ -d ".git" ]; then git $@;
 		elif [ -d ".hg" ]; then hg $@;
@@ -6,6 +6,7 @@ vc()
 		else echo "VC directory not found!"
 		fi
 }
+alias uh='vc_command'
 
 export EDITOR=emacsclient
 
