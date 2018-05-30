@@ -24,10 +24,11 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+(pixel-scroll-mode 1)
 (blink-cursor-mode 0)
 (setq-default cursor-type 'bar)
 (setq-default truncate-lines t)
-(global-visual-line-mode 1)
+(setq-default auto-hscroll-mode 'current-line)
 (setq-default mode-line-format nil)
 
 (global-font-lock-mode -1)
@@ -40,6 +41,7 @@
    `(button ((,class (:foreground "deep sky blue"))))
    `(fringe ((,class (:background "black"))))
    `(vertical-border ((,class (:foreground "black"))))
+   `(scroll-bar ((,class (:background "black" :foreground "white"))))
    `(region ((,class (:background "deep sky blue" :foreground "black"))))
    ))
 
