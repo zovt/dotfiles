@@ -36,11 +36,11 @@
 (let ((class '((class color) (min-colors 256))))
   (custom-theme-set-faces
    'zovt
-   `(default ((,class (:foreground "white" :background "black"))))
-   `(header-line ((,class (:foreground "white" :background "black"))))
+   `(default ((,class (:foreground "white" :background "gray11"))))
+   `(header-line ((,class (:foreground "white" :background "gray11"))))
    `(button ((,class (:foreground "deep sky blue"))))
-   `(fringe ((,class (:background "black"))))
-   `(vertical-border ((,class (:foreground "black"))))
+   `(fringe ((,class (:background "gray11"))))
+   `(vertical-border ((,class (:foreground "gray11"))))
    `(scroll-bar ((,class (:background "black" :foreground "white"))))
    `(region ((,class (:background "deep sky blue" :foreground "black"))))
    ))
