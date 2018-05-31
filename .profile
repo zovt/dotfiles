@@ -10,11 +10,11 @@ alias uh='vc_command'
 
 mount_media()
 {
-		if [ -d "~/m/files" ]; then
+		if [ ! -d "$HOME/m/files" ]; then
 				sshfs -o Compression=no zovt@sputnik.whatbox.ca: ~/m;
-				echo "Media mounted"
+				echo "Media mounted";
 		else
-				echo "Media already mounted"
+				echo "Media already mounted";
 		fi
 }
 alias mm='mount_media'
