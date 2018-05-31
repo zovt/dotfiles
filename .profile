@@ -8,6 +8,19 @@ vc_command()
 }
 alias uh='vc_command'
 
+mount_media()
+{
+		if [ -d "~/m/files" ]; then
+				sshfs -o Compression=no zovt@sputnik.whatbox.ca: ~/m;
+				echo "Media mounted"
+		else
+				echo "Media already mounted"
+		fi
+}
+alias mm='mount_media'
+
+alias mu='ncmpcpp'
+
 export EDITOR=emacsclient
 
-export PS1='$(local WD=${PWD/$HOME/\~}; echo $WD | sed "s,\([^A-z]\)\([A-z]\)[A-z]*,\1\2,g") ; '
+export PS1='$(local WD=${PWD/$HOME/\~}; echo $WD | sed -r "s,([^a-zA-Z])([a-zA-Z])[a-zA-Z]*,\1\2,g") ; '

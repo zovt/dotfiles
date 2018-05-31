@@ -50,7 +50,7 @@
 (enable-theme 'zovt)
 
 
-(set-face-font 'default "Iosevka Term-17:weight=bold")
+(set-face-font 'default "Iosevka Term-15:weight=medium")
 (setq-default tab-width 2
               c-indent-offset 2
               c-default-style '((java-mode . "k&r")
