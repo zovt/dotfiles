@@ -14,6 +14,7 @@
        (lisp-interaction-mode))
 
 (defun bufname () "Interactive buffer name" (interactive) (message (buffer-name)))
+(defun bufpath () "Interactive buffer path" (interactive) (message (buffer-file-name)))
 
 
 
@@ -215,8 +216,9 @@
 (global-set-key (kbd "C-c f") 'counsel-find-file)
 (global-set-key (kbd "C-c c") 'compile)
 (global-set-key (kbd "C-c n") 'bufname)
+(global-set-key (kbd "C-c p") 'bufpath)
 (global-set-key (kbd "RET") 'newline-and-indent)
-
+(global-set-key (kbd "<backtab>") 'dabbrev-expand)
 
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
