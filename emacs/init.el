@@ -218,7 +218,7 @@
 (global-set-key (kbd "C-c n") 'bufname)
 (global-set-key (kbd "C-c p") 'bufpath)
 (global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "<backtab>") 'dabbrev-expand)
+(global-set-key (kbd "C-<return>") 'dabbrev-expand)
 
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
