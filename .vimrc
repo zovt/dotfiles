@@ -1,20 +1,24 @@
-set guifont=Iosevka\ Term\ Medium\:h17
+set guifont=Iosevka\ Term\ Medium\ 15
 syntax off
 
 set t_Co=256
-set bg=dark
+set bg=light
 
 set guicursor+=a:blinkon0
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+set foldcolumn=1
 
 highlight clear
-highlight Normal guibg=#1C1C1C guifg=#FFFFFF
-highlight EndOfBuffer guifg=#1C1C1C
-highlight VertSplit guibg=#1C1C1C guifg=#1C1C1C
-highlight StatusLine guibg=#1C1C1C guifg=#1C1C1C gui=NONE
-highlight StatusLineNC guibg=#1C1C1C guifg=#1C1C1C gui=NONE
+highlight Normal guibg=#FFFFEA guifg=#000000
+highlight EndOfBuffer guifg=#FFFFEA
+highlight VertSplit guibg=#99994C guifg=#99994C
+highlight StatusLine guibg=#EAFFFF guifg=#000000 gui=NONE
+highlight StatusLineNC guibg=#BAFFFF guifg=#000000 gui=NONE
+highlight Search guibg=#EEEE9E
+highlight Visual guibg=#CAFFFF
+highlight FoldColumn guibg=#FFFFEA guifg=#FFFFEA
 
 autocmd!
 autocmd BufWritePre * :%s/\s\+$//e
@@ -44,4 +48,5 @@ set smartindent
 set mouse=a
 
 set bs=2
-
+set incsearch
+set hlsearch
