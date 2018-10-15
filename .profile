@@ -24,3 +24,8 @@ alias mu='ncmpcpp'
 export EDITOR=emacsclient
 
 export PS1='$(local WD=${PWD/$HOME/\~}; echo $WD | sed -E "s,([^a-zA-Z])([a-zA-Z])[a-zA-Z]*,\1\2,g") ; '
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+PLAN9=/home/zovt/d/plan9port export PLAN9
+PATH=$PATH:$PLAN9/bin export PATH
