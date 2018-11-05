@@ -1,15 +1,19 @@
 require('vis')
+require('filetype')
+require('complete-word')
 
 vis.events.subscribe(vis.events.INIT, function()
-	vis:command('set autoindent')
 	vis:command('set tabwidth 2')
-
-	vis:command('map! normal ; :')
+	vis:command('set autoindent on')
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
-	vis:command('set number')
-	vis:command('set theme bw')
-	vis:command('set colorcolumn 80')
+	local lexers = vis.lexers
+	lexers.STYLE_DEFAULT = 'fore:default,back:default'
+	lexers.STYLE_CURSOR = 'reverse'
+	lexers.STYLE_STATUS = 'reverse'
+	lexers.STYLE_STATUS_FOCUS = 'reverse,bold'
+	lexers.STYLE_INFO = 'reverse'
+	lexers.STYLE_SELECTION = 'fore:#ffffff,back:#ffaaaa'
 	vis:command('set syntax off')
 end)
