@@ -15,5 +15,8 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	lexers.STYLE_STATUS_FOCUS = 'reverse,bold'
 	lexers.STYLE_INFO = 'reverse'
 	lexers.STYLE_SELECTION = 'fore:#ffffff,back:#ffaaaa'
+	lexers.STYLE_LINENUMBER = 'fore:black'
+	lexers.STYLE_LINENUMBER_CURSOR = 'fore:#88bbaa'
 	vis:command('set syntax off')
+	vis:command('set number')
 end)

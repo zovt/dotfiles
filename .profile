@@ -29,3 +29,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 PLAN9=/home/zovt/d/plan9port export PLAN9
 PATH=$PATH:$PLAN9/bin export PATH
+
+PATH=$PATH:/home/zovt/.local/bin
