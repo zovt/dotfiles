@@ -1,0 +1,17 @@
+set autoindent
+set backup
+set backupdir ~/.back
+set cutfromcursor
+set nowrap
+set morespace
+set mouse
+set multibuffer
+set positionlog
+set smooth
+set softwrap
+set tabsize 8
+set unix
+set zap
+
+syntax "disabled" "."
+color normal "."
