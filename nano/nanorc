@@ -4,7 +4,6 @@ set backupdir ~/.back
 set cutfromcursor
 set nowrap
 set morespace
-set mouse
 set multibuffer
 set positionlog
 set smooth
