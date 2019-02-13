@@ -23,16 +23,17 @@
       (default-face '(:foreground "black" :background "white")))
   (custom-theme-set-faces
    'zovt
-   `(default ((,class ,default-face)))
-   `(font-lock-doc-face ((,class ,default-face)))
-   `(font-lock-type-face ((,class ,default-face)))
-   `(font-lock-builtin-face ((,class ,default-face)))
-   `(font-lock-function-name-face ((,class ,default-face)))
-   `(font-lock-variable-name-face ((,class ,default-face)))
-   `(font-lock-constant-face ((,class ,default-face)))
-   `(font-lock-comment-face ((,class (:foreground "black" :background "white" :slant italic)))
-   `(font-lock-string-face ((,class ,default-face)))
-   `(font-lock-keyword-face ((,class ,default-face))))))
+   `(default                        ((,class ,default-face)))
+   `(font-lock-doc-face             ((,class ,default-face)))
+   `(font-lock-type-face            ((,class ,default-face)))
+   `(font-lock-builtin-face         ((,class ,default-face)))
+   `(font-lock-function-name-face   ((,class ,default-face)))
+   `(font-lock-string-face          ((,class ,default-face)))
+   `(font-lock-variable-name-face   ((,class ,default-face)))
+   `(font-lock-constant-face        ((,class ,default-face)))
+   `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :slant italic))))
+   `(font-lock-string-face          ((,class ,default-face)))
+   `(font-lock-keyword-face         ((,class ,default-face)))))
 (provide-theme 'zovt)
 (provide 'zovt-theme)
 (enable-theme 'zovt)
@@ -49,3 +50,4 @@
 (global-set-key "\C-t" 'hippie-expand)
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
+
