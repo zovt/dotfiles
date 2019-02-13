@@ -9,6 +9,7 @@
 (setq-default auto-hscroll-mode 'current-line)
 
 (set-face-font 'default "Iosevka Term-17:weight=medium")
+(set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default tab-width 8
               c-indent-offset 8
               c-default-style '((other . "k&r"))
@@ -48,6 +49,7 @@
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
 (global-set-key "\C-t" 'hippie-expand)
+(global-set-key "\C-c c" 'compile)
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
 
