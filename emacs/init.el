@@ -49,7 +49,7 @@
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
 (global-set-key "\C-t" 'hippie-expand)
-(global-set-key "\C-c c" 'compile)
+(global-set-key "\C-c\ c" 'compile)
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
 
