@@ -34,6 +34,7 @@
    `(font-lock-variable-name-face   ((,class ,default-face)))
    `(font-lock-constant-face        ((,class ,default-face)))
    `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :slant italic))))
+   `(region                         ((,class (:foreground "black" :background "gray89"))))
    `(font-lock-string-face          ((,class ,default-face)))
    `(font-lock-keyword-face         ((,class ,default-face)))))
 (provide-theme 'zovt)
