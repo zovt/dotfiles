@@ -47,6 +47,7 @@
 
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
