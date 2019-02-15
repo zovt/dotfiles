@@ -12,6 +12,7 @@
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default tab-width 8
               c-indent-offset 8
+              c-basic-offset 8
               c-default-style '((other . "k&r"))
               indent-tabs-mode t)
 (setq-default backup-by-copying t
