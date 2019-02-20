@@ -8,7 +8,7 @@
 (setq-default truncate-lines t)
 (setq-default auto-hscroll-mode 'current-line)
 
-(set-face-font 'default "Iosevka Term-17:weight=medium")
+(set-face-font 'default "Iosevka Term Slab-17:weight=medium")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default tab-width 8
               c-indent-offset 8
