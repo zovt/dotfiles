@@ -13,17 +13,17 @@
 (setq-default truncate-lines t)
 (setq-default auto-hscroll-mode 'current-line)
 
-(set-face-font 'default "Iosevka Term Slab-17:weight=medium")
+(set-face-font 'default "AW Greybeard-18:weight=normal")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default tab-width 8
-	      c-indent-offset 8
-	      c-basic-offset 8
-	      c-default-style '((other . "k&r"))
-	      indent-tabs-mode t)
+              c-indent-offset 8
+              c-basic-offset 8
+              c-default-style '((other . "k&r"))
+              indent-tabs-mode t)
 (setq-default backup-by-copying t
-	      delete-old-versions t
-	      kept-new-versions 6
-	      kept-old-versions 2)
+              delete-old-versions t
+              kept-new-versions 6
+              kept-old-versions 2)
 
 (deftheme zovt "My colors")
 (let ((class '((class color) (min-colors 256)))
@@ -55,7 +55,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'c++-mode-hook (lambda ()
-			   (setq c-noise-macro-names '("constexpr"))))
+                           (setq c-noise-macro-names '("constexpr"))))
 
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
