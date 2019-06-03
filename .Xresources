@@ -1,0 +1,12 @@
+XTerm*faceName: M+ 1m
+XTerm*faceSize: 14
+XTerm*scaleHeight: 0.9
+
+XTerm*savelines: 8000
+
+XTerm*foreground: rgb:00/00/00
+XTerm*background: rgb:FF/FF/FF
+
+XTerm*ScrollBar: false
+XTerm*cursorBlink: false
+XTerm*visualBell: true
