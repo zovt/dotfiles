@@ -44,7 +44,6 @@ end
 -- }}}
 
 -- startup programs
-awful.spawn("redshift-gtk")
 awful.spawn("compton")
 
 -- {{{ Variable definitions
