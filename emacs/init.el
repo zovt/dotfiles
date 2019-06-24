@@ -27,6 +27,7 @@
    'zovt
    `(default                        ((,class ,default-face)))
    `(mode-line                      ((,class (:foreground "white" :background "black"))))
+   `(mode-line-inactive             ((,class ,default-face)))
    `(font-lock-doc-face             ((,class ,default-face)))
    `(font-lock-type-face            ((,class ,default-face)))
    `(font-lock-builtin-face         ((,class ,default-face)))
