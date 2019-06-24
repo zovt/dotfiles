@@ -13,13 +13,8 @@
 (setq-default truncate-lines t)
 (setq-default auto-hscroll-mode 'current-line)
 
-(set-face-font 'default "AW Greybeard-18:weight=normal")
+(set-face-font 'default "M+ 1m 14")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
-(setq-default tab-width 8
-              c-indent-offset 8
-              c-basic-offset 8
-              c-default-style '((other . "k&r"))
-              indent-tabs-mode t)
 (setq-default backup-by-copying t
               delete-old-versions t
               kept-new-versions 6
@@ -31,6 +26,7 @@
   (custom-theme-set-faces
    'zovt
    `(default                        ((,class ,default-face)))
+   `(mode-line                      ((,class (:foreground "white" :background "black"))))
    `(font-lock-doc-face             ((,class ,default-face)))
    `(font-lock-type-face            ((,class ,default-face)))
    `(font-lock-builtin-face         ((,class ,default-face)))
@@ -51,11 +47,34 @@
 (add-hook 'after-init-hook 'server-start)
 
 (add-hook 'prog-mode-hook 'show-paren-mode)
-(add-hook 'fundamental-mode-hook (lambda () (local-set-key [tab] (insert-char ?\t))))
-(add-hook 'emacs-lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'c++-mode-hook (lambda ()
-                           (setq c-noise-macro-names '("constexpr"))))
+                                (setq c-noise-macro-names '("constexpr"))))
+
+;; indentation ----
+(defun newline-indent-match-previous ()
+  (interactive)
+  (let ((col (save-excursion
+               (back-to-indentation)
+               (current-column))))
+    (newline)
+    (indent-to-column col)))
+
+(global-set-key "\t" 'tab-to-tab-stop)
+(global-set-key (kbd "<backtab>") 'indent-according-to-mode)
+(global-set-key (kbd "RET") 'newline-indent-match-previous)
+
+(setq-default backward-delete-char-untabify-method nil)
+(setq-default tab-width 8
+              c-indent-offset 8
+              c-basic-offset 8
+              c-default-style '((other . "k&r"))
+              indent-tabs-mode t)
+
+(add-hook 'emacs-lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
+
+(electric-indent-mode 0)
+;; ----------------
 
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
