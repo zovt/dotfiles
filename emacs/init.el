@@ -10,6 +10,7 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (blink-cursor-mode 0)
+(scroll-bar-mode 0)
 (setq-default truncate-lines t)
 (setq-default auto-hscroll-mode 'current-line)
 
