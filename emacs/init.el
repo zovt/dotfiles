@@ -29,6 +29,7 @@
 (blink-cursor-mode 0)
 (scroll-bar-mode 0)
 (setq-default truncate-lines t)
+(setq-default mouse-autoselect-window -0.15)
 
 (set-face-font 'default "M+ 1m 14")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
