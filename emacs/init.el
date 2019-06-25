@@ -1,9 +1,26 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+(setq-default custom-file "~/.emacs.d/custom.el")
 
+;; package setup --
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+;; ----------------
+
+;; install needed packages --
+(defun install-if-needed (package-atom)
+  (interactive)
+  (if (not (package-installed-p package-atom))
+      (package-install package-atom)
+    (require package-atom)))
+
+(install-if-needed 'direx)
+(install-if-needed 'diminish)
+(install-if-needed 'magit)
+(install-if-needed 'ripgrep)
+;; --------------------------
+
+;; visual --
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
 (setq-default visual-bell t)
@@ -12,7 +29,6 @@
 (blink-cursor-mode 0)
 (scroll-bar-mode 0)
 (setq-default truncate-lines t)
-(setq-default auto-hscroll-mode 'current-line)
 
 (set-face-font 'default "M+ 1m 14")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
@@ -44,14 +60,28 @@
 (provide 'zovt-theme)
 (enable-theme 'zovt)
 
+(diminish 'abbrev-mode)
+;; ---------
+
 (setq-default backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
+;; hooks --
 (add-hook 'after-init-hook 'server-start)
 
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'c++-mode-hook (lambda ()
                                 (setq c-noise-macro-names '("constexpr"))))
+;; --------
+
+;; dedicated windows --
+(defun mark-window-dedicated ()
+  (interactive)
+  (set-window-dedicated-p (selected-window) t)
+  (message "Window marked dedicated"))
+
+(global-set-key "\C-c\ d" 'mark-window-dedicated)
+;; --------------------
 
 ;; indentation ----
 (defun newline-indent-match-previous ()
@@ -80,7 +110,9 @@
 
 (setq-default confirm-kill-emacs 'yes-or-no-p)
 
+;; other keybinds --
 (global-set-key "\C-t" 'hippie-expand)
 (global-set-key "\C-c\ c" 'compile)
+;; -----------------
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
