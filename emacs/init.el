@@ -29,7 +29,7 @@
 (blink-cursor-mode 0)
 (scroll-bar-mode 0)
 (setq-default truncate-lines t)
-(setq-default mouse-autoselect-window -0.15)
+(setq-default mouse-autoselect-window -0.12)
 
 (set-face-font 'default "M+ 1m 14")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
@@ -81,7 +81,13 @@
   (set-window-dedicated-p (selected-window) t)
   (message "Window marked dedicated"))
 
+(defun mark-window-not-dedicated ()
+  (interactive)
+  (set-window-dedicated-p (selected-window) nil)
+  (message "Window unmarked dedicated"))
+
 (global-set-key "\C-c\ d" 'mark-window-dedicated)
+(global-set-key "\C-c\ D" 'mark-window-not-dedicated)
 ;; --------------------
 
 ;; indentation ----
