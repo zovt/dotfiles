@@ -124,6 +124,14 @@
   (set-window-dedicated-p (selected-window) nil)
   (message "Window unmarked dedicated"))
 
+(defun mark-frame-unsplittable ()
+  (interactive)
+  (set-frame-parameter nil 'unsplittable t))
+
+(defun mark-frame-splittable ()
+  (interactive)
+  (set-frame-parameter nil 'unsplittable nil))
+
 (global-set-key "\C-c\ d" 'mark-window-dedicated)
 (global-set-key "\C-c\ D" 'mark-window-not-dedicated)
 
