@@ -36,14 +36,15 @@
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
 (setq-default visual-bell t)
-(speedup-defer 0.1 (lambda () (tool-bar-mode 0)))
-(speedup-defer 0.1 (lambda () (menu-bar-mode 0)))
+(tool-bar-mode 0)
+(menu-bar-mode 0)
 (blink-cursor-mode 0)
-(scroll-bar-mode 0)
+(speedup-defer 0.1 (lambda () (scroll-bar-mode 0)))
 (setq-default truncate-lines t)
 (setq-default mouse-autoselect-window -0.12)
 
-(speedup-defer 0.1 (lambda () (set-face-font 'default "M+ 1m 14")))
+(set-face-font 'default "M+ 1m 15")
+(set-face-font 'variable-pitch "Liberation Serif 15")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default backup-by-copying t
               delete-old-versions t
@@ -71,7 +72,7 @@
    `(font-lock-string-face          ((,class ,default-face)))
    `(font-lock-variable-name-face   ((,class ,default-face)))
    `(font-lock-constant-face        ((,class ,default-face)))
-   `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :slant italic))))
+   `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :family "Liberation Serif" :height 160))))
    `(region                         ((,class (:foreground "black" :background "gray89"))))
    `(font-lock-string-face          ((,class ,default-face)))
    `(font-lock-keyword-face         ((,class ,default-face)))))
@@ -88,6 +89,8 @@
 (diminish 'abbrev-mode)
 (diminish 'auto-revert-mode)
 (diminish 'form-feed-mode)
+(diminish 'variable-pitch-mode)
+(diminish 'buffer-face-mode)
 
 ;; hooks
 (add-hook 'after-init-hook 'server-start)
@@ -95,6 +98,7 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'c++-mode-hook (lambda ()
                                 (setq c-noise-macro-names '("constexpr"))))
+(add-hook 'text-mode-hook (lambda () (variable-pitch-mode 1)))
 
 ;; other
 (setq-default backup-directory-alist '(("." . "~/.emacs.d/backups")))
