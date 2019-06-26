@@ -46,6 +46,7 @@
    `(default                        ((,class ,default-face)))
    `(mode-line                      ((,class (:foreground "white" :background "black" :box "black"))))
    `(mode-line-inactive             ((,class (:foreground "black" :background "white" :box "black"))))
+   `(fringe                         ((,class (:background "white"))))
    `(font-lock-doc-face             ((,class ,default-face)))
    `(font-lock-type-face            ((,class ,default-face)))
    `(font-lock-builtin-face         ((,class ,default-face)))
@@ -62,6 +63,8 @@
 (enable-theme 'zovt)
 
 (diminish 'abbrev-mode)
+
+(fringe-mode 20)
 ;; ---------
 
 (setq-default backup-directory-alist '(("." . "~/.emacs.d/backups")))
