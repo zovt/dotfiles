@@ -27,3 +27,4 @@ nvim/files/plugged
 nvim/files/plugged/*
 
 \#*\
+/emacs/custom.el
