@@ -31,6 +31,7 @@
 (install-if-needed 'ripgrep)
 (install-if-needed 'form-feed)
 (install-if-needed 'magit)
+(install-if-needed 'mood-line)
 
 ;; visual
 (setq-default initial-scratch-message "")
@@ -91,6 +92,8 @@
 (diminish 'form-feed-mode)
 (diminish 'variable-pitch-mode)
 (diminish 'buffer-face-mode)
+
+(mood-line-mode)
 
 ;; hooks
 (add-hook 'after-init-hook 'server-start)
