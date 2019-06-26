@@ -27,7 +27,6 @@
     (autoload package-atom (symbol-name package-atom) nil t)))
 
 (install-if-needed 'direx)
-(install-if-needed 'diminish)
 (install-if-needed 'ripgrep)
 (install-if-needed 'form-feed)
 (install-if-needed 'magit)
@@ -87,12 +86,6 @@
 
 (speedup-defer 0.1 (lambda () (fringe-mode 20)))
 
-(diminish 'abbrev-mode)
-(diminish 'auto-revert-mode)
-(diminish 'form-feed-mode)
-(diminish 'variable-pitch-mode)
-(diminish 'buffer-face-mode)
-
 (mood-line-mode)
 (setq-default mode-line-format
               '((:eval
@@ -100,12 +93,10 @@
                   ;; Left
                   (format-mode-line
                    '((:eval (mood-line-segment-modified))
-                     (:eval (mood-line-segment-buffer-name))
-                     "%l"))
+                     (:eval (concat (propertize "%b" 'face 'mode-line-buffer-id) ":%l"))))
                   ;; Right
                   (format-mode-line
-                   '((:eval (mood-line-segment-vc))
-                     (:eval (mood-line-segment-major-mode))
+                   '((:eval (mood-line-segment-major-mode))
                      (:eval (mood-line-segment-process))
                      " "))))))
 
@@ -164,6 +155,7 @@
 (global-set-key "\C-t" 'hippie-expand)
 (global-set-key "\C-c\ c" 'compile)
 (global-set-key "\C-c\ l" (lambda () (interactive) (insert-char ?\^L)))
+(global-set-key "\C-c\ g" 'magit)
 
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
