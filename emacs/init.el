@@ -94,6 +94,20 @@
 (diminish 'buffer-face-mode)
 
 (mood-line-mode)
+(setq-default mode-line-format
+              '((:eval
+                 (mood-line-format
+                  ;; Left
+                  (format-mode-line
+                   '((:eval (mood-line-segment-modified))
+                     (:eval (mood-line-segment-buffer-name))
+                     "%l"))
+                  ;; Right
+                  (format-mode-line
+                   '((:eval (mood-line-segment-vc))
+                     (:eval (mood-line-segment-major-mode))
+                     (:eval (mood-line-segment-process))
+                     " "))))))
 
 ;; hooks
 (add-hook 'after-init-hook 'server-start)
