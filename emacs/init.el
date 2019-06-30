@@ -23,8 +23,7 @@
 (defun install-if-needed (package-atom)
   (interactive "Spackage: ")
   (if (not (package-installed-p package-atom))
-      (package-install package-atom)
-    (autoload package-atom (symbol-name package-atom) nil t)))
+      (package-install package-atom)))
 
 (install-if-needed 'direx)
 (install-if-needed 'ripgrep)
@@ -35,7 +34,7 @@
 ;; visual
 (setq-default initial-scratch-message "")
 (setq-default inhibit-startup-message t)
-(setq-default visual-bell t)
+(setq-default visible-bell t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (blink-cursor-mode 0)
@@ -43,8 +42,8 @@
 (setq-default truncate-lines t)
 (setq-default mouse-autoselect-window -0.12)
 
-(set-face-font 'default "M+ 1m 15")
-(set-face-font 'variable-pitch "Liberation Serif 15")
+(set-face-font 'default "Iosevka Term Slab Light 16")
+(set-face-font 'variable-pitch "Liberation Serif 17")
 (set-fontset-font t 'unicode "EmojiOne" nil 'prepend)
 (setq-default backup-by-copying t
               delete-old-versions t
@@ -72,7 +71,7 @@
    `(font-lock-string-face          ((,class ,default-face)))
    `(font-lock-variable-name-face   ((,class ,default-face)))
    `(font-lock-constant-face        ((,class ,default-face)))
-   `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :family "Liberation Serif" :height 160))))
+   `(font-lock-comment-face         ((,class (:foreground "black" :background "white" :slant italic))))
    `(region                         ((,class (:foreground "black" :background "gray89"))))
    `(font-lock-string-face          ((,class ,default-face)))
    `(font-lock-keyword-face         ((,class ,default-face)))))
@@ -163,7 +162,7 @@
 (global-set-key "\C-t" 'hippie-expand)
 (global-set-key "\C-c\ c" 'compile)
 (global-set-key "\C-c\ l" (lambda () (interactive) (insert-char ?\^L)))
-(global-set-key "\C-c\ g" 'magit)
+(global-set-key "\C-c\ g" 'magit-status)
 
 
 (if (file-exists-p "~/.emacs.d/local.el") (load-file "~/.emacs.d/local.el"))
