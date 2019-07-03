@@ -1,0 +1,53 @@
+[general]
+accounts = Posteo, School, Old
+maxsyncaccounts = 3
+
+[Account Posteo]
+localrepository = LocalPosteo
+remoterepository = RemotePosteo
+autorefresh = 5
+quick = 10
+
+[Repository LocalPosteo]
+type = Maildir
+localfolders = ~/.mail/Posteo
+
+[Repository RemotePosteo]
+type = IMAP
+remotehost = posteo.de
+remoteuser = nickippoliti@posteo.net
+
+[Account School]
+localrepository = LocalSchool
+remoterepository = RemoteSchool
+autorefresh = 5
+quick = 10
+
+[Repository LocalSchool]
+type = Maildir
+localfolders = ~/.mail/School
+
+[Repository RemoteSchool]
+type = Gmail
+ssl = true
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = ippoliti.n@husky.neu.edu
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+
+[Account Old]
+localrepository = LocalOld
+remoterepository = RemoteOld
+autorefresh = 5
+quick = 10
+maxage = 60
+
+[Repository LocalOld]
+type = Maildir
+localfolders = ~/.mail/Old
+
+[Repository RemoteOld]
+type = Gmail
+ssl = true
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = nicholasippoliti42@gmail.com
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
