@@ -1,1 +1,0 @@
-tabsize=2 acme -a -f /mnt/font/DejaVuSansCondensed/16a/font $@

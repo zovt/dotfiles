@@ -1,4 +1,0 @@
-#!/bin/sh
-
-c=`cat $1`
-printf "%s\n" "$c" >$1
