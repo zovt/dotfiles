@@ -44,14 +44,14 @@ end
 -- }}}
 
 -- startup programs
-awful.spawn("compton")
+-- awful.spawn("compton")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/home/zovt/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "emacs --eval '(ansi-term \"/bin/mksh\")'"
+terminal = "emacs --eval '(progn (shell) (delete-other-windows) (setq-default frame-title-format \"Shell\"))'"
 editor = "emacs"
 editor_cmd = editor
 

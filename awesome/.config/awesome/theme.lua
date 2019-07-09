@@ -1,33 +1,55 @@
 ---------------------------
 -- Default awesome theme --
 ---------------------------
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local naughty = require("naughty")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+colors_path = "/home/zovt/.colors"
+function read_colors()
+	local colors_file = io.open(colors_path, "r")
+	if not colors_file then
+		error("Could not open .colors")
+	end
+	local colors = {}
+	while true do
+		local line = colors_file:read("*line")
+		if not line then
+			break
+		end
+		local words = {}
+		for word in line:gmatch("%S+") do
+			words[#words+1] = word
+		end
+		colors[words[1]] = words[2]
+	end
+	return colors
+end
+colors = read_colors()
+
 local theme = {}
 
-theme.font          = "M+ 1m 14"
+theme.font          = "Iosevka Term Slab 14"
 
-theme.bg_normal     = "#FFFFFF"
-theme.bg_focus      = "#000000"
+theme.bg_normal     = colors["background"]
+theme.bg_focus      = colors["foreground"]
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = "#FFFFFF00"
 
-theme.fg_normal     = "#000000"
-theme.fg_focus      = "#FFFFFF"
-theme.fg_urgent     = "#000000"
-theme.fg_minimize   = "#000000"
+theme.fg_normal     = colors["foreground"]
+theme.fg_focus      = colors["background"]
+theme.fg_urgent     = colors["foreground"]
+theme.fg_minimize   = colors["foreground"]
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(2)
-theme.border_normal = "#DDDDDD"
-theme.border_focus  = "#000000"
+theme.border_normal = colors["foreground"]
+theme.border_focus  = colors["alt-background"]
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
@@ -72,11 +94,11 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.wallpaper = "/home/zovt/.config/awesome/solaire.png"
+theme.wallpaper = "/home/zovt/.config/awesome/king_shift.jpg"
 theme.wallpapers = {
-	"/home/zovt/.config/awesome/solaire.png",
-	"/home/zovt/.config/awesome/king.jpg",
-}	
+	"/home/zovt/.config/awesome/solaire_shift.png",
+	"/home/zovt/.config/awesome/king_shift.jpg",
+}
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
