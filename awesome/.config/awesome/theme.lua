@@ -48,8 +48,8 @@ theme.fg_minimize   = colors["foreground"]
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(2)
-theme.border_normal = colors["foreground"]
-theme.border_focus  = colors["alt-background"]
+theme.border_normal = colors["alt-background"]
+theme.border_focus  = colors["foreground"]
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
