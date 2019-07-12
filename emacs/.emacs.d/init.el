@@ -54,7 +54,6 @@
 (install-if-needed 'ivy)
 (install-if-needed 'flx)
 (install-if-needed 'elfeed)
-(install-if-needed 'notmuch)
 (install-if-needed 'centaur-tabs)
 
 ;; visual
@@ -101,12 +100,13 @@
    `(vertical-border                ((,class (:foreground ,background :background ,foreground))))
    `(fringe                         ((,class ,default-face)))
    `(centaur-tabs-default           ((,class ,default-face)))
-   `(centaur-tabs-selected          ((,class (:foreground ,background :background ,foreground))))
-   `(centaur-tabs-unselected        ((,class ,default-face)))
-   `(centaur-tabs-selected-modified ((,class (:foreground ,alt-background :background ,foreground))))
-   `(centaur-tabs-unselected-modified ((,class (:background ,alt-background :foreground ,foreground))))
-   `(centaur-tabs-close-selected    ((,class (:foreground ,background :background ,foreground))))
-   `(centaur-tabs-close-unselected  ((,class ,default-face)))
+   `(centaur-tabs-selected          ((,class ,default-face)))
+   `(centaur-tabs-unselected        ((,class (:foreground ,background :background ,foreground))))
+   `(centaur-tabs-selected-modified ((,class (:background ,alt-background :foreground ,foreground))))
+   `(centaur-tabs-unselected-modified ((,class (:foreground ,alt-background :background ,foreground))))
+   `(centaur-tabs-close-selected    ((,class ,default-face)))
+   `(centaur-tabs-close-unselected  ((,class (:foreground ,background :background ,foreground))))
+   `(header-line                    ((,class (:foreground ,background :background ,foreground))))
    `(font-lock-doc-face             ((,class ,default-face)))
    `(font-lock-type-face            ((,class ,default-face)))
    `(font-lock-builtin-face         ((,class ,default-face)))
@@ -227,6 +227,8 @@
 (global-set-key "\C-c\ c" 'compile)
 (global-set-key "\C-c\ l" (lambda () (interactive) (insert-char ?\^L)))
 (global-set-key "\C-c\ g" 'magit-status)
+(global-set-key [?\e tab] 'centaur-tabs-forward)
+(global-set-key [?\e backtab] 'centaur-tabs-backward)
 
 ;; utilities for configuring packages
 (require 'cl)
@@ -370,11 +372,19 @@
                erc-kill-server-buffer-on-quit t
                erc-autoaway-idle-seconds 600))
 
-;; notmuch
+;; mu4e
 (lazy-configure
- 'notmuch
+ 'mu4e
  (setq-default frame-title-format "Mail")
- (setq-default user-mail-address "nickippoliti@posteo.net"
+ (setq-default mu4e-sent-folder "/sent"
+               mu4e-drafts-folder "/drafts"
+               mu4e-maildir "~/.mail"
+               mu4e-bookmarks `(("flag:unread AND NOT flag:trashed" "Unread messages" 117)
+                                ("date:today..now" "Today's messages" 116)
+                                ("date:7d..now" "Last 7 days" 119)
+                                ("mime:image/*" "Messages with images" 112)
+                                ,(make-mu4e-bookmark :name "All messages" :query "" :key ?a))
+               user-mail-address "nickippoliti@posteo.net"
                user-full-name "Nick Ippoliti"
                message-send-mail-function 'smtpmail-send-it
                smtpmail-smtp-user "nickippoliti@posteo.net"
@@ -382,18 +392,43 @@
                smtpmail-smtp-service 587)
  (defvar my/mail-account-alist
    '(("Posteo"
+      (mu4e-sent-folder "/Posteo/Sent")
+      (mu4e-drafts-folder "/Posteo/Drafts")
       (user-mail-address "nickippoliti@posteo.net")
       (user-full-name "Nick Ippoliti")
       (smtpmail-smtp-user "nickippoliti@posteo.net")
       (smtpmail-smtp-server "posteo.de")
       (smtpmail-smtp-service 587))
      ("School"
+      (mu4e-sent-folder "/School/[Gmail].Sent Mail")
+      (mu4e-drafts-folder "/School/[Gmail].Drafts")
       (user-mail-address "ippoliti.n@husky.neu.edu")
       (user-full-name "Nick Ippoliti")
       (smtpmail-smtp-user "ippoliti.n@husky.neu.edu")
       (smtpmail-smtp-server "smtp.gmail.com")
       (smtpmail-smtp-service 587))
       ))
+ (defun my/mu4e-set-account ()
+   "Set the account for composing a message.
+   This function is taken from:
+     https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
+   (let* ((account
+           (if mu4e-compose-parent-message
+               (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                 (string-match "/\\(.*?\\)/" maildir)
+                 (match-string 1 maildir))
+             (completing-read (format "Compose with account: (%s) "
+                                      (mapconcat #'(lambda (var) (car var))
+                                                 my/mail-account-alist "/"))
+                              (mapcar #'(lambda (var) (car var)) my/mail-account-alist)
+                              nil t nil nil (caar my/mail-account-alist))))
+          (account-vars (cdr (assoc account my/mail-account-alist))))
+     (if account-vars
+         (mapc #'(lambda (var)
+                   (set (car var) (cadr var)))
+               account-vars)
+       (error "No email account found"))))
+ (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
  (setq-default offlineimap-lock-file "~/.emacs.d/offlineimap-lock")
  (defun start-offlineimap-if-needed (&rest _rest)
@@ -407,7 +442,7 @@
                          (delete-file offlineimap-lock-file)
                          (if (get-process "offlineimap")
                              (delete-process "offlineimap"))))))
- (advice-add 'notmuch :before 'start-offlineimap-if-needed)
+ (advice-add 'mu4e :before 'start-offlineimap-if-needed)
  (start-offlineimap-if-needed)
 
  (defun offline-imap-signin (account-name)
@@ -417,7 +452,11 @@
 
  (defun offline-imap-refresh ()
    (interactive)
-   (signal-process "offlineimap" 'SIGUSR1)))
+   (signal-process "offlineimap" 'SIGUSR1))
+
+ (mu4e-alert-set-default-style 'libnotify)
+ (mu4e-alert-enable-notifications)
+ (run-with-timer 60 60 'mu4e-update-index))
 
 ;; elfeed
 (defun get-youtube-feed-url (page)
