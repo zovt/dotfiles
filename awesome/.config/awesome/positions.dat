@@ -1,33 +1,25 @@
 69206050
 2950 29 884 652
-#general - Discord
-616 46 1054 1008
-vc_redist.x64.exe
-1920 22 1 1
+setup_bloodstained_ritual_of_the_night_1.03_(64bit)_(30264).tmp
+2729 485 297 125
+cockatrice
+1920 29 1890 1050
 Activity - Discord
 632 41 1054 1008
-Toplevel
-3346 22 490 344
 feh
 13 21 1920 1079
 pale moon
 1136 22 780 716
-Discord Updater
-1167 250 300 350
-risk of rain 2.exe
-1920 0 1920 1080
+winecfg.exe
+1920 321 410 446
 Steam
-2257 251 1010 668
-lxappearance
-1920 629 641 447
-vc_redist.x86.exe
-1920 22 1 1
+2686 476 1010 600
+gtk2fontsel
+2569 118 700 640
 pcmanfm
 3041 309 632 519
 8388642
 2903 248 884 652
-NVIDIA X Server Settings
-2934 245 877 887
 Really quit?
 2962 29 208 81
 exo-helper-1
@@ -36,75 +28,103 @@ discord
 34 99 1294 870
 pavucontrol
 0 22 1054 1060
-8388609
-1071 250 300 350
-Dialog
-1982 460 544 343
-Places
-1920 22 1300 703
-46137378
-2933 234 884 652
-sekiro.exe
-1920 0 1920 1080
-xterm
-1019 324 835 654
-Browser
-2015 59 914 942
-gl
-85 76 1660 934
-calibre-gui
-1993 99 1456 779
-sun-awt-X11-XFramePeer
-1916 18 1920 1058
-kdeconnectd
-2854 775 400 300
 display
 2183 133 1143 297
-xarchiver
-2854 676 600 400
+46137378
+2933 234 884 652
+xterm
+1019 324 835 654
+icecat
+2382 101 1124 822
 10485766
 632 41 1054 1008
-gtk2fontsel
-2569 118 700 640
-cockatrice
-1920 29 1890 1045
-krita
-3008 263 960 566
-Customize Look and Feel
-1920 29 950 574
-lxtask
-1920 22 852 735
-steam
-1920 22 1920 1080
+dotnetfx35websetup.exe
+1920 321 330 98
 Mozilla
 1974 279 918 608
-Navigator
-310 36 1362 1028
-oracle
-1920 22 500 360
 Addons
 3153 779 683 198
 underlords
 1920 22 1920 1080
-emacs
-937 66 840 828
-sun-awt-X11-XDialogPeer
-2742 489 262 90
-Devtools
-1031 316 900 600
-dota2
-1920 0 1920 1080
 Popup
-3084 117 472 171
+3302 149 472 186
 firefox
-792 22 669 288
-icecat
-2382 101 1124 822
+792 22 729 518
 gpartedbin
 2125 164 1301 696
+Browser
+2015 59 914 942
+lutris
+1920 22 1047 801
+25165858
+2827 233 884 652
+#general - Discord
+616 46 1054 1008
+vc_redist.x64.exe
+1920 22 1 1
+Toplevel
+3346 22 490 344
+Discord Updater
+1167 250 300 350
+risk of rain 2.exe
+1920 0 1920 1080
+dota2
+1920 0 1920 1080
+vc_redist.x86.exe
+1920 22 1 1
+ue4prereqsetup_x64.exe
+1920 27 1 1
+sekiro.exe
+1920 0 1920 1080
+Devtools
+1031 316 900 600
+Places
+1920 22 1300 703
+sun-awt-X11-XFramePeer
+1916 18 1920 1058
+xarchiver
+2854 676 600 400
+oracle
+1920 22 500 360
+calibre-gui
+1993 99 1456 779
+Customize Look and Feel
+1920 29 950 574
+krita
+3008 263 960 566
+lxtask
+1920 22 852 735
+steam
+1920 22 1920 1080
+Navigator
+2334 91 1187 873
+emacs
+2883 233 760 792
+lxappearance
+1920 629 641 447
+8388609
+1071 250 300 350
+bloodstainedrotn-win64-shipping.exe
+1918 2 1920 1080
+wineboot.exe
+1920 446 300 81
+NVIDIA X Server Settings
+2934 245 877 887
+scriptinterpreter.tmp
+2729 485 293 89
+setup.exe
+2740 510 276 75
+sun-awt-X11-XDialogPeer
+2742 489 262 90
+kdeconnectd
+2854 775 400 300
+dotnetfx35setup.exe
+1920 321 330 98
+gl
+106 91 1660 934
 Prompt
 2212 432 623 231
 darksoulsiii.exe
 1920 0 1920 1080
-25165858
-2827 233 884 652
+Dialog
+1982 460 544 416

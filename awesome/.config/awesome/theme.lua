@@ -94,6 +94,42 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
+-- color images based on .colors
+function recolor(path, output_path, from, to)
+	os.execute("convert "
+		.. path
+		.. " -fuzz 10% -fill '"
+		.. to
+		.. "' -opaque '"
+		.. from
+		.. "' "
+		.. output_path)
+end
+recolor(
+	"/home/zovt/.config/awesome/king.jpg",
+	"/home/zovt/.config/awesome/king_shift.jpg",
+	"#000000",
+	colors["foreground"]
+)
+recolor(
+	"/home/zovt/.config/awesome/king_shift.jpg",
+	"/home/zovt/.config/awesome/king_shift.jpg",
+	"#FFFFFF",
+	colors["background"]
+)
+recolor(
+	"/home/zovt/.config/awesome/solaire.png",
+	"/home/zovt/.config/awesome/solaire_shift.png",
+	"#000000",
+	colors["foreground"]
+)
+recolor(
+	"/home/zovt/.config/awesome/solaire_shift.png",
+	"/home/zovt/.config/awesome/solaire_shift.png",
+	"#FFFFFF",
+	colors["background"]
+)
+
 theme.wallpaper = "/home/zovt/.config/awesome/king_shift.jpg"
 theme.wallpapers = {
 	"/home/zovt/.config/awesome/solaire_shift.png",

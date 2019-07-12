@@ -1,2 +1,4 @@
 emacs/.emacs.d/*
 !emacs/.emacs.d/init.el
+awesome/.config/awesome/king_shift.jpg
+awesome/.config/awesome/solaire_shift.png
