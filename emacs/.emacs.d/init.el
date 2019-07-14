@@ -506,6 +506,8 @@
                  "https://www.youtube.com/feeds/videos.xml?channel_id=UCxPWgo_ujtjKT6vn1-Obm2g" ; The world tree
                  "https://www.youtube.com/feeds/videos.xml?channel_id=UCZAENaOaceQUMd84GDc26EA" ; Survive the Jive
                  "https://www.youtube.com/feeds/videos.xml?channel_id=UCcaVClI50rGZmbYMhoSSDGA" ; Northmen
+                 "https://www.youtube.com/feeds/videos.xml?channel_id=UCg1HMNQ94Ba1rH6JZueBcag" ; Eric Bugenhagen
+                 "https://www.youtube.com/feeds/videos.xml?channel_id=UC8e0Sg8TmRRFJytjEGhmVTg" ; Rhystic Studies
                  ))
  )
 
