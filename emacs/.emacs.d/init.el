@@ -54,7 +54,7 @@
 (install-if-needed 'ivy)
 (install-if-needed 'flx)
 (install-if-needed 'elfeed)
-(install-if-needed 'centaur-tabs)
+(install-if-needed 'which-key)
 
 ;; visual
 (setq-default initial-scratch-message "")
@@ -99,13 +99,6 @@
    `(mode-line-inactive             ((,class ,default-face)))
    `(vertical-border                ((,class (:foreground ,background :background ,foreground))))
    `(fringe                         ((,class ,default-face)))
-   `(centaur-tabs-default           ((,class ,default-face)))
-   `(centaur-tabs-selected          ((,class ,default-face)))
-   `(centaur-tabs-unselected        ((,class (:foreground ,background :background ,foreground))))
-   `(centaur-tabs-selected-modified ((,class (:background ,alt-background :foreground ,foreground))))
-   `(centaur-tabs-unselected-modified ((,class (:foreground ,alt-background :background ,foreground))))
-   `(centaur-tabs-close-selected    ((,class ,default-face)))
-   `(centaur-tabs-close-unselected  ((,class (:foreground ,background :background ,foreground))))
    `(header-line                    ((,class (:foreground ,background :background ,foreground))))
    `(font-lock-doc-face             ((,class ,default-face)))
    `(font-lock-type-face            ((,class ,default-face)))
@@ -143,9 +136,6 @@
                    '((:eval (mood-line-segment-major-mode))
                      (:eval (mood-line-segment-process))
                      " "))))))
-
-(centaur-tabs-mode t)
-(centaur-tabs-headline-match)
 
 ;; hooks
 (setq-default server-lock-file "~/.emacs.d/server-lock")
@@ -174,6 +164,8 @@
 (setq-default custom-file "~/.emacs.d/custom.el")
 
 (setq-default epa-pinentry-mode 'loopback)
+
+(which-key-mode t)
 
 ;; dedicated windows
 (defun mark-window-dedicated ()
@@ -213,9 +205,9 @@
 (global-set-key (kbd "RET") 'newline-indent-match-previous)
 
 (setq-default backward-delete-char-untabify-method nil)
-(setq-default tab-width 8
-              c-indent-offset 8
-              c-basic-offset 8
+(setq-default tab-width 4
+              c-indent-offset 4
+              c-basic-offset 4
               c-default-style '((other . "k&r"))
               indent-tabs-mode t)
 
@@ -227,8 +219,6 @@
 (global-set-key "\C-c\ c" 'compile)
 (global-set-key "\C-c\ l" (lambda () (interactive) (insert-char ?\^L)))
 (global-set-key "\C-c\ g" 'magit-status)
-(global-set-key [?\e tab] 'centaur-tabs-forward)
-(global-set-key [?\e backtab] 'centaur-tabs-backward)
 
 ;; utilities for configuring packages
 (require 'cl)
